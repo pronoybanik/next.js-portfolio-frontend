@@ -3,8 +3,8 @@ import React from "react";
 
 const NavBar = () => {
   return (
-    <div>
-      <header className="bg-white">
+    <div className="sticky top-0 z-50">
+      <header className="bg-white ">
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex-1 md:flex md:items-center md:gap-12">
@@ -30,7 +30,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       className="text-gray-500 transition hover:text-gray-500/75"
-                      href="/"
+                      href="/#"
                     >
                       Home
                     </Link>
@@ -38,7 +38,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       className="text-gray-500 transition hover:text-gray-500/75"
-                      href="/services"
+                      href="#services"
                     >
                       service
                     </Link>
@@ -47,7 +47,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       className="text-gray-500 transition hover:text-gray-500/75"
-                      href="/contact"
+                      href="#contact"
                     >
                       contact
                     </Link>
@@ -56,7 +56,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       className="text-gray-500 transition hover:text-gray-500/75"
-                      href="/works"
+                      href="#works"
                     >
                       works
                     </Link>
@@ -65,10 +65,9 @@ const NavBar = () => {
                   <li>
                     <a
                       className="text-gray-500 transition hover:text-gray-500/75"
-                      href="#"
+                      href="#skill"
                     >
-                      {" "}
-                      Services{" "}
+                    Skill
                     </a>
                   </li>
 
