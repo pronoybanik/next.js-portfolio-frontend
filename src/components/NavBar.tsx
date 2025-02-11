@@ -40,7 +40,7 @@ const NavBar = () => {
                       className="text-gray-500 transition hover:text-gray-500/75"
                       href="#services"
                     >
-                      service
+                      Service
                     </Link>
                   </li>
 
@@ -49,7 +49,7 @@ const NavBar = () => {
                       className="text-gray-500 transition hover:text-gray-500/75"
                       href="#contact"
                     >
-                      contact
+                      Contact
                     </Link>
                   </li>
 
@@ -58,7 +58,7 @@ const NavBar = () => {
                       className="text-gray-500 transition hover:text-gray-500/75"
                       href="#works"
                     >
-                      works
+                      Works
                     </Link>
                   </li>
 
@@ -67,7 +67,7 @@ const NavBar = () => {
                       className="text-gray-500 transition hover:text-gray-500/75"
                       href="#skill"
                     >
-                    Skill
+                      Skill
                     </a>
                   </li>
 
