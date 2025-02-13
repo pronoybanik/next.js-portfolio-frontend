@@ -29,18 +29,21 @@ const services = [
   },
 ];
 
-const Services = ({id} : {id: string}) => {
+const Services = ({ id }: { id: string }) => {
   const [selected, setSelected] = useState(1);
 
   return (
-    <section id={id} className="bg-gray-100 py-16 px-4 md:px-16">
-      <div className="text-center mb-10">
-        <h2 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
+    <section
+      id={id}
+      className="bg-gray-100 py-16 px-4 md:px-8 lg:px-16 min-h-screen"
+    >
+      <div className="text-center my-10">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
           My Quality Services
         </h2>
-        <p className="text-gray-600 mt-2">
-          We put your ideas into a unique web project that inspires you and your
-          customers.
+        <p className="text-black mt-6 text-lg sm:text-xl font-medium text-center max-w-3xl mx-auto">
+          We put your ideas and thus your wishes in the form of a unique web
+          project that inspires you and your customers.
         </p>
       </div>
 
@@ -49,33 +52,35 @@ const Services = ({id} : {id: string}) => {
           <div
             key={service.id}
             onClick={() => setSelected(service.id)}
-            className={`flex items-center justify-between p-5 rounded-lg transition-all duration-300 cursor-pointer ${
+            className={`flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:p-5 rounded-lg transition-all duration-300 cursor-pointer my-4 ${
               selected === service.id
-                ? "bg-gradient-to-r from-purple-500 to-purple-900 text-white"
+                ? "bg-gradient-to-r from-purple-500 to-purple-900 text-white shadow-lg scale-105"
                 : "bg-white text-gray-800 hover:bg-gray-200"
             }`}
           >
             <div>
               <span
-                className={`text-lg font-bold ${
+                className={`flex text-2xl sm:text-3xl font-bold ${
                   selected === service.id ? "text-white" : "text-purple-600"
                 }`}
               >
                 0{service.id}
               </span>
               <h3
-                className={`text-xl font-bold mt-1 ${
+                className={`text-xl sm:text-2xl font-bold mt-1 ${
                   selected === service.id ? "text-white" : "text-purple-600"
                 }`}
               >
                 {service.title}
               </h3>
               {selected === service.id && (
-                <p className="mt-2 text-sm">{service.description}</p>
+                <p className="text-white text-sm sm:text-base mt-2 font-medium">
+                  {service.description}
+                </p>
               )}
             </div>
             <ArrowUpRight
-              className={`w-6 h-6 transition-transform duration-300 ${
+              className={`w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 ${
                 selected === service.id
                   ? "text-white transform rotate-45"
                   : "text-purple-600 hover:text-purple-800"

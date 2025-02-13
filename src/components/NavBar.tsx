@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 
@@ -26,18 +27,19 @@ const NavBar = () => {
 
             <div className="md:flex md:items-center md:gap-12">
               <nav aria-label="Global" className="hidden md:block">
-                <ul className="flex items-center gap-6 text-sm">
+                <ul className="flex items-center gap-10 text-lg font-semibold ">
                   <li>
                     <Link
-                      className="text-gray-500 transition hover:text-gray-500/75"
-                      href="/#"
+                      className="text-black font-semibold leading-2 relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:scale-x-0 before:bg-gradient-to-r before:from-purple-600 before:to-indigo-600 before:transition hover:before:scale-x-100 duration-300"
+                      href="/"
                     >
                       Home
                     </Link>
                   </li>
+
                   <li>
                     <Link
-                      className="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-black font-semibold leading-2 relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:scale-x-0 before:bg-gradient-to-r before:from-purple-600 before:to-indigo-600 before:transition hover:before:scale-x-100 duration-300"
                       href="#services"
                     >
                       Service
@@ -46,16 +48,7 @@ const NavBar = () => {
 
                   <li>
                     <Link
-                      className="text-gray-500 transition hover:text-gray-500/75"
-                      href="#contact"
-                    >
-                      Contact
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link
-                      className="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-black font-semibold leading-2 relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:scale-x-0 before:bg-gradient-to-r before:from-purple-600 before:to-indigo-600 before:transition hover:before:scale-x-100 duration-300"
                       href="#works"
                     >
                       Works
@@ -64,7 +57,7 @@ const NavBar = () => {
 
                   <li>
                     <a
-                      className="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-black font-semibold leading-2 relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:scale-x-0 before:bg-gradient-to-r before:from-purple-600 before:to-indigo-600 before:transition hover:before:scale-x-100 duration-300"
                       href="#skill"
                     >
                       Skill
@@ -73,13 +66,23 @@ const NavBar = () => {
 
                   <li>
                     <Link
-                      className="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-black font-semibold leading-2 relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:scale-x-0 before:bg-gradient-to-r before:from-purple-600 before:to-indigo-600 before:transition hover:before:scale-x-100 duration-300"
+                      href="#contact"
+                    >
+                      Contact
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      className="text-black font-semibold leading-2 relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:scale-x-0 before:bg-gradient-to-r before:from-purple-600 before:to-indigo-600 before:transition hover:before:scale-x-100 duration-300"
                       href="/dashboard"
                     >
                       Dashboard
                     </Link>
                   </li>
 
+                  {/* toggole button */}
                   <li>
                     <label
                       htmlFor="AcceptConditions"

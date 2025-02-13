@@ -3,16 +3,15 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function ContactForm({ id }: { id: string }) {
   return (
-    <div id={id} className="mx-auto">
-      <div className="flex flex-col md:flex-row items-center justify-center min-h-screen  bg-purple-50 px-4 md:px-8">
+    <div id={id} className="flex items-center justify-center py-16 px-4 bg-purple-50">
+      <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-screen-lg space-y-8 md:space-y-0 md:space-x-8">
         {/* Form Section */}
-        <div className="bg-white p-8 rounded-2xl shadow-md w-full md:w-1/2 max-w-lg">
+        <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-lg">
           <h2 className="text-2xl font-bold text-purple-700 mb-4 text-center md:text-left">
-            Let work together!
+            Let’s work together!
           </h2>
           <p className="text-gray-600 mb-6 text-center md:text-left">
-            I design and code beautifully simple things and I love what I do.
-            Just simple like that!
+            I design and code beautifully simple things, and I love what I do. Let’s make something amazing together!
           </p>
           <form>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -49,7 +48,7 @@ export default function ContactForm({ id }: { id: string }) {
             <div className="mb-6">
               <textarea
                 placeholder="Message"
-                rows="4"
+                rows={4}
                 className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
               ></textarea>
             </div>
@@ -63,13 +62,9 @@ export default function ContactForm({ id }: { id: string }) {
         </div>
 
         {/* Contact Info Section */}
-        <div className="flex-1 space-y-6 mt-8 md:mt-0 md:ml-8 px-4 md:px-0">
+        <div className="flex flex-col items-center md:items-start space-y-6 w-full md:w-auto">
           <ContactInfo icon={Phone} title="Phone" value="+01 123 654 8096" />
-          <ContactInfo
-            icon={Mail}
-            title="Email"
-            value="gerolddesign@mail.com"
-          />
+          <ContactInfo icon={Mail} title="Email" value="gerolddesign@mail.com" />
           <ContactInfo
             icon={MapPin}
             title="Address"
@@ -81,14 +76,22 @@ export default function ContactForm({ id }: { id: string }) {
   );
 }
 
-const ContactInfo = ({ icon: Icon, title, value }) => (
+// Adding type annotations for the props
+interface ContactInfoProps {
+  icon: React.ElementType; // Icon component type (e.g., Phone, Mail, etc.)
+  title: string;
+  value: string;
+}
+
+const ContactInfo: React.FC<ContactInfoProps> = ({ icon: Icon, title, value }) => (
   <div className="flex items-center space-x-4">
     <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-purple-900 text-white shadow-md">
       <Icon className="w-6 h-6" />
     </div>
-    <div>
+    <div className="text-center md:text-left">
       <h4 className="text-gray-500 text-sm">{title}</h4>
       <p className="text-gray-800 font-medium">{value}</p>
     </div>
   </div>
 );
+
