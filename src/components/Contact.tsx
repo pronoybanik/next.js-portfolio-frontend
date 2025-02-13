@@ -8,7 +8,7 @@ export default function ContactForm({ id }: { id: string }) {
         {/* Form Section */}
         <div className="bg-white p-8 rounded-2xl shadow-md w-full md:w-1/2 max-w-lg">
           <h2 className="text-2xl font-bold text-purple-700 mb-4 text-center md:text-left">
-            Let's work together!
+            Let work together!
           </h2>
           <p className="text-gray-600 mb-6 text-center md:text-left">
             I design and code beautifully simple things and I love what I do.

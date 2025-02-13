@@ -72,6 +72,15 @@ const NavBar = () => {
                   </li>
 
                   <li>
+                    <Link
+                      className="text-gray-500 transition hover:text-gray-500/75"
+                      href="/dashboard"
+                    >
+                      Dashboard
+                    </Link>
+                  </li>
+
+                  <li>
                     <label
                       htmlFor="AcceptConditions"
                       className="relative inline-block h-8 w-12 cursor-pointer [-webkit-tap-highlight-color:_transparent]"
