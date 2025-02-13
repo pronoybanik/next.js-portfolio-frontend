@@ -127,8 +127,6 @@ const Skill = ({ id }: { id: string }) => {
           <SkillItem skill={skill} key={i} />
         ))}
       </div>
-
-    
     </section>
   );
 };

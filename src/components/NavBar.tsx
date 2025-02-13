@@ -49,9 +49,9 @@ const NavBar = () => {
                   <li>
                     <Link
                       className="text-black font-semibold leading-2 relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:scale-x-0 before:bg-gradient-to-r before:from-purple-600 before:to-indigo-600 before:transition hover:before:scale-x-100 duration-300"
-                      href="#works"
+                      href="#project"
                     >
-                      Works
+                      Project
                     </Link>
                   </li>
 

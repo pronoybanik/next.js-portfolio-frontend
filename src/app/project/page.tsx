@@ -1,6 +1,6 @@
 import React from "react";
 
-const Works = ({ id }: { id: string }) => {
+const Projects = ({ id }: { id: string }) => {
   return (
     <section id={id} className="py-16 px-8  min-h-screen">
       <div className="text-center my-20">
@@ -64,8 +64,6 @@ const Works = ({ id }: { id: string }) => {
                 />
               </div>
             </div>
-
-            
           </section>
         </div>
       </div>
@@ -73,4 +71,4 @@ const Works = ({ id }: { id: string }) => {
   );
 };
 
-export default Works;
+export default Projects;
