@@ -8,7 +8,7 @@ const ProjectDetails = async ({
   const { id } = await params;
   console.log(id);
 
-  return <div>project Details</div>;
+  return <div>project Details:-{id}</div>;
 };
 
 export default ProjectDetails;
