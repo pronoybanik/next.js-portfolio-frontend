@@ -1,11 +1,8 @@
-import React from 'react';
+import React from "react";
 
-const BlogItem = () => {
-    return (
-        <div>
-            Blog Items
-        </div>
-    );
+const BlogItem = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
+  return <div>Blog Items - {id}</div>;
 };
 
 export default BlogItem;
