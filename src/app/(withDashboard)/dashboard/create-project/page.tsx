@@ -6,7 +6,7 @@ interface BookFormData {
   title: string;
   category: string;
   description: string;
-  frontEndGigLink: string;
+  frontEndGitLink: string;
   backEndGitLink: string;
   liveLink: string;
   inStock: boolean;
@@ -18,6 +18,7 @@ const CreateProject = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm<BookFormData>();
 
   const onSubmit = async (data: BookFormData) => {
@@ -29,12 +30,11 @@ const CreateProject = () => {
 
     const formData = new FormData();
     formData.append("file", imageValue);
-    formData.append("upload_preset", "Book-sell-shop");
-    formData.append("cloud_name", "dvcbclqid");
+    formData.append("upload_preset", "Book-sell-shop"); // Replace with your preset
+    formData.append("cloud_name", "dvcbclqid"); // Replace with your cloud name
 
     try {
-      // Upload image to Cloudinary
-      const response = await fetch(
+      const imageResponse = await fetch(
         `https://api.cloudinary.com/v1_1/dvcbclqid/image/upload`,
         {
           method: "POST",
@@ -42,37 +42,45 @@ const CreateProject = () => {
         }
       );
 
-      if (!response.ok) {
-        alert("Image upload failed");
+      if (!imageResponse.ok) {
+        const errorData = await imageResponse.json(); // Get error details if available
+        alert(`Image upload failed: ${errorData?.message || imageResponse.statusText}`);
         return;
       }
 
-      const imgData = await response.json();
+      const imgData = await imageResponse.json();
       const bookImageUrl = imgData.secure_url;
 
-      // Prepare your project data
       const projectData = {
         title: data.title,
         content: data.description,
         image: bookImageUrl,
-        frontEndGitLink: data.frontEndGigLink,
+        frontEndGitLink: data.frontEndGitLink,
         backEndGitLink: data.backEndGitLink,
         liveLink: data.liveLink,
         category: data.category,
       };
 
-      console.log("Formatted Project Data:", projectData);
+      const projectResponse = await fetch("http://localhost:5000/api/project", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // Important: Set content type
+        },
+        body: JSON.stringify(projectData), // Stringify the data
+      });
 
-      // Send `projectData` to your API or backend server
-      // await fetch('/api/projects', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(projectData),
-      // });
+      if (!projectResponse.ok) {
+        const errorData = await projectResponse.json();
+        alert(`Project creation failed: ${errorData?.message || projectResponse.statusText}`);
+        return;
+      }
+
+      alert("Project created successfully!");
+      reset(); // Clear the form after successful submission
+
     } catch (err) {
-      console.error("Upload Error:", err);
+      console.error("Error:", err);
+      alert("An error occurred. Please try again later.");
     }
   };
 
@@ -98,7 +106,7 @@ const CreateProject = () => {
             <input
               type="text"
               {...register("title", { required: "Title is required" })}
-              className="block w-full py-3 text-gray-700 uppercase bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700  bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
             />
             {errors.title && (
               <p className="text-red-500 text-xs mt-1">
@@ -116,7 +124,7 @@ const CreateProject = () => {
               {...register("description", {
                 required: "Description is required",
               })}
-              className="block w-full py-3 text-gray-700 uppercase bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
             />
             {errors.description && (
               <p className="text-red-500 text-xs mt-1">
@@ -155,7 +163,7 @@ const CreateProject = () => {
             <input
               type="file"
               {...register("image", { required: "Image is required" })}
-              className="block w-full py-3 text-gray-700 uppercase bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
             />
             {errors.image && (
               <p className="text-red-500 text-xs mt-1">
@@ -171,14 +179,14 @@ const CreateProject = () => {
             </label>
             <input
               type="text"
-              {...register("frontEndGigLink", {
+              {...register("frontEndGitLink", {
                 required: "Title is required",
               })}
-              className="block w-full py-3 text-gray-700 uppercase bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700  bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
             />
-            {errors.frontEndGigLink && (
+            {errors.frontEndGitLink && (
               <p className="text-red-500 text-xs mt-1">
-                {errors.frontEndGigLink.message}
+                {errors.frontEndGitLink.message}
               </p>
             )}
           </div>
@@ -192,7 +200,7 @@ const CreateProject = () => {
               {...register("backEndGitLink", {
                 required: "Title is required",
               })}
-              className="block w-full py-3 text-gray-700 uppercase bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700  bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
             />
             {errors.backEndGitLink && (
               <p className="text-red-500 text-xs mt-1">
@@ -210,7 +218,7 @@ const CreateProject = () => {
               {...register("liveLink", {
                 required: "Title is required",
               })}
-              className="block w-full py-3 text-gray-700 uppercase bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700  bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
             />
             {errors.liveLink && (
               <p className="text-red-500 text-xs mt-1">

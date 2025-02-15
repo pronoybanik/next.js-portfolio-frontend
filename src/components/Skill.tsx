@@ -111,7 +111,7 @@ const Skill = ({ id }: { id: string }) => {
 
 
   return (
-    <section id={id} className="py-16 px-4 md:px-8 lg:px-16 min-h-screen">
+    <section id={id} className="py-16 px-4 md:px-8 lg:px-16 min-h-screen bg-gray-100">
       <div className="text-center my-20">
         <h2 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
           My Recent Works

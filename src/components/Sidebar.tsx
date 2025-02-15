@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { FaUser, FaCog, FaHome } from "react-icons/fa";
+import { FaHome, FaProjectDiagram, FaBloggerB } from "react-icons/fa";
+import { GrProjects } from "react-icons/gr";
+import { TbLogs } from "react-icons/tb";
 
 const Sidebar = () => {
   return (
@@ -19,17 +21,35 @@ const Sidebar = () => {
             href="/dashboard/create-project"
             className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-200 text-gray-700"
           >
-            <FaUser className="h-5 w-5" />
+            <FaProjectDiagram className="h-5 w-5" />
             <span>Create project</span>
           </Link>
         </li>
         <li>
           <Link
-            href="/dashboard/settings"
+            href="/dashboard/all-project"
             className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-200 text-gray-700"
           >
-            <FaCog className="h-5 w-5" />
-            <span>Settings</span>
+            <GrProjects className="h-5 w-5" />
+            <span>Projects</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/dashboard/create-blogs"
+            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-200 text-gray-700"
+          >
+            <FaBloggerB className="h-5 w-5" />
+            <span>Create Blogs</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/dashboard/all-blogs"
+            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-200 text-gray-700"
+          >
+            <TbLogs className="h-5 w-5" />
+            <span>Blogs</span>
           </Link>
         </li>
       </ul>
