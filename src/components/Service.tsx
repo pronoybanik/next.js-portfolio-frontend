@@ -38,7 +38,7 @@ const Services = ({ id }: { id: string }) => {
       className="bg-gray-100 py-16 px-4 md:px-8 lg:px-16 min-h-screen"
     >
       <div className="text-center my-10">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
+        <h2 className="text-4xl sm:text-5xl md:text-7xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight">
           My Quality Services
         </h2>
         <p className="text-black mt-6 text-lg sm:text-xl font-medium text-center max-w-3xl mx-auto">

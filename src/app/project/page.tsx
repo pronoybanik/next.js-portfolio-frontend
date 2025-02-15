@@ -11,7 +11,7 @@ const Projects = async ({ id }: { id: string }) => {
   return (
     <section id={id} className="py-16 px-8  min-h-screen">
       <div className="text-center my-20">
-        <h2 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
+        <h2 className="text-4xl sm:text-5xl md:text-7xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight">
           My Recent Works
         </h2>
         <p className="text-black mt-8 text-xl  font-medium text-center">

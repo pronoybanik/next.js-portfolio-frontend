@@ -19,7 +19,7 @@ const Header = ({ id }: { id: string }) => {
         <h2 className="text-3xl md:text-5xl font-bold text-black">
           I am Pronoy
         </h2>
-        <h1 className="text-4xl sm:text-5xl md:text-7xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight">
           Next-Level Web <br className="hidden sm:block" /> Developer.
         </h1>
 
@@ -33,7 +33,7 @@ const Header = ({ id }: { id: string }) => {
           {/* CV Download Button */}
           <a
             href={resume}
-            className="px-5 py-2 text-lg font-medium rounded-lg border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white transition"
+            className="inline-flex  items-center justify-center px-5 py-3 text-base font-medium text-center text-black border border-indigo-500 rounded-lg shadow-sm cursor-pointer transition-colors duration-300 hover:bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500 hover:text-white hover:border-indigo-600"
             download="pronoy_banik_resume.pdf"
           >
             Download CV
@@ -62,7 +62,7 @@ const Header = ({ id }: { id: string }) => {
                 key={alt}
                 href={link}
                 target="_blank"
-                className="group border-2 border-purple-600 rounded-full p-2 transition duration-300 ease-in-out transform hover:scale-110 hover:bg-purple-600 hover:shadow-lg"
+                className="inline-flex transition duration-300 ease-in-out transform hover:scale-110  hover:shadow-lg items-center justify-center px-3 py-3 rounded-full text-base font-medium text-center text-white border border-indigo-500  shadow-sm cursor-pointer hover:bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500 hover:text-white hover:border-indigo-600"
               >
                 <Image
                   src={img}
@@ -73,6 +73,26 @@ const Header = ({ id }: { id: string }) => {
                 />
               </a>
             ))}
+
+            {/* <button
+  className="inline-flex transition duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg items-center justify-center px-3 py-3 rounded-full text-base font-medium text-center text-white border border-indigo-500 shadow-sm cursor-pointer hover:bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500 hover:border-indigo-600"
+>
+  <svg
+    className="w-5 h-5 mr-2 transition-colors duration-300 hover:fill-white hover:stroke-white" // Key change here!
+    fill="currentColor" // Or fill="none" if you want outline only
+    stroke="currentColor" // Only if you want an outline
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M13 10V3L4 14h7v7l9-11h-7z"
+    />
+  </svg>
+  <span>Download resume</span>
+</button> */}
           </div>
         </div>
       </div>
