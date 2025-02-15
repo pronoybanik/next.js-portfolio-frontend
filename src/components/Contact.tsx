@@ -21,18 +21,19 @@ const ContactForm = ({ id }: { id: string }) => {
     reset,
   } = useForm<FormData>();
 
-  const onSubmit: SubmitHandler<FormData> = async (data, e) => {
-    if (e) e.preventDefault(); // Prevents reload explicitly
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    console.log("Form Data:", data);
+
     try {
       const response = await fetch("http://localhost:5000/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-  
+
       if (response.ok) {
         alert("Message sent successfully!");
-        reset();
+        reset(); // Reset form after successful submission
       } else {
         alert("Failed to send the message. Please try again.");
       }
@@ -41,7 +42,6 @@ const ContactForm = ({ id }: { id: string }) => {
       alert("An error occurred. Please try again later.");
     }
   };
-  
 
   return (
     <section

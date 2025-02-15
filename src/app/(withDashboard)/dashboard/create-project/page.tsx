@@ -1,4 +1,3 @@
-"use client";
 import { useForm } from "react-hook-form";
 
 // Define form data type
@@ -18,7 +17,7 @@ const CreateProject = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm<BookFormData>();
 
   const onSubmit = async (data: BookFormData) => {
@@ -44,7 +43,11 @@ const CreateProject = () => {
 
       if (!imageResponse.ok) {
         const errorData = await imageResponse.json(); // Get error details if available
-        alert(`Image upload failed: ${errorData?.message || imageResponse.statusText}`);
+        alert(
+          `Image upload failed: ${
+            errorData?.message || imageResponse.statusText
+          }`
+        );
         return;
       }
 
@@ -71,13 +74,16 @@ const CreateProject = () => {
 
       if (!projectResponse.ok) {
         const errorData = await projectResponse.json();
-        alert(`Project creation failed: ${errorData?.message || projectResponse.statusText}`);
+        alert(
+          `Project creation failed: ${
+            errorData?.message || projectResponse.statusText
+          }`
+        );
         return;
       }
 
       alert("Project created successfully!");
       reset(); // Clear the form after successful submission
-
     } catch (err) {
       console.error("Error:", err);
       alert("An error occurred. Please try again later.");

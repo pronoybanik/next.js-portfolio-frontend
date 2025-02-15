@@ -1,6 +1,15 @@
 import Image from "next/image";
 import React from "react";
 
+interface Project {
+  title: string;
+  content: string;
+  author: string;
+  _id: string;
+  img: string;
+  category: string;
+}
+
 const Blog = async ({ id }: { id: string }) => {
   const res = await fetch("http://localhost:5000/api/blogs", {
     cache: "no-store",
@@ -21,9 +30,9 @@ const Blog = async ({ id }: { id: string }) => {
 
       <div className="max-w-screen-2xl mx-auto">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 ">
-          {blogs.data.map((blog) => (
+          {blogs.data.map((blog: Project) => (
             <div
-              key={blog?.id}
+              key={blog?._id}
               className="bg-white shadow-lg rounded-2xl overflow-hidden transition-transform transform hover:scale-105"
             >
               <div className="relative h-48">
@@ -39,7 +48,6 @@ const Blog = async ({ id }: { id: string }) => {
               </div>
               <div className="p-4">
                 <p className="text-sm text-gray-500 flex items-center space-x-2">
-                  <span>{blog.date}</span>
                   <span className="text-purple-600">•</span>
                   <span>Comment</span>
                 </p>
