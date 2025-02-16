@@ -1,9 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import SecondaryButton from "@/shared/SecondaryButton";
 
 const Register = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
@@ -38,7 +43,10 @@ const Register = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <form onSubmit={handleSubmit} className="bg-white p-6 shadow-lg rounded-lg w-full max-w-md">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-6 shadow-lg rounded-lg w-full max-w-md"
+      >
         <h2 className="text-2xl font-semibold text-center mb-4">Register</h2>
 
         {error && <p className="text-red-500 text-center mb-2">{error}</p>}
@@ -73,16 +81,15 @@ const Register = () => {
           required
         />
 
-        <button
-          type="submit"
-          className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600"
-          disabled={loading}
-        >
+        <SecondaryButton type="submit">
           {loading ? "Registering..." : "Register"}
-        </button>
+        </SecondaryButton>
 
         <p className="text-center mt-3">
-          Already have an account? <a href="/login" className="text-blue-500">Login</a>
+          Already have an account?{" "}
+          <a href="/login" className="text-blue-500">
+            Login
+          </a>
         </p>
       </form>
     </div>

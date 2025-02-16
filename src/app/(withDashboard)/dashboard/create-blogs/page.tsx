@@ -81,7 +81,6 @@ const BlogForm: React.FC<FormProps> = () => {
         body: JSON.stringify(data),
       });
 
-      console.log(res);
 
       if (!res.ok) {
         throw new Error("Failed to create blog");

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import SecondaryButton from "@/shared/SecondaryButton";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -31,10 +32,15 @@ const Login = () => {
       localStorage.setItem("token", data.token); // Save token
       alert("Login Successful!");
       router.push("/"); // Redirect after login
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unexpected error occurred.");
+      }
     }
   };
 
@@ -68,16 +74,13 @@ const Login = () => {
           required
         />
 
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-          disabled={loading}
-        >
+        {/* <PrimaryButton>{loading ? "Logging in..." : "Login"}</PrimaryButton> */}
+        <SecondaryButton type="submit">
           {loading ? "Logging in..." : "Login"}
-        </button>
+        </SecondaryButton>
 
         <p className="text-center mt-3">
-          Don't have an account?{" "}
+          Do not have an account?{" "}
           <a href="/register" className="text-blue-500">
             Register
           </a>

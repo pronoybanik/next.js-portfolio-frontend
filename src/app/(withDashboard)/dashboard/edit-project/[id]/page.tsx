@@ -9,7 +9,6 @@ const EditProject = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [existingData, setExistingData] = useState<TProject | null>(null);
-  console.log("existingData", existingData);
 
   const {
     register,

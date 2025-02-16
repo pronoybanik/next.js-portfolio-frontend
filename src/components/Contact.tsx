@@ -2,6 +2,7 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Mail, Phone, MapPin } from "lucide-react";
+import SecondaryButton from "@/shared/SecondaryButton";
 
 // Define form data structure
 interface FormData {
@@ -22,7 +23,6 @@ const ContactForm = ({ id }: { id: string }) => {
   } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    console.log("Form Data:", data);
 
     try {
       const response = await fetch("http://localhost:5000/api/contact", {
@@ -175,17 +175,9 @@ const ContactForm = ({ id }: { id: string }) => {
                 </p>
               )}
             </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`w-full bg-gradient-to-r from-purple-500 to-purple-700 text-white py-3 rounded-lg shadow-md ${
-                isSubmitting
-                  ? "opacity-50 cursor-not-allowed"
-                  : "hover:from-purple-600 hover:to-purple-800"
-              }`}
-            >
+            <SecondaryButton type="submit">
               {isSubmitting ? "Sending..." : "Send Message"}
-            </button>
+            </SecondaryButton>
           </form>
         </div>
 

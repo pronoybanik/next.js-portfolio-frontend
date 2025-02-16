@@ -1,12 +1,8 @@
 import { TProject } from "@/app/types/projectType";
-import Image from "next/image";
-// import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const ProductItem = ({ projectData }: { projectData: TProject }) => {
-  console.log("Image Path:", projectData.image);
-
   const image = projectData.image;
 
   return (
