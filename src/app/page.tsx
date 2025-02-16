@@ -2,17 +2,21 @@ import Contact from "@/components/Contact";
 import Header from "@/components/Header";
 import Services from "@/components/Service";
 import Skill from "@/components/Skill";
-import Projects from "./project/page";
-import Blog from "./blog/page";
+// import Projects from "./project/page";
+// import Blog from "./blog/page";
+import Projects from "@/components/Projects";
+import Blog from "@/components/Blog";
 
 const Home = () => {
   return (
     <div>
       <Header id="home" />
       <Services id="services" />
-      <Projects id="project" />
+      {/* <Projects /> */}
+      <Projects loadId="project" />
       <Skill id="skill" />
-      <Blog id="blog" />
+      {/* <Blog /> */}
+      <Blog loadId="blog" />
       <Contact id="contact" />
     </div>
   );

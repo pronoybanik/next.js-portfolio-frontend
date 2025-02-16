@@ -1,10 +1,9 @@
 import { TProject } from "@/app/types/projectType";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const ProductItem = ({ projectData }: { projectData: TProject }) => {
-  const image = projectData.image;
-
   return (
     <Link
       href={`/project/${projectData._id}`}
@@ -18,8 +17,8 @@ const ProductItem = ({ projectData }: { projectData: TProject }) => {
           <p className="mt-4 text-gray-700">{projectData.content}</p>
         </div>
         <div>
-          <img
-            src={image}
+          <Image
+            src=""
             alt={projectData?.title || "Project Image"}
             width={500}
             height={300}

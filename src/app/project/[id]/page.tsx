@@ -1,73 +1,79 @@
-import Image from 'next/image';
+"use client";
 
-const ProjectDetails = async ({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) => {
-  const { id } = await params;
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useParams } from "next/navigation"; 
+import { TProject } from "@/app/types/projectType";
 
-  // const images = [
-  //   '/images/project-1.jpg',
-  //   '/images/project-2.jpg',
-  //   '/images/project-3.jpg',
-  // ];
+const ProjectDetails = () => {
+  const params = useParams(); 
+  const [project, setProject] = useState<TProject | null>(null);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    if (!params?.id) return; // Ensure `id` exists before fetching
+
+    const fetchProject = async () => {
+      try {
+        const res = await fetch(`http://localhost:5000/api/project/${params.id}`);
+        const data = await res.json();
+        setProject(data?.data || null);
+      } catch (error) {
+        console.error("Error fetching project details:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProject();
+  }, [params?.id]);
+
+  if (loading) return <p className="text-center text-xl">Loading...</p>;
+  if (!project) return <p className="text-center text-xl">Project not found</p>;
 
   return (
     <div className="bg-gray-100 pb-20">
       {/* Header */}
       <header className="bg-gradient-to-r from-purple-600 to-indigo-600 py-6 text-center text-white text-xl font-bold">
-        New Age
+        {project.title}
       </header>
 
       {/* Hero Section */}
       <div className="max-w-5xl mx-auto p-6 bg-white shadow-lg mt-6">
         <Image
-          src="/images/hero-image.jpg"
-          width={800}
+          src={project.image || "/fallback-image.jpg"}
+          width={1000}
           height={500}
-          alt="Hero Project"
+          alt={project.title || "Project Image"}
           className="rounded-lg"
         />
         <div className="text-center mt-6">
-          <h2 className="text-2xl font-bold">New Age</h2>
-          <p className="text-gray-600">Category: Web Design</p>
-          <p className="text-gray-600">Client: Abstract Studio</p>
-          <p className="text-gray-600">Date: August 5, 2024</p>
-          <button className="mt-4 bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-800">
-            Live Preview
-          </button>
+          <h2 className="text-2xl font-bold">{project.title}</h2>
+          <p className="text-gray-600">Category: {project.category}</p>
+          <div className="flex justify-center gap-4 mt-4">
+            {project.frontEndGitLink && (
+              <a href={project.frontEndGitLink} target="_blank" className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-800">
+                Frontend Code
+              </a>
+            )}
+            {project.backEndGitLink && (
+              <a href={project.backEndGitLink} target="_blank" className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-800">
+                Backend Code
+              </a>
+            )}
+            {project.liveLink && (
+              <a href={project.liveLink} target="_blank" className="bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-800">
+                Live Preview
+              </a>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Image Carousel */}
-      {/* <div className="relative max-w-5xl mx-auto mt-10 overflow-hidden">
-        <button onClick={prevSlide} className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg">
-          <ChevronLeft size={24} />
-        </button>
-        <Image src={images[current]} width={800} height={400} alt="Project Image" className="rounded-lg mx-auto" />
-        <button onClick={nextSlide} className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg">
-          <ChevronRight size={24} />
-        </button>
-      </div> */}
-
       {/* Project Description */}
       <div className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-        <h3 className="text-xl font-bold mb-4">Project Description</h3>
-        <p className="text-gray-600 leading-relaxed">
-          This is an amazing project that combines cutting-edge technology with modern design principles. The goal was to create a seamless experience for users...
-        </p>
-
-        <h4 className="mt-6 text-lg font-semibold">The Story</h4>
-        <p className="text-gray-600">
-          The inspiration behind this project was to redefine how users interact with digital content. We focused on usability, aesthetics, and accessibility...
-        </p>
-
-        <h4 className="mt-6 text-lg font-semibold">Our Approach</h4>
-        <p className="text-gray-600">
-          Our approach involved user research, wireframing, prototyping, and multiple iterations to ensure the best user experience. The final product is a seamless...
-        </p>
+        <h3 className="text-xl font-bold mb-4">{project.title}</h3>
+        <p className="text-gray-600 leading-relaxed">{project.content}</p>
       </div>
     </div>
   );

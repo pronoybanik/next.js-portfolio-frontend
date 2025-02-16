@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
+import Image from "next/image";
 
 interface BlogFormData {
   title: string;
@@ -140,7 +141,7 @@ const EditBlog = () => {
           <label className="block text-sm font-medium">Image</label>
           {existingImage && (
             <div className="mb-2">
-              <img src={existingImage} alt="Blog" className="w-32 h-32 object-cover rounded" />
+              <Image width={300} height={300} src={existingImage} alt="Blog" className="w-32 h-32 object-cover rounded" />
             </div>
           )}
           <input type="file" {...register("image")} className="w-full p-2 border rounded" />

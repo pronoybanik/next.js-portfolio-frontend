@@ -1,16 +1,16 @@
 import ProductItem from "@/components/ProductItem";
 import React from "react";
-import { TProject } from "../types/projectType";
 import Link from "next/link";
+import { TProject } from "@/app/types/projectType";
 
-const Projects = async () => {
+const Projects = async ({ loadId }: { loadId: string }) => {
   const res = await fetch("http://localhost:5000/api/project", {
     cache: "no-store",
   });
   const projects = await res.json();
 
   return (
-    <section  className="py-16 px-8  min-h-screen">
+    <section id={loadId} className="py-16 px-8  min-h-screen">
       <div className="text-center my-20">
         <h2 className="text-4xl sm:text-5xl md:text-7xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight">
           My Recent Works

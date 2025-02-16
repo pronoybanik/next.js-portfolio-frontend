@@ -12,7 +12,7 @@ interface TContact {
   createdAt: string;
 }
 
-const Contact: React.FC = () => {
+const Contact = () => {
   const [contact, setContact] = useState<TContact[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -30,10 +30,12 @@ const Contact: React.FC = () => {
 
       const data = await res.json();
       setContact(data.data || []);
-    } catch (err) {
-      setError("Failed to fetch data");
-    } finally {
-      setLoading(false);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unexpected error occurred");
+      }
     }
   };
 
