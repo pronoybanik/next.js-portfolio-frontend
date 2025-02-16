@@ -25,7 +25,7 @@ const Contact = () => {
   const fetchContacts = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/contact");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`);
       if (!res.ok) throw new Error("Failed to fetch contacts");
 
       const data = await res.json();
@@ -44,7 +44,7 @@ const Contact = () => {
     if (!confirm("Are you sure you want to delete this inquiry?")) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/contact/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact/${id}`, {
         method: "DELETE",
       });
 

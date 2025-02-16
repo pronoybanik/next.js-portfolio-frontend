@@ -21,7 +21,7 @@ const BlogItem = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/blogs/${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${id}`);
         const data = await res.json();
         setBlog(data.data || null);
       } catch (error) {

@@ -3,7 +3,7 @@ import React from "react";
 import { TProject } from "../types/projectType";
 
 const AllProjects = async () => {
-  const res = await fetch("http://localhost:5000/api/project", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/project`, {
     cache: "no-store",
   });
   const projects = await res.json();

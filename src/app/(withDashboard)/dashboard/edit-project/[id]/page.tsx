@@ -23,7 +23,7 @@ const EditProject = () => {
     if (!id) return;
     const fetchProject = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/project/${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/project/${id}`);
         const data = await res.json();
         setExistingData(data.data);
       } catch (error) {
@@ -64,7 +64,7 @@ const EditProject = () => {
       }
 
       // Send updated data to backend
-      const res = await fetch(`http://localhost:5000/api/project/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/project/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(projectData),

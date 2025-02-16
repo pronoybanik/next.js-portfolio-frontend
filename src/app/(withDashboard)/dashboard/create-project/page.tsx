@@ -73,7 +73,7 @@ const CreateProject = () => {
         category: data.category,
       };
 
-      const projectResponse = await fetch("http://localhost:5000/api/project", {
+      const projectResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/project`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Important: Set content type

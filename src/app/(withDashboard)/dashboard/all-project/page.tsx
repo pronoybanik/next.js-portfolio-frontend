@@ -10,7 +10,7 @@ const AllProjects: React.FC = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/project");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/project`);
         if (!res.ok) throw new Error("Failed to fetch projects");
 
         const data = await res.json();
@@ -32,7 +32,7 @@ const AllProjects: React.FC = () => {
     if (!confirm("Are you sure you want to delete this project?")) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/project/${projectId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/project/${projectId}`, {
         method: "DELETE",
       });
 

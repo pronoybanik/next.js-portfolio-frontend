@@ -4,7 +4,7 @@ import { TProject } from "../types/projectType";
 import Link from "next/link";
 
 const Projects = async () => {
-  const res = await fetch("http://localhost:5000/api/project", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/project`, {
     cache: "no-store",
   });
   const projects = await res.json();

@@ -30,7 +30,7 @@ const EditBlog = () => {
 
     const fetchBlog = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/blogs/${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${id}`);
         const data = await res.json();
 
         if (data.data) {
@@ -76,7 +76,7 @@ const EditBlog = () => {
       }
 
       // Send updated data to backend
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, image: imageUrl }),
