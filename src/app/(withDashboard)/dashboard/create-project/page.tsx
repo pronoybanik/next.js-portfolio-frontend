@@ -1,4 +1,6 @@
 "use client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 // Define form data type
@@ -21,12 +23,18 @@ const CreateProject = () => {
     reset,
   } = useForm<BookFormData>();
 
+  const router = useRouter();
+
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = async (data: BookFormData) => {
     const imageValue = data.image[0];
     if (!imageValue) {
       alert("Please upload an image.");
       return;
     }
+
+    setLoading(true); // Start loading
 
     const formData = new FormData();
     formData.append("file", imageValue);
@@ -84,7 +92,10 @@ const CreateProject = () => {
       }
 
       alert("Project created successfully!");
-      reset(); // Clear the form after successful submission
+      setTimeout(() => {
+        reset();
+        router.push("/dashboard/all-project");
+      }, 1000);
     } catch (err) {
       console.error("Error:", err);
       alert("An error occurred. Please try again later.");
@@ -238,9 +249,12 @@ const CreateProject = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="w-60 px-5 py-3 text-base font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500"
+              className={`w-60 px-5 py-3 text-base font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500 ${
+                loading ? "cursor-not-allowed opacity-75" : ""
+              }`}
+              disabled={loading}
             >
-              View All
+              {loading ? "Loading..." : "Add Project"}
             </button>
           </div>
         </form>

@@ -34,6 +34,16 @@ const Footer = () => {
                 Contact
               </a>
             </li>
+            <li>
+              <a href="#skill" className="hover:text-purple-300">
+                Skill
+              </a>
+            </li>
+            <li>
+              <a href="#blog" className="hover:text-purple-300">
+                Blog
+              </a>
+            </li>
           </ul>
         </nav>
 

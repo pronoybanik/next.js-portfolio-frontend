@@ -3,7 +3,7 @@ import React from "react";
 
 interface ProjectTableProps {
   data: TProject[];
-  onEdit: (project: TProject) => void;
+  onEdit: (id: string) => void;
   onDelete: (id: string) => void;
 }
 
@@ -38,7 +38,7 @@ const ProjectTable: React.FC<ProjectTableProps> = ({
                 </td>
                 <td className="px-6 py-4 flex space-x-3">
                   <button
-                    onClick={() => onEdit(project)}
+                    onClick={() => onEdit(project._id)}
                     className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700"
                   >
                     Edit

@@ -5,7 +5,7 @@ export type TProject = {
   content: string;
   createdAt: string;
   frontEndGitLink: string;
-  image: string;
+  image?: string;
   liveLink: string;
   title: string;
   updatedAt: string;

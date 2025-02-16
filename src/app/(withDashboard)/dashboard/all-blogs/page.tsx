@@ -1,9 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import BlogTable from "@/components/BlogTable";
+import { useRouter } from "next/navigation";
 
 interface Blog {
-  id: string;
+  _id: string;
   title: string;
   content: string;
   author: string;
@@ -11,6 +12,7 @@ interface Blog {
 
 const AllBlogs: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const router = useRouter();
 
   const fetchBlogs = async () => {
     try {
@@ -29,11 +31,14 @@ const AllBlogs: React.FC = () => {
   }, []);
 
   const handleDelete = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this blog?")) return;
+
     const res = await fetch(`http://localhost:5000/api/blogs/${id}`, {
       method: "DELETE",
     });
+
     if (res.ok) {
-      setBlogs((prev) => prev.filter((b) => b.id !== id));
+      setBlogs((prev) => prev.filter((b) => b._id !== id));
     }
   };
 
@@ -44,7 +49,7 @@ const AllBlogs: React.FC = () => {
       </h2>
 
       <div className="mt-6 max-w-screen-lg mx-auto">
-        <BlogTable data={blogs} onDelete={handleDelete} />
+        <BlogTable data={blogs} onDelete={handleDelete} onEdit={(id) => router.push(`/dashboard/edit-blog/${id}`)} />
       </div>
     </section>
   );

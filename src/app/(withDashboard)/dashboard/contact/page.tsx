@@ -16,55 +16,98 @@ const Contact: React.FC = () => {
   const [contact, setContact] = useState<TContact[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  console.log(contact);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("http://localhost:5000/api/contact");
-        const data = await res.json();
-        setContact(data);
-      } catch (err) {
-        setError("Failed to fetch data");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
+    fetchContacts();
   }, []);
+
+  // Fetch contacts from API
+  const fetchContacts = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("http://localhost:5000/api/contact");
+      if (!res.ok) throw new Error("Failed to fetch contacts");
+
+      const data = await res.json();
+      setContact(data.data || []);
+    } catch (err) {
+      setError("Failed to fetch data");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Handle delete request
+  const handleDelete = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this inquiry?")) return;
+
+    try {
+      const res = await fetch(`http://localhost:5000/api/contact/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) throw new Error("Failed to delete inquiry");
+
+      setContact((prev) => prev.filter((item) => item._id !== id));
+      alert("Inquiry deleted successfully!");
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred while deleting.");
+    }
+  };
 
   if (loading) return <p className="text-center text-gray-600">Loading...</p>;
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-2xl font-semibold text-center mb-6">
+      <h2 className="text-3xl font-bold text-center text-indigo-600 mb-6">
         User Inquiries
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {contact?.data?.map((item) => (
-          <div key={item._id} className="bg-white p-4 shadow-lg rounded-lg">
-            <h3 className="text-lg font-semibold">
-              {item.firstName} {item.lastName}
-            </h3>
-            <p className="text-gray-600">
-              <strong>Email:</strong> {item.email}
-            </p>
-            <p className="text-gray-600">
-              <strong>Phone:</strong> {item.phone}
-            </p>
-            <p className="text-gray-600">
-              <strong>Category:</strong> {item.category}
-            </p>
-            <p className="text-gray-600">
-              <strong>Message:</strong> {item.message}
-            </p>
-            <p className="text-xs text-gray-500 mt-2">
-              Created at: {new Date(item.createdAt).toLocaleString()}
-            </p>
-          </div>
-        ))}
-      </div>
+
+      {contact.length === 0 ? (
+        <p className="text-center text-gray-500">No inquiries found.</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {contact.map((item) => (
+            <div
+              key={item._id}
+              className="bg-white shadow-lg rounded-lg p-5 border border-gray-200 transition-transform hover:scale-105"
+            >
+              <div className="mb-4">
+                <h3 className="text-xl font-semibold text-gray-800">
+                  {item.firstName} {item.lastName}
+                </h3>
+                <p className="text-sm text-gray-500">{item.category}</p>
+              </div>
+
+              <div className="mb-3">
+                <p className="text-gray-700">
+                  <strong>Email:</strong> {item.email}
+                </p>
+                <p className="text-gray-700">
+                  <strong>Phone:</strong> {item.phone}
+                </p>
+              </div>
+
+              <p className="text-gray-700">
+                <strong>Message:</strong> {item.message}
+              </p>
+
+              <p className="text-xs text-gray-500 mt-3">
+                Created at: {new Date(item.createdAt).toLocaleString()}
+              </p>
+
+              <button
+                onClick={() => handleDelete(item._id)}
+                className="mt-4 w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition"
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

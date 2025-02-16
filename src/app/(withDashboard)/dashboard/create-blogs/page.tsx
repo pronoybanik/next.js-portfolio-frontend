@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 interface FormProps {
@@ -15,6 +16,8 @@ const BlogForm: React.FC<FormProps> = () => {
   });
 
   const [uploading, setUploading] = useState(false);
+
+  const routes = useRouter();
 
   // Handle input change
   const handleChange = (
@@ -84,14 +87,17 @@ const BlogForm: React.FC<FormProps> = () => {
         throw new Error("Failed to create blog");
       }
 
-      setFormData({
-        title: "",
-        content: "",
-        author: "",
-        category: "",
-        image: null,
-      });
       alert("Blog added successfully!");
+      setTimeout(() => {
+        setFormData({
+          title: "",
+          content: "",
+          author: "",
+          category: "",
+          image: null,
+        });
+        routes.push("/dashboard/all-blogs");
+      }, 1000);
     } catch (error) {
       console.error(error);
       alert("Something went wrong!");

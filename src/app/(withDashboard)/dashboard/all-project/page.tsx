@@ -1,11 +1,12 @@
 "use client";
 import { TProject } from "@/app/types/projectType";
 import ProjectTable from "@/components/ProjectTable";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const AllProjects: React.FC = () => {
   const [projects, setProjects] = useState<TProject[]>([]);
-
+  const router = useRouter();
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -22,12 +23,26 @@ const AllProjects: React.FC = () => {
     fetchProjects();
   }, []);
 
-  const handleEdit = (project: TProject) => {
-    console.log("Editing project:", project);
+
+  const handleEdit = (id: string) => {
+    router.push(`/dashboard/edit-project/${id}`);
   };
 
-  const handleDelete = (projectId: string) => {
-    console.log("Deleting project with ID:", projectId);
+  const handleDelete = async (projectId: string) => {
+    if (!confirm("Are you sure you want to delete this project?")) return;
+
+    try {
+      const res = await fetch(`http://localhost:5000/api/project/${projectId}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) throw new Error("Failed to delete project");
+
+      // Update state
+      setProjects((prev) => prev.filter((p) => p._id !== projectId));
+    } catch (error) {
+      console.error("Error deleting project:", error);
+    }
   };
 
   return (
