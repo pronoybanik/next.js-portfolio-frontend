@@ -2,11 +2,9 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-interface FormProps {
-  onBlogAdded: () => void; // Refresh data after adding
-}
 
-const BlogForm: React.FC<FormProps> = () => {
+
+const BlogForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     content: "",

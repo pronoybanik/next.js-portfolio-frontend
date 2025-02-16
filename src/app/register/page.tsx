@@ -34,10 +34,12 @@ const Register = () => {
 
       alert("Registration Successful!");
       router.push("/login"); // Redirect after registration
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unexpected error occurred");
+      }
     }
   };
 
