@@ -26,7 +26,7 @@ const Projects = async ({ id }: { id: string }) => {
           <ProductItem key={project?._id} projectData={project} />
         ))}
       </div>
-      <Link href='/services' className="flex justify-center mt-8">
+      <Link href='/project' className="flex justify-center mt-8">
         <button className="w-60 px-5 py-3 text-base font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500">
           View All
         </button>

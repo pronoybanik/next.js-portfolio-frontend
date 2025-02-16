@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useForm } from "react-hook-form";
 
 // Define form data type
@@ -93,10 +93,10 @@ const CreateProject = () => {
 
   return (
     <div className="mx-auto max-w-screen-xl lg:my-4 my-2">
-      <div className="text-center text-lg font-semibold py-2">
-        <p className="text-2xl uppercase text-black inline-block border-b-2 border-[#e95b5b]">
-          Create Projects
-        </p>
+      <div className="text-center my-10">
+        <h2 className="text-4xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight uppercase">
+          create Project
+        </h2>
       </div>
       <div className="mx-auto max-w-lg">
         <form
@@ -113,7 +113,7 @@ const CreateProject = () => {
             <input
               type="text"
               {...register("title", { required: "Title is required" })}
-              className="block w-full py-3 text-gray-700  bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700  bg-white border rounded-lg pl-4 focus:to-indigo-600 from-purple-600 focus:outline-none focus:ring focus:ring-opacity-40"
             />
             {errors.title && (
               <p className="text-red-500 text-xs mt-1">
@@ -131,7 +131,7 @@ const CreateProject = () => {
               {...register("description", {
                 required: "Description is required",
               })}
-              className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-4 focus:to-indigo-600 from-purple-600 focus:outline-none focus:ring focus:ring-opacity-40"
             />
             {errors.description && (
               <p className="text-red-500 text-xs mt-1">
@@ -147,7 +147,7 @@ const CreateProject = () => {
             </label>
             <select
               {...register("category", { required: "Category is required" })}
-              className="block w-full py-3 text-gray-700 uppercase bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700 uppercase bg-white border rounded-lg pl-4 focus:to-indigo-600 from-purple-600 focus:outline-none focus:ring focus:ring-opacity-40"
             >
               <option value="">Select a category</option>
               <option value="Technology">Technology</option>
@@ -170,7 +170,7 @@ const CreateProject = () => {
             <input
               type="file"
               {...register("image", { required: "Image is required" })}
-              className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-4 focus:to-indigo-600 from-purple-600 focus:outline-none focus:ring focus:ring-opacity-40"
             />
             {errors.image && (
               <p className="text-red-500 text-xs mt-1">
@@ -189,7 +189,7 @@ const CreateProject = () => {
               {...register("frontEndGitLink", {
                 required: "Title is required",
               })}
-              className="block w-full py-3 text-gray-700  bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700  bg-white border rounded-lg pl-4 focus:to-indigo-600 from-purple-600 focus:outline-none focus:ring focus:ring-opacity-40"
             />
             {errors.frontEndGitLink && (
               <p className="text-red-500 text-xs mt-1">
@@ -207,7 +207,7 @@ const CreateProject = () => {
               {...register("backEndGitLink", {
                 required: "Title is required",
               })}
-              className="block w-full py-3 text-gray-700  bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700  bg-white border rounded-lg pl-4 focus:to-indigo-600 from-purple-600 focus:outline-none focus:ring focus:ring-opacity-40"
             />
             {errors.backEndGitLink && (
               <p className="text-red-500 text-xs mt-1">
@@ -225,7 +225,7 @@ const CreateProject = () => {
               {...register("liveLink", {
                 required: "Title is required",
               })}
-              className="block w-full py-3 text-gray-700  bg-white border rounded-lg pl-4 focus:border-[#e95b5b] focus:ring-[#b84d69] focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700  bg-white border rounded-lg pl-4 focus:to-indigo-600 from-purple-600 focus:outline-none focus:ring focus:ring-opacity-40"
             />
             {errors.liveLink && (
               <p className="text-red-500 text-xs mt-1">
@@ -238,9 +238,9 @@ const CreateProject = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="rounded-md bg-[#e95b5b] px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#b84d69] focus:outline-none"
+              className="w-60 px-5 py-3 text-base font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500"
             >
-              Submit
+              View All
             </button>
           </div>
         </form>

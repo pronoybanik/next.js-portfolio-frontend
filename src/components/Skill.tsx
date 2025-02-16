@@ -109,11 +109,9 @@ const Skill = ({ id }: { id: string }) => {
     // },
   ];
 
+
   return (
-    <section
-      id={id}
-      className="py-16 px-4 md:px-8 lg:px-16 min-h-screen bg-gray-100"
-    >
+    <section id={id} className="py-16 px-4 md:px-8 lg:px-16 min-h-screen bg-gray-100">
       <div className="text-center my-20">
         <h2 className="text-4xl sm:text-5xl md:text-7xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight">
           My Recent Works
@@ -125,7 +123,7 @@ const Skill = ({ id }: { id: string }) => {
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-center gap-4 mx-auto expertise sm:gap-16  cursor-pointer">
-        {skills.map((skill, i) => (
+        {skills?.map((skill, i) => (
           <SkillItem skill={skill} key={i} />
         ))}
       </div>

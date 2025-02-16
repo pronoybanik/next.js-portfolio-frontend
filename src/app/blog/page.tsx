@@ -1,7 +1,8 @@
-import Image from "next/image";
-import React from "react";
+"use client";
 
-interface Project {
+import { useEffect, useState } from "react";
+
+export interface TBlog {
   title: string;
   content: string;
   author: string;
@@ -10,49 +11,47 @@ interface Project {
   category: string;
 }
 
-const Blog = async ({ id }: { id: string }) => {
-  const res = await fetch("http://localhost:5000/api/blogs", {
-    cache: "no-store",
-  });
-  const blogs = await res.json();
+const Blog = ({ id }: { id: string }) => {
+  const [blogs, setBlogs] = useState<TBlog[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`);
+        const data = await res.json();
+        setBlogs(data?.data || []);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  if (loading) return <p className="text-center text-xl">Loading...</p>;
 
   return (
-    <section id={id} className=" py-16 px-8  min-h-screen">
+    <section id={id} className="py-16 px-8 min-h-screen">
       <div className="text-center my-20">
         <h2 className="text-4xl sm:text-5xl md:text-7xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight">
           Recent Blogs
         </h2>
-        <p className="text-black mt-8 text-xl  font-medium text-center">
+        <p className="text-black mt-8 text-xl font-medium text-center">
           We put your ideas and thus your wishes in the form of a unique web
-          <br /> project that inspires you and you customers.
+          <br /> project that inspires you and your customers.
         </p>
       </div>
 
       <div className="max-w-screen-2xl mx-auto">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 ">
-          {blogs.data.map((blog: Project) => (
-            <div
-              key={blog?._id}
-              className="bg-white shadow-lg rounded-2xl overflow-hidden transition-transform transform hover:scale-105"
-            >
-              <div className="relative h-48">
-                <Image
-                  src={blog.img}
-                  alt={blog.title}
-                  fill
-                  className="object-cover"
-                />
-                <span className="absolute top-2 left-2 bg-purple-600 text-white text-sm px-3 py-1 rounded-lg">
-                  {blog.category}
-                </span>
-              </div>
-              <div className="p-4">
-                <p className="text-sm text-gray-500 flex items-center space-x-2">
-                  <span className="text-purple-600">•</span>
-                  <span>Comment</span>
-                </p>
-                <h3 className="text-lg font-semibold mt-2">{blog.title}</h3>
-              </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {blogs.map((blog) => (
+            <div key={blog._id} className="border p-4 rounded-lg shadow">
+              <img src={blog.img} alt={blog.title} className="w-full h-48 object-cover rounded-lg" />
+              <h3 className="text-2xl font-bold mt-4">{blog.title}</h3>
+              <p className="text-gray-700 mt-2">{blog.content.substring(0, 100)}...</p>
             </div>
           ))}
         </div>

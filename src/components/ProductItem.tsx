@@ -1,9 +1,13 @@
 import { TProject } from "@/app/types/projectType";
+import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const ProductItem = ({ projectData }: { projectData: TProject }) => {
   console.log("Image Path:", projectData.image);
+
+  const image = projectData.image;
 
   return (
     <Link
@@ -19,7 +23,7 @@ const ProductItem = ({ projectData }: { projectData: TProject }) => {
         </div>
         <div>
           <img
-            src={projectData?.image}
+            src={image}
             alt={projectData?.title || "Project Image"}
             width={500}
             height={300}
@@ -30,6 +34,5 @@ const ProductItem = ({ projectData }: { projectData: TProject }) => {
     </Link>
   );
 };
-
 
 export default ProductItem;
