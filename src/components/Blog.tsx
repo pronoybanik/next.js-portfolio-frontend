@@ -9,7 +9,7 @@ export interface TBlog {
   content: string;
   author: string;
   _id: string;
-  img: string;
+  image: string;
   category: string;
 }
 
@@ -58,7 +58,7 @@ const Blog = ({ loadId }: { loadId: string }) => {
               <Image
                 width={300}
                 height={400}
-                src={blog.img}
+                src={blog.image || "/fallback-image.jpg"}
                 alt={blog.title}
                 className="w-full h-48 object-cover rounded-lg"
               />

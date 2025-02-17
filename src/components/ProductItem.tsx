@@ -18,7 +18,7 @@ const ProductItem = ({ projectData }: { projectData: TProject }) => {
         </div>
         <div>
           <Image
-            src=""
+            src={projectData?.image || "/fallback-image.jpg"}
             alt={projectData?.title || "Project Image"}
             width={500}
             height={300}

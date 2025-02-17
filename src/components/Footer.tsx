@@ -5,10 +5,13 @@ const Footer = () => {
     <footer className="bg-[#2a1454] text-white py-8">
       <div className="container mx-auto flex flex-col items-center">
         {/* Logo Section */}
-        <div className="mb-4">
-          <div className="flex items-center justify-center w-16 h-16 bg-white rounded-full">
-            <span className="text-4xl font-bold text-purple-900">G</span>
-          </div>
+        <div className="flex-1 md:flex md:items-center md:gap-12">
+          <a
+            className="block lg:text-2xl md:text-xl text-sm font-semibold  sm:text-5xl  my-4 md:my-6  text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight"
+            href="#"
+          >
+            Pronoybanik82@gmail.com
+          </a>
         </div>
 
         {/* Navigation Links */}

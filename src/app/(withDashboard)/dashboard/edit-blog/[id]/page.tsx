@@ -133,6 +133,7 @@ const EditBlog = () => {
             <option value="Technology">Technology</option>
             <option value="Health">Health</option>
             <option value="Lifestyle">Lifestyle</option>
+            <option value="Portfolio">Portfolio</option>
             <option value="Business">Business</option>
           </select>
         </div>

@@ -5,7 +5,7 @@ import SecondaryButton from "@/shared/SecondaryButton";
 import verifyToken from "@/utils/verifyToken";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { JwtPayload } from "jsonwebtoken"; // Import JwtPayload
+import { JwtPayload } from "jsonwebtoken"; 
 
 // Extend JwtPayload to include 'role'
 interface CustomJwtPayload extends JwtPayload {
@@ -17,7 +17,7 @@ const NavBar = () => {
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-  let tokenInfo: CustomJwtPayload | null = null; // Properly type tokenInfo
+  let tokenInfo: CustomJwtPayload | null = null; 
 
   if (token) {
     tokenInfo = verifyToken(token) as CustomJwtPayload; // Type assertion
@@ -42,9 +42,11 @@ const NavBar = () => {
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex-1 md:flex md:items-center md:gap-12">
-              <a className="block text-teal-600" href="#">
-                <span className="sr-only">Home</span>
-                {/* Logo SVG */}
+              <a
+                className="block lg:text-2xl md:text-xl text-sm font-semibold  sm:text-5xl  my-4 md:my-6  text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight"
+                href="#"
+              >
+                Pronoybanik82@gmail.com
               </a>
             </div>
 

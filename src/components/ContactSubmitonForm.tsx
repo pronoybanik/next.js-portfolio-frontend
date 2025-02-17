@@ -1,7 +1,15 @@
-import { TBlog } from "@/app/blog/page";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+export interface TBlog {
+  title: string;
+  content: string;
+  author: string;
+  _id: string;
+  img: string;
+  category: string;
+}
 
 const ContactSubmitonForm = ({ blog }: { blog: TBlog }) => {
   return (
