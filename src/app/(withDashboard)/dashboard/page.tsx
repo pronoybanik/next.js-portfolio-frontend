@@ -22,15 +22,16 @@ const DashboardPage = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
     const fetchUser = async (userId: string) => {
       try {
-        const response = await fetch(`http://localhost:5000/api/auth/${userId}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/${userId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch user");
         }
         const data = await response.json();
-        setUser(data.data);
+        setUser(data.data );
       } catch (error) {
         console.error("Error fetching user data:", error);
       } finally {
