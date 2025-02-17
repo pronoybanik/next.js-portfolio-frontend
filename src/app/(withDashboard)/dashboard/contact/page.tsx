@@ -16,6 +16,7 @@ const Contact = () => {
   const [contact, setContact] = useState<TContact[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  console.log(contact);
 
   useEffect(() => {
     fetchContacts();
@@ -30,6 +31,7 @@ const Contact = () => {
 
       const data = await res.json();
       setContact(data.data || []);
+      setLoading(false);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
@@ -44,9 +46,12 @@ const Contact = () => {
     if (!confirm("Are you sure you want to delete this inquiry?")) return;
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/contact/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!res.ok) throw new Error("Failed to delete inquiry");
 
