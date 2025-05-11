@@ -35,7 +35,7 @@ const Services = ({ id }: { id: string }) => {
   return (
     <section
       id={id}
-      className="bg-gray-100 py-16 px-4 md:px-8 lg:px-16 min-h-screen"
+      className="bg-gray-50 py-16 px-4 md:px-8 lg:px-16 min-h-screen"
     >
       <div className="text-center my-10">
         <h2 className="text-4xl sm:text-5xl md:text-7xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight">

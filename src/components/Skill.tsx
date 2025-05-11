@@ -111,10 +111,10 @@ const Skill = ({ id }: { id: string }) => {
 
 
   return (
-    <section id={id} className="py-16 px-4 md:px-8 lg:px-16 min-h-screen bg-gray-100">
+    <section id={id} className="py-16 px-4 md:px-8 lg:px-16 min-h-screen bg-gray-50">
       <div className="text-center my-20">
         <h2 className="text-4xl sm:text-5xl md:text-7xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight">
-          My Recent Works
+          My Skills
         </h2>
         <p className="text-black mt-8 text-xl  font-medium text-center">
           We put your ideas and thus your wishes in the form of a unique web

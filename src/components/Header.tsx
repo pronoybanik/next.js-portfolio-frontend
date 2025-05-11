@@ -1,86 +1,144 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import image from "../images/1717947005422_magicstudio_a31w4iorxkt.png";
+import image from "../images/1o0FVW0sOxcAAAAASUVORK5CYII=.png";
 import facebook from "../images/icons/icons8-facebook-250.png";
 import github from "../images/icons/icons8-github-500.png";
 import linkedin from "../images/icons/icons8-linkedin-250.png";
 
 const Header = ({ id }: { id: string }) => {
   const resume = "/cv/my-cv.pdf";
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Animation effect when component mounts
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   return (
     <section
       id={id}
-      className="flex flex-col-reverse md:flex-row items-center justify-between max-w-7xl mx-auto px-6 py-12 lg:min-h-screen"
+      className="relative overflow-hidden bg-gradient-to-b from-purple-100  min-h-[90vh] flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8"
     >
-      {/* Left Section (Text) */}
-      <div className="text-center md:text-left md:w-1/2">
-        <h2 className="text-3xl md:text-5xl font-bold text-black">
-          I am Pronoy
-        </h2>
-        <h1 className="text-4xl sm:text-5xl md:text-7xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight">
-          Next-Level Web <br className="hidden sm:block" /> Developer.
-        </h1>
-
-        <p className="mt-4 text-base sm:text-lg md:text-xl max-w-[90%] md:max-w-[600px] mx-auto md:mx-0">
-          I break down complex user experience problems to create
-          integrity-focused solutions that connect billions of people.
-        </p>
-
-        {/* Buttons & Socials */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
-          {/* CV Download Button */}
-          <a
-            href={resume}
-            className="inline-flex  items-center justify-center px-5 py-3 text-base font-medium text-center text-black border border-indigo-500 rounded-lg shadow-sm cursor-pointer transition-colors duration-300 hover:bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500 hover:text-white hover:border-indigo-600"
-            download="pronoy_banik_resume.pdf"
-          >
-            Download CV
-          </a>
-
-          {/* Social Icons */}
-          <div className="flex gap-4">
-            {[
-              {
-                link: "https://www.facebook.com/pronoy.banik.7",
-                img: facebook,
-                alt: "Facebook",
-              },
-              {
-                link: "https://github.com/pronoybanik",
-                img: github,
-                alt: "GitHub",
-              },
-              {
-                link: "https://www.linkedin.com/in/pronoy-banik-1b5a3125a/",
-                img: linkedin,
-                alt: "LinkedIn",
-              },
-            ].map(({ link, img, alt }) => (
-              <a
-                key={alt}
-                href={link}
-                target="_blank"
-                className="inline-flex transition duration-300 ease-in-out transform hover:scale-110  hover:shadow-lg items-center justify-center px-3 py-3 rounded-full text-base font-medium text-center text-white border border-indigo-500  shadow-sm cursor-pointer hover:bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500 hover:text-white hover:border-indigo-600"
-              >
-                <Image
-                  src={img}
-                  width={24}
-                  height={24}
-                  alt={alt}
-                  className="group-hover:invert group-hover:brightness-0 group-hover:contrast-200"
-                />
-              </a>
-            ))}
-          </div>
-        </div>
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 w-full h-full">
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-purple-100 blur-3xl opacity-30" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-indigo-100 blur-3xl opacity-30" />
       </div>
 
-      {/* Right Section (Profile Image) */}
-      <div className="mt-10 md:mt-0 md:w-1/2 flex justify-center">
-        <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80 lg:w-96 lg:h-96 border-black rounded-xl overflow-hidden shadow-lg transform rotate-3 hover:rotate-0 transition">
-          <Image src={image} alt="Profile" layout="fill" objectFit="cover" />
+      <div
+        className={`max-w-7xl w-full mx-auto transition-all duration-700 ${
+          isLoaded ? "opacity-100" : "opacity-0 translate-y-4"
+        }`}
+      >
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
+          {/* Left Section (Text) */}
+          <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
+            <div className="space-y-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black">
+                I am <span className="text-purple-600">Pronoy</span>
+              </h2>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 leading-tight">
+                Next-Level Web Developer.
+              </h1>
+            </div>
+
+            <p className="text-lg md:text-xl text-gray-700 max-w-lg mx-auto lg:mx-0">
+              I break down complex user experience problems to create
+              integrity-focused solutions that connect billions of people.
+            </p>
+
+            {/* Buttons & Socials */}
+            <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-4">
+              {/* CV Download Button */}
+              <a
+                href={resume}
+                className="group relative inline-flex items-center justify-center px-6 py-3 text-base font-medium text-center text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out hover:shadow-lg hover:scale-105"
+                download="pronoy_banik_resume.pdf"
+              >
+                <span className="relative flex items-center gap-2">
+                  Download CV
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                    />
+                  </svg>
+                </span>
+              </a>
+
+              {/* Social Icons */}
+              <div className="flex gap-4">
+                {[
+                  {
+                    link: "https://www.facebook.com/pronoy.banik.7",
+                    img: facebook,
+                    alt: "Facebook",
+                  },
+                  {
+                    link: "https://github.com/pronoybanik",
+                    img: github,
+                    alt: "GitHub",
+                  },
+                  {
+                    link: "https://www.linkedin.com/in/pronoy-banik-1b5a3125a/",
+                    img: linkedin,
+                    alt: "LinkedIn",
+                  },
+                ].map(({ link, img, alt }) => (
+                  <a
+                    key={alt}
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-12 h-12 rounded-full shadow-md bg-white border border-gray-200 transition duration-300 hover:scale-110 hover:shadow-lg hover:border-purple-300"
+                    aria-label={alt}
+                  >
+                    <Image
+                      src={img}
+                      width={24}
+                      height={24}
+                      alt={alt}
+                      className="transition-all duration-300"
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Section (Profile Image) */}
+          <div className="w-full lg:w-1/2 flex justify-center items-center">
+            <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+              {/* Decorative elements */}
+              <div className="absolute -z-10 w-full h-full bg-gradient-to-tr from-purple-500 to-indigo-500 rounded-full blur-2xl opacity-10 scale-150" />
+
+              {/* Image container with animations */}
+              <div className="relative w-full h-full group">
+                {/* Border decoration */}
+                <div className="absolute inset-0 rounded-2xl border-2 border-dashed border-purple-400 -rotate-6 transition-transform duration-300 group-hover:rotate-0 group-hover:scale-105" />
+
+                {/* Main image */}
+                <div className="relative w-full h-full rounded-2xl overflow-hidden rotate-3 shadow-xl transition-all duration-300 group-hover:rotate-0 group-hover:shadow-2xl bg-white">
+                  <Image
+                    src={image}
+                    alt="Profile"
+                    layout="fill"
+                    objectFit="cover"
+                    className="transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

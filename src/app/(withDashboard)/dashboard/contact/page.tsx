@@ -16,7 +16,6 @@ const Contact = () => {
   const [contact, setContact] = useState<TContact[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  console.log(contact);
 
   useEffect(() => {
     fetchContacts();

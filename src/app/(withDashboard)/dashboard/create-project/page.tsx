@@ -73,13 +73,16 @@ const CreateProject = () => {
         category: data.category,
       };
 
-      const projectResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/project`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json", // Important: Set content type
-        },
-        body: JSON.stringify(projectData), // Stringify the data
-      });
+      const projectResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}api/project`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // Important: Set content type
+          },
+          body: JSON.stringify(projectData), // Stringify the data
+        }
+      );
 
       if (!projectResponse.ok) {
         const errorData = await projectResponse.json();
