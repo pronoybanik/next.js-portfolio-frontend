@@ -1,5 +1,29 @@
 import React from "react";
 
+
+// const containerVariants = {
+//   hidden: {},
+//   visible: {
+//     transition: {
+//       staggerChildren: 0.15,
+//     },
+//   },
+// };
+
+// const itemVariants = {
+//   hidden: { opacity: 0, y: 30 },
+//   visible: {
+//     opacity: 1,
+//     y: 0,
+//     transition: {
+//       type: "spring",
+//       stiffness: 80,
+//       damping: 16,
+//     },
+//   },
+// };
+
+
 const Footer = () => {
   return (
     <footer className="bg-[#2a1454] text-white py-8">

@@ -1,39 +1,68 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import image from "../images/1o0FVW0sOxcAAAAASUVORK5CYII=.png";
 import facebook from "../images/icons/icons8-facebook-250.png";
 import github from "../images/icons/icons8-github-500.png";
 import linkedin from "../images/icons/icons8-linkedin-250.png";
 
+const resume = "/cv/my-cv.pdf";
+
+const containerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 60,
+      damping: 15,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 70,
+      damping: 16,
+    },
+  },
+};
+
 const Header = ({ id }: { id: string }) => {
-  const resume = "/cv/my-cv.pdf";
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // Animation effect when component mounts
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-
   return (
-    <section
+    <motion.section
       id={id}
-      className="relative overflow-hidden bg-gradient-to-b from-purple-100  min-h-[90vh] flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-gradient-to-b from-purple-100 min-h-[90vh] flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={containerVariants}
     >
       {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-full">
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-purple-100 blur-3xl opacity-30" />
         <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-indigo-100 blur-3xl opacity-30" />
       </div>
 
-      <div
-        className={`max-w-7xl w-full mx-auto transition-all duration-700 ${
-          isLoaded ? "opacity-100" : "opacity-0 translate-y-4"
-        }`}
+      <motion.div
+        className="max-w-7xl w-full mx-auto"
+        variants={containerVariants}
       >
         <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
-          {/* Left Section (Text) */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
+          {/* Left Section */}
+          <motion.div
+            className="w-full lg:w-1/2 text-center lg:text-left space-y-6"
+            variants={itemVariants}
+            style={{ willChange: "transform, opacity" }}
+          >
             <div className="space-y-3">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black">
                 I am <span className="text-purple-600">Pronoy</span>
@@ -48,13 +77,12 @@ const Header = ({ id }: { id: string }) => {
               integrity-focused solutions that connect billions of people.
             </p>
 
-            {/* Buttons & Socials */}
             <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-4">
-              {/* CV Download Button */}
+              {/* Download Button */}
               <a
                 href={resume}
-                className="group relative inline-flex items-center justify-center px-6 py-3 text-base font-medium text-center text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out hover:shadow-lg hover:scale-105"
                 download="pronoy_banik_resume.pdf"
+                className="group relative inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg shadow-md transition duration-300 hover:shadow-lg hover:scale-105"
               >
                 <span className="relative flex items-center gap-2">
                   Download CV
@@ -99,7 +127,7 @@ const Header = ({ id }: { id: string }) => {
                     href={link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-12 h-12 rounded-full shadow-md bg-white border border-gray-200 transition duration-300 hover:scale-110 hover:shadow-lg hover:border-purple-300"
+                    className="inline-flex items-center justify-center w-12 h-12 rounded-full shadow-md bg-white border border-gray-200 transition hover:scale-110 hover:shadow-lg hover:border-purple-300"
                     aria-label={alt}
                   >
                     <Image
@@ -113,21 +141,19 @@ const Header = ({ id }: { id: string }) => {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Section (Profile Image) */}
-          <div className="w-full lg:w-1/2 flex justify-center items-center">
+          {/* Right Section (Image) */}
+          <motion.div
+            className="w-full lg:w-1/2 flex justify-center items-center"
+            variants={itemVariants}
+            style={{ willChange: "transform, opacity" }}
+          >
             <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
-              {/* Decorative elements */}
               <div className="absolute -z-10 w-full h-full bg-gradient-to-tr from-purple-500 to-indigo-500 rounded-full blur-2xl opacity-10 scale-150" />
-
-              {/* Image container with animations */}
               <div className="relative w-full h-full group">
-                {/* Border decoration */}
                 <div className="absolute inset-0 rounded-2xl border-2 border-dashed border-purple-400 -rotate-6 transition-transform duration-300 group-hover:rotate-0 group-hover:scale-105" />
-
-                {/* Main image */}
-                <div className="relative w-full h-full rounded-2xl overflow-hidden rotate-3 shadow-xl transition-all duration-300 group-hover:rotate-0 group-hover:shadow-2xl bg-white">
+                <div className="relative w-full h-full rounded-2xl overflow-hidden rotate-3 shadow-xl group-hover:rotate-0 group-hover:shadow-2xl bg-white">
                   <Image
                     src={image}
                     alt="Profile"
@@ -138,10 +164,10 @@ const Header = ({ id }: { id: string }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 
