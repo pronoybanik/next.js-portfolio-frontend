@@ -9,6 +9,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const router = useRouter();
 
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -18,6 +19,8 @@ const Login = () => {
     setLoading(true);
     setError("");
 
+
+    
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
         method: "POST",
