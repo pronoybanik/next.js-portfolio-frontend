@@ -85,7 +85,7 @@ const Blog = ({ loadId }: { loadId: string }) => {
           <motion.div key={blog._id} variants={itemVariants}>
             <Link
               href={`/blog/${blog._id}`}
-              className="group block border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+              className="group block border h-96 border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden"
             >
               <div className="relative w-full h-48">
                 <Image

@@ -25,11 +25,14 @@ const ContactForm = ({ id }: { id: string }) => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/contact`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
 
       if (response.ok) {
         alert("Message sent successfully!");
@@ -64,26 +67,38 @@ const ContactForm = ({ id }: { id: string }) => {
                 <input
                   type="text"
                   placeholder="First name"
-                  {...register("firstName", { required: "First name is required" })}
+                  {...register("firstName", {
+                    required: "First name is required",
+                  })}
                   className={`w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 ${
-                    errors.firstName ? "focus:ring-red-500" : "focus:ring-purple-500"
+                    errors.firstName
+                      ? "focus:ring-red-500"
+                      : "focus:ring-purple-500"
                   }`}
                 />
                 {errors.firstName && (
-                  <p className="text-red-500 text-sm mt-1">{errors.firstName.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.firstName.message}
+                  </p>
                 )}
               </div>
               <div>
                 <input
                   type="text"
                   placeholder="Last name"
-                  {...register("lastName", { required: "Last name is required" })}
+                  {...register("lastName", {
+                    required: "Last name is required",
+                  })}
                   className={`w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 ${
-                    errors.lastName ? "focus:ring-red-500" : "focus:ring-purple-500"
+                    errors.lastName
+                      ? "focus:ring-red-500"
+                      : "focus:ring-purple-500"
                   }`}
                 />
                 {errors.lastName && (
-                  <p className="text-red-500 text-sm mt-1">{errors.lastName.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.lastName.message}
+                  </p>
                 )}
               </div>
             </div>
@@ -93,45 +108,71 @@ const ContactForm = ({ id }: { id: string }) => {
                 <input
                   type="email"
                   placeholder="Email address"
-                  {...register("email", { required: "Enter a valid email address" })}
+                  {...register("email", {
+                    required: "Enter a valid email address",
+                  })}
                   className={`w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 ${
-                    errors.email ? "focus:ring-red-500" : "focus:ring-purple-500"
+                    errors.email
+                      ? "focus:ring-red-500"
+                      : "focus:ring-purple-500"
                   }`}
                 />
                 {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
               <div>
                 <input
                   type="tel"
                   placeholder="Phone number"
-                  {...register("phone", { required: "Enter a valid 10-digit phone number" })}
+                  {...register("phone", {
+                    required: "Enter a valid 10-digit phone number",
+                  })}
                   className={`w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 ${
-                    errors.phone ? "focus:ring-red-500" : "focus:ring-purple-500"
+                    errors.phone
+                      ? "focus:ring-red-500"
+                      : "focus:ring-purple-500"
                   }`}
                 />
                 {errors.phone && (
-                  <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.phone.message}
+                  </p>
                 )}
               </div>
             </div>
 
             <div className="mb-4">
               <select
-                {...register("category", { required: "Please select a category" })}
+                {...register("category", {
+                  required: "Please select a category",
+                })}
                 className={`w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 ${
-                  errors.category ? "focus:ring-red-500" : "focus:ring-purple-500"
+                  errors.category
+                    ? "focus:ring-red-500"
+                    : "focus:ring-purple-500"
                 }`}
               >
                 <option value="">Select a category</option>
-                <option value="Technology">Technology</option>
-                <option value="Health">Health</option>
-                <option value="Lifestyle">Lifestyle</option>
-                <option value="Business">Business</option>
+                <option value="Technology">Portfolio Website</option>
+                <option value="Health">E-commerce Website</option>
+                <option value="Lifestyle">Learning/Tutoring Platform</option>
+                <option value="Business">Job Board Website</option>
+                <option value="Business">Blogging Platform</option>
+                <option value="Business">
+                  SaaS Dashboard (Analytics/CRM/HRM/etc.)
+                </option>
+                <option value="Business">Real Estate Listing Website</option>
+                <option value="Business">Forum/Community Website</option>
+                <option value="Business">Event Management Website</option>
+                <option value="Business">Travel Booking Website</option>
               </select>
               {errors.category && (
-                <p className="text-red-500 text-sm mt-1">{errors.category.message}</p>
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.category.message}
+                </p>
               )}
             </div>
 
@@ -141,11 +182,15 @@ const ContactForm = ({ id }: { id: string }) => {
                 rows={4}
                 {...register("message", { required: "Message is required" })}
                 className={`w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 ${
-                  errors.message ? "focus:ring-red-500" : "focus:ring-purple-500"
+                  errors.message
+                    ? "focus:ring-red-500"
+                    : "focus:ring-purple-500"
                 }`}
               ></textarea>
               {errors.message && (
-                <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.message.message}
+                </p>
               )}
             </div>
 
@@ -157,12 +202,16 @@ const ContactForm = ({ id }: { id: string }) => {
 
         {/* Contact Info Section */}
         <div className="flex flex-col items-center md:items-start space-y-6 w-full md:w-1/2">
-          <ContactInfo icon={Phone} title="Phone" value="+01 123 654 8096" />
-          <ContactInfo icon={Mail} title="Email" value="gerolddesign@mail.com" />
+          <ContactInfo icon={Phone} title="Phone" value="01609520719" />
+          <ContactInfo
+            icon={Mail}
+            title="Email"
+            value="pronoybanik81@gmail.com"
+          />
           <ContactInfo
             icon={MapPin}
             title="Address"
-            value="Warne Park Street Pine, FL 33157, New York"
+            value="Dhaka, Bangladesh"
           />
         </div>
       </div>
@@ -179,8 +228,12 @@ interface ContactInfoProps {
   value: string;
 }
 
-const ContactInfo: React.FC<ContactInfoProps> = ({ icon: Icon, title, value }) => (
-  <div className="flex items-center space-x-4 lg:mt-44">
+const ContactInfo: React.FC<ContactInfoProps> = ({
+  icon: Icon,
+  title,
+  value,
+}) => (
+  <div className="flex items-center space-x-4 lg:mt-44 md:mt-44">
     <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-purple-900 text-white shadow-md">
       <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
     </div>
