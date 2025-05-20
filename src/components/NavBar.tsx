@@ -67,7 +67,7 @@ const NavBar = () => {
             {/* Logo */}
             <div className="flex-1">
               <Link href="/" className="flex items-center mt-2">
-                <Image width={120} height={100} src={icon} alt="Logo" />
+                <Image width={140} height={100} src={icon} alt="Logo" />
               </Link>
             </div>
 
