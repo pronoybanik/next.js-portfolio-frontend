@@ -19,6 +19,9 @@ import react from "../images/development-logo/react/download (1).png";
 import typescript from "../images/development-logo/typesript/download (1).png";
 import angular from "../images/development-logo/anguler/icons8-angular-480.png";
 import SkillItem from "./SkillItem";
+import nextjs from "../images/development-logo/next.js/download.jpg";
+import prisma from "../images/development-logo/prisma/download (1).jpg";
+import vercel from "../images/development-logo/vercel/download.png";
 
 const skills = [
   { name: "HTML", img: html, level: "Advance" },
@@ -37,6 +40,9 @@ const skills = [
   { name: "Firebase", img: Firebase, level: "Moderate" },
   { name: "Mongo DB", img: Mongo, level: "Beginner" },
   { name: "Netlify", img: Netlify, level: "Moderate" },
+  { name: "Next.js", img: nextjs, level: "Moderate" },
+  { name: "Prisma", img: prisma, level: "Moderate" },
+  { name: "Vercel", img: vercel, level: "vercel" },
 ];
 
 const containerVariants = {

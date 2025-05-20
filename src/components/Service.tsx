@@ -63,7 +63,7 @@ const Services = ({ id }: { id: string }) => {
   return (
     <motion.section
       id={id}
-      className="bg-gray-50 py-16 px-4 md:px-8 lg:px-16 min-h-screen"
+      className="bg-gray-100 py-16 px-4 md:px-8 lg:px-16 min-h-screen"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}

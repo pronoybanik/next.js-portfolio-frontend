@@ -5,7 +5,7 @@ import { StaticImageData } from "next/image";
 interface SkillProps {
   skill: {
     name: string;
-    img: string | StaticImageData; // Accept both string and StaticImageData
+    img: string | StaticImageData;
     level: string;
   };
 }
@@ -14,20 +14,25 @@ const SkillItem: React.FC<SkillProps> = ({ skill }) => {
   return (
     <div
       id={skill.name}
-      className="flex items-center gap-2 p-3 w-48 sm:w-fit whitespace-nowrap shadow-[#070608] shadow-lg bg-[#1E1A27] rounded-lg hover:scale-105 duration-300 ease-in-out"
+      className="group flex items-center gap-4 p-4 rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/20 transform hover:-translate-y-1"
     >
-      <div className="p-2 bg-[#33303ad5] rounded-md border-[#ffffff2a] border-2">
+      <div className="flex-shrink-0 p-3 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-700 shadow-md group-hover:shadow-indigo-500/50 transition-all duration-300">
         <Image
           src={skill.img}
-          className="w-10 z-10"
+          className="w-8 h-8 object-contain"
           alt={skill.name}
-          width={40}
-          height={40}
+          width={32}
+          height={32}
         />
       </div>
-      <h2 className="text-white font-medium border-gray-300 pl-4 text-lg">
-        {skill.name}
-      </h2>
+      <div className="flex flex-col">
+        <h2 className="text-white font-semibold text-lg group-hover:text-indigo-300 transition-colors duration-300">
+          {skill.name}
+        </h2>
+        <span className="text-xs text-slate-400 group-hover:text-slate-300">
+          {skill.level}
+        </span>
+      </div>
     </div>
   );
 };

@@ -67,7 +67,7 @@ const Header = ({ id }: { id: string }) => {
               <h2 className="text-3xl  md:text-4xl lg:text-5xl font-bold text-black">
                 I am <span className="text-purple-600">Pronoy</span>
               </h2>
-              <h1 className="text-4xl  sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 leading-tight">
+              <h1 className="text-4xl   sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 leading-tight">
                 Next-Level Web Developer.
               </h1>
             </div>

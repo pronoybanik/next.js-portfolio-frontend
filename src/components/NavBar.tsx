@@ -14,6 +14,7 @@ const NavBar = () => {
 
   const navLinks = [
     { href: "/", label: "Home", isLink: true },
+    { href: "#education", label: "Education", isLink: false },
     { href: "#services", label: "Service", isLink: false },
     { href: "#project", label: "Project", isLink: false },
     { href: "#skill", label: "Skill", isLink: false },

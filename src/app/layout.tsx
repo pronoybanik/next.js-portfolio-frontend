@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-[kadwa]`}
+        className={`${geistSans.variable} ${geistMono.variable} font-[kadwa] `}
       >
         <NavBar />
         <div className="min-h-screen">{children}</div>

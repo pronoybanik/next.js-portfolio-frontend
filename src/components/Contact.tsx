@@ -34,8 +34,10 @@ const ContactForm = ({ id }: { id: string }) => {
         }
       );
 
-      if (response.ok) {
-        alert("Message sent successfully!");
+      const result = await response.json();
+
+      if (result?.success) {
+        alert(result.message || "Thank you for your message");
         reset();
       } else {
         alert("Failed to send the message. Please try again.");
