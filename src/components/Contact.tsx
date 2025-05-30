@@ -4,6 +4,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Mail, Phone, MapPin } from "lucide-react";
 import SecondaryButton from "@/shared/SecondaryButton";
+import { motion } from "framer-motion";
 
 // Define form data structure
 interface FormData {
@@ -14,6 +15,30 @@ interface FormData {
   category: string;
   message: string;
 }
+
+const containerVariants = {
+  hidden: { opacity: 0, y: 80 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 60,
+      damping: 14,
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring", stiffness: 80 },
+  },
+};
 
 const ContactForm = ({ id }: { id: string }) => {
   const {
@@ -49,13 +74,23 @@ const ContactForm = ({ id }: { id: string }) => {
   };
 
   return (
-    <section
+    <motion.section
       id={id}
-      className="flex flex-col items-center justify-center py-16 px-4 sm:px-6 md:px-8 bg-purple-50"
+      className="flex flex-col items-center justify-center py-16 px-4 sm:px-6 md:px-8"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={containerVariants}
     >
-      <div className="flex flex-col md:flex-row w-full max-w-screen-lg space-y-12 md:space-y-0 md:space-x-12">
+      <motion.div
+        className="flex flex-col md:flex-row w-full max-w-screen-lg space-y-12 md:space-y-0 md:space-x-12"
+        variants={containerVariants}
+      >
         {/* Form Section */}
-        <div className="bg-white w-full p-6 sm:p-8 rounded-2xl shadow-lg">
+        <motion.div
+          className="bg-white w-full p-6 sm:p-8 rounded-2xl shadow-lg"
+          variants={itemVariants}
+        >
           <h2 className="text-3xl sm:text-4xl md:text-2xl mb-4 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 text-center md:text-left">
             Let’s work together!
           </h2>
@@ -200,10 +235,13 @@ const ContactForm = ({ id }: { id: string }) => {
               {isSubmitting ? "Sending..." : "Send Message"}
             </SecondaryButton>
           </form>
-        </div>
+        </motion.div>
 
         {/* Contact Info Section */}
-        <div className="flex flex-col items-center md:items-start space-y-6 w-full md:w-1/2">
+        <motion.div
+          className="flex flex-col items-center md:items-start space-y-6 w-full md:w-1/2"
+          variants={itemVariants}
+        >
           <ContactInfo icon={Phone} title="Phone" value="01609520719" />
           <ContactInfo
             icon={Mail}
@@ -215,15 +253,16 @@ const ContactForm = ({ id }: { id: string }) => {
             title="Address"
             value="Dhaka, Bangladesh"
           />
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 };
 
 export default ContactForm;
 
 // Contact Info Component
+import { motion as m } from "framer-motion";
 interface ContactInfoProps {
   icon: React.ElementType;
   title: string;
@@ -235,13 +274,17 @@ const ContactInfo: React.FC<ContactInfoProps> = ({
   title,
   value,
 }) => (
-  <div className="flex items-center space-x-4 lg:mt-44 md:mt-44">
+  <m.div
+    className="flex items-center space-x-4 lg:mt-44 md:mt-44"
+    whileHover={{ scale: 1.07, boxShadow: "0 4px 24px 0 rgba(80,0,180,0.10)" }}
+    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+  >
     <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-purple-900 text-white shadow-md">
       <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
     </div>
     <div className="text-center md:text-left">
-      <h4 className="text-gray-500 text-sm">{title}</h4>
-      <p className="text-gray-800 font-medium">{value}</p>
+      <h4 className="text-white text-sm">{title}</h4>
+      <p className="text-gray-200 font-medium">{value}</p>
     </div>
-  </div>
+  </m.div>
 );

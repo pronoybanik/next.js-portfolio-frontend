@@ -31,7 +31,7 @@ const services = [
 ];
 
 const containerVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 80 },
   visible: {
     opacity: 1,
     y: 0,
@@ -39,21 +39,35 @@ const containerVariants = {
       type: "spring",
       stiffness: 60,
       damping: 15,
-      staggerChildren: 0.2,
+      staggerChildren: 0.18,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 30, scale: 0.97 },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
       type: "spring",
       stiffness: 70,
       damping: 16,
     },
+  },
+  hover: {
+    scale: 1.04,
+    boxShadow: "0 8px 32px 0 rgba(80, 0, 180, 0.18)",
+  },
+};
+
+const headerVariants = {
+  hidden: { opacity: 0, y: -30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 80, delay: 0.1 },
   },
 };
 
@@ -63,17 +77,17 @@ const Services = ({ id }: { id: string }) => {
   return (
     <motion.section
       id={id}
-      className="bg-gray-100 py-16 px-4 md:px-8 lg:px-16 min-h-screen"
+      className="py-16 px-4 md:px-8 lg:px-16 min-h-screen"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={containerVariants}
     >
-      <motion.div className="text-center my-10" variants={itemVariants}>
+      <motion.div className="text-center my-10" variants={headerVariants}>
         <h2 className="text-4xl sm:text-5xl md:text-7xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight">
           My Quality Services
         </h2>
-        <p className="text-black mt-6 text-lg sm:text-xl font-medium text-center max-w-3xl mx-auto">
+        <p className="text-white mt-6 text-lg sm:text-xl font-medium text-center max-w-3xl mx-auto">
           We put your ideas and thus your wishes in the form of a unique web
           project that inspires you and your customers.
         </p>
@@ -87,6 +101,7 @@ const Services = ({ id }: { id: string }) => {
           <motion.div
             key={service.id}
             variants={itemVariants}
+            whileHover="hover"
             layout
             onClick={() => setSelected(service.id)}
             className={`flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:p-5 rounded-lg transition-all duration-300 cursor-pointer ${
@@ -124,13 +139,18 @@ const Services = ({ id }: { id: string }) => {
               )}
             </div>
 
-            <ArrowUpRight
-              className={`w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 ${
-                selected === service.id
-                  ? "text-white transform rotate-45"
-                  : "text-purple-600 hover:text-purple-800"
-              }`}
-            />
+            <motion.div
+              animate={selected === service.id ? { rotate: 45, scale: 1.2 } : { rotate: 0, scale: 1 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            >
+              <ArrowUpRight
+                className={`w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 ${
+                  selected === service.id
+                    ? "text-white"
+                    : "text-purple-600 hover:text-purple-800"
+                }`}
+              />
+            </motion.div>
           </motion.div>
         ))}
       </motion.div>

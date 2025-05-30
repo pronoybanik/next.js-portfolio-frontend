@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { motion } from "framer-motion";
 
 interface TBlog {
   title: string;
@@ -12,6 +13,38 @@ interface TBlog {
   image: string;
   createdAt: string;
 }
+
+const containerVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 60,
+      damping: 16,
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const imageVariants = {
+  hidden: { opacity: 0, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { type: "spring", stiffness: 80, delay: 0.1 },
+  },
+};
+
+const contentVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 70, delay: 0.18 },
+  },
+};
 
 const BlogItem = () => {
   const { id } = useParams();
@@ -40,10 +73,21 @@ const BlogItem = () => {
   if (!blog) return <p className="text-center text-xl">Blog not found</p>;
 
   return (
-    <section className=" mt-16">
-      <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <motion.section
+      className="mt-16"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <motion.div
+        className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg"
+        variants={containerVariants}
+      >
         {/* Image Section */}
-        <div className="relative w-full h-72 overflow-hidden rounded-lg">
+        <motion.div
+          className="relative w-full h-72 overflow-hidden rounded-lg"
+          variants={imageVariants}
+        >
           <Image
             src={blog.image}
             alt={blog.title}
@@ -54,10 +98,13 @@ const BlogItem = () => {
           <span className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-xs">
             {blog.category}
           </span>
-        </div>
+        </motion.div>
 
         {/* Meta Information */}
-        <div className="flex items-center text-gray-600 text-sm mt-4 space-x-6">
+        <motion.div
+          className="flex items-center text-gray-600 text-sm mt-4 space-x-6"
+          variants={contentVariants}
+        >
           <span className="flex items-center">
             <svg
               className="w-4 h-4 mr-1 text-purple-600"
@@ -90,15 +137,23 @@ const BlogItem = () => {
             </svg>
             {new Date(blog.createdAt).toLocaleDateString()}
           </span>
-        </div>
+        </motion.div>
 
         {/* Blog Title & Content */}
-        <h1 className="text-3xl font-bold text-purple-700 mt-6">
+        <motion.h1
+          className="text-3xl font-bold text-purple-700 mt-6"
+          variants={contentVariants}
+        >
           {blog.title}
-        </h1>
-        <p className="text-gray-700 mt-4 leading-relaxed">{blog.content}</p>
-      </div>
-    </section>
+        </motion.h1>
+        <motion.p
+          className="text-gray-700 mt-4 leading-relaxed"
+          variants={contentVariants}
+        >
+          {blog.content}
+        </motion.p>
+      </motion.div>
+    </motion.section>
   );
 };
 

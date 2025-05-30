@@ -61,7 +61,7 @@ const NavBar = () => {
 
   return (
     <div className="sticky top-0 z-50">
-      <header className="bg-white shadow-sm">
+      <header className=" shadow-sm">
         <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
@@ -79,14 +79,14 @@ const NavBar = () => {
                     <li key={index}>
                       {item.isLink ? (
                         <Link
-                          className="text-black font-semibold relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:scale-x-0 before:bg-gradient-to-r before:from-purple-600 before:to-indigo-600 before:transition hover:before:scale-x-100 duration-300 font-[kadwa]"
+                          className="text-white font-semibold relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:scale-x-0 before:bg-gradient-to-r before:from-purple-600 before:to-indigo-600 before:transition hover:before:scale-x-100 duration-300 font-[kadwa]"
                           href={item.href}
                         >
                           {item.label}
                         </Link>
                       ) : (
                         <a
-                          className="text-black font-semibold relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:scale-x-0 before:bg-gradient-to-r before:from-purple-600 before:to-indigo-600 before:transition hover:before:scale-x-100 duration-300 font-[kadwa]"
+                          className="text-white font-semibold relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:scale-x-0 before:bg-gradient-to-r before:from-purple-600 before:to-indigo-600 before:transition hover:before:scale-x-100 duration-300 font-[kadwa]"
                           href={item.href}
                         >
                           {item.label}

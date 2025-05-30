@@ -36,24 +36,52 @@ const itemVariants = {
   },
 };
 
+const bgCircleVariants = {
+  initial: { opacity: 0, scale: 0.8 },
+  animate: { opacity: 0.3, scale: 1, transition: { duration: 1.2, delay: 0.2 } },
+};
+
+const headlineVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.15, type: "spring", stiffness: 80 },
+  }),
+};
+
+const imageVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 60, delay: 0.5 } },
+  hover: { scale: 1.05, rotate: 2 },
+};
+
 const Header = ({ id }: { id: string }) => {
   return (
     <motion.section
       id={id}
-      className="relative overflow-hidden bg-gradient-to-b from-purple-100 min-h-[90vh] flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] min-h-[90vh] flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={containerVariants}
     >
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-purple-100 blur-3xl opacity-30" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-indigo-100 blur-3xl opacity-30" />
-      </div>
+      {/* Animated Background Circles */}
+      <motion.div
+        className="absolute top-[-80px] left-[-80px] w-72 h-72 bg-purple-500 rounded-full blur-3xl opacity-30 z-0"
+        variants={bgCircleVariants}
+        initial="initial"
+        animate="animate"
+      />
+      <motion.div
+        className="absolute bottom-[-100px] right-[-100px] w-96 h-96 bg-indigo-500 rounded-full blur-3xl opacity-20 z-0"
+        variants={bgCircleVariants}
+        initial="initial"
+        animate="animate"
+      />
 
       <motion.div
-        className="max-w-7xl w-full mx-auto"
+        className="max-w-7xl w-full mx-auto relative z-10"
         variants={containerVariants}
       >
         <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
@@ -64,25 +92,45 @@ const Header = ({ id }: { id: string }) => {
             style={{ willChange: "transform, opacity" }}
           >
             <div className="space-y-3">
-              <h2 className="text-3xl  md:text-4xl lg:text-5xl font-bold text-black">
-                I am <span className="text-purple-600">Pronoy</span>
-              </h2>
-              <h1 className="text-4xl   sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 leading-tight">
+              <motion.h2
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-white"
+                custom={0}
+                variants={headlineVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                I am <span className="text-purple-400">Pronoy</span>
+              </motion.h2>
+              <motion.h1
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400 leading-tight"
+                custom={1}
+                variants={headlineVariants}
+                initial="hidden"
+                animate="visible"
+              >
                 Next-Level Web Developer.
-              </h1>
+              </motion.h1>
             </div>
 
-            <p className="text-lg md:text-xl text-gray-700 max-w-lg mx-auto lg:mx-0">
+            <motion.p
+              className="text-lg md:text-xl text-gray-300 max-w-lg mx-auto lg:mx-0"
+              custom={2}
+              variants={headlineVariants}
+              initial="hidden"
+              animate="visible"
+            >
               I break down complex user experience problems to create
               integrity-focused solutions that connect billions of people.
-            </p>
+            </motion.p>
 
             <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-4">
               {/* Download Button */}
-              <a
+              <motion.a
                 href={resume}
                 download="pronoy_banik_resume.pdf"
                 className="group relative inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg shadow-md transition duration-300 hover:shadow-lg hover:scale-105"
+                whileHover={{ scale: 1.07 }}
+                whileTap={{ scale: 0.97 }}
               >
                 <span className="relative flex items-center gap-2">
                   Download CV
@@ -101,7 +149,7 @@ const Header = ({ id }: { id: string }) => {
                     />
                   </svg>
                 </span>
-              </a>
+              </motion.a>
 
               {/* Social Icons */}
               <div className="flex gap-4">
@@ -146,8 +194,11 @@ const Header = ({ id }: { id: string }) => {
           {/* Right Section (Image) */}
           <motion.div
             className="w-full lg:w-1/2 flex justify-center items-center"
-            variants={itemVariants}
+            variants={imageVariants}
             style={{ willChange: "transform, opacity" }}
+            initial="hidden"
+            animate="visible"
+            whileHover="hover"
           >
             <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
               <div className="absolute -z-10 w-full h-full bg-gradient-to-tr from-purple-500 to-indigo-500 rounded-full blur-2xl opacity-10 scale-150" />

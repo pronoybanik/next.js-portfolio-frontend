@@ -11,10 +11,10 @@ const ProductItem = ({ projectData }: { projectData: TProject }) => {
     >
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-center md:gap-8">
         <div>
-          <h2 className="text-2xl font-semibold text-gray-900 sm:text-3xl">
+          <h2 className="text-2xl font-semibold text-white sm:text-3xl">
             {projectData.title}
           </h2>
-          <p className="mt-4 text-gray-700">{projectData.content}</p>
+          <p className="mt-4 text-gray-300">{projectData.content}</p>
         </div>
         <div>
           <Image
