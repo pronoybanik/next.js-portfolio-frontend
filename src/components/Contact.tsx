@@ -76,7 +76,7 @@ const ContactForm = ({ id }: { id: string }) => {
   return (
     <motion.section
       id={id}
-      className="flex flex-col items-center justify-center py-16 px-4 sm:px-6 md:px-8"
+      className="flex flex-col items-center justify-center  px-4 pb-32"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}

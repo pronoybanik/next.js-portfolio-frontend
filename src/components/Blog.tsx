@@ -75,7 +75,7 @@ const Blog = ({ loadId }: { loadId: string }) => {
   return (
     <motion.section
       id={loadId}
-      className="py-16 px-4 md:px-8 lg:px-16 min-h-screen"
+      className="px-4 min-h-screen"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
