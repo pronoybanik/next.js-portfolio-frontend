@@ -95,18 +95,22 @@ const Projects = ({ loadId }: { loadId: string }) => {
         className="grid lg:grid-cols-2 grid-cols-1 max-w-screen-2xl mx-auto gap-8"
         variants={containerVariants}
       >
-        {projects?.slice(0, 4).map((project: TProject, idx: number) => (
-          <motion.div
-            key={project?._id}
-            variants={cardVariants}
-            whileHover="hover"
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: idx * 0.12 }}
-          >
-            <ProductItem projectData={project} />
-          </motion.div>
-        ))}
+        {projects
+          ?.slice()
+          .reverse()
+          .slice(0, 4)
+          .map((project: TProject, idx: number) => (
+            <motion.div
+              key={project?._id}
+              variants={cardVariants}
+              whileHover="hover"
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: idx * 0.12 }}
+            >
+              <ProductItem projectData={project} />
+            </motion.div>
+          ))}
       </motion.div>
 
       <motion.div

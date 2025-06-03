@@ -71,18 +71,21 @@ const AllProjects = () => {
         className="grid lg:grid-cols-2 grid-cols-1 max-w-screen-2xl mx-auto"
         variants={containerVariants}
       >
-        {projects?.map((project: TProject, idx: number) => (
-          <motion.div
-            key={project?._id}
-            variants={cardVariants}
-            whileHover="hover"
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: idx * 0.1 }}
-          >
-            <ProductItem projectData={project} />
-          </motion.div>
-        ))}
+        {projects
+          ?.slice()
+          .reverse()
+          .map((project: TProject, idx: number) => (
+            <motion.div
+              key={project?._id}
+              variants={cardVariants}
+              whileHover="hover"
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: idx * 0.12 }}
+            >
+              <ProductItem projectData={project} />
+            </motion.div>
+          ))}
       </motion.div>
     </motion.section>
   );
