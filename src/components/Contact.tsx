@@ -267,7 +267,7 @@ const ContactForm = ({ id }: { id: string }) => {
           <ContactInfo
             icon={Mail}
             title="Email"
-            value="pronoybanik81@gmail.com"
+            value="pronoybanik82@gmail.com"
           />
           <ContactInfo
             icon={MapPin}

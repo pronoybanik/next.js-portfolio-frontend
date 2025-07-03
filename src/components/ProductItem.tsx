@@ -14,7 +14,7 @@ const ProductItem = ({ projectData }: { projectData: TProject }) => {
           <h2 className="text-2xl font-semibold text-white sm:text-3xl">
             {projectData.title}
           </h2>
-          <p className="mt-4 text-gray-300">{projectData.content}</p>
+          <p className="mt-4 text-gray-300">{projectData.content.slice(0,100)}....</p>
         </div>
         <div>
           <Image
