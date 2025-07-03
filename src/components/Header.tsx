@@ -7,7 +7,7 @@ import facebook from "../images/icons/icons8-facebook-250.png";
 import github from "../images/icons/icons8-github-500.png";
 import linkedin from "../images/icons/icons8-linkedin-250.png";
 
-const resume = "/cv/my-cv.pdf";
+const resume = "/cv/pronoy banik resume-1.pdf";
 
 const containerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -38,7 +38,11 @@ const itemVariants = {
 
 const bgCircleVariants = {
   initial: { opacity: 0, scale: 0.8 },
-  animate: { opacity: 0.3, scale: 1, transition: { duration: 1.2, delay: 0.2 } },
+  animate: {
+    opacity: 0.3,
+    scale: 1,
+    transition: { duration: 1.2, delay: 0.2 },
+  },
 };
 
 const headlineVariants = {
@@ -52,7 +56,11 @@ const headlineVariants = {
 
 const imageVariants = {
   hidden: { opacity: 0, scale: 0.95 },
-  visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 60, delay: 0.5 } },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { type: "spring", stiffness: 60, delay: 0.5 },
+  },
   hover: { scale: 1.05, rotate: 2 },
 };
 
@@ -108,7 +116,7 @@ const Header = ({ id }: { id: string }) => {
                 initial="hidden"
                 animate="visible"
               >
-                Next-Level Web Developer.
+                Full-Stack Web Developer.
               </motion.h1>
             </div>
 

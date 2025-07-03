@@ -67,24 +67,34 @@ const itemVariants = {
   },
 };
 
+const headerVariants = {
+  hidden: { opacity: 0, y: -30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 80, delay: 0.1 },
+  },
+};
+
 const Skill = ({ id }: { id: string }) => {
   return (
     <motion.section
       id={id}
-      className="py-16 px-4 md:px-8 lg:px-16 min-h-screen "
+      className="py-16 px-4 md:px-8 lg:px-16 min-h-screen dark:bg-gray-900 "
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={containerVariants}
     >
-      <motion.div className="text-center my-20" variants={itemVariants}>
-        <h2 className="text-4xl sm:text-5xl md:text-7xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight">
-          My Skills
+      <motion.div className="text-center mb-16" variants={headerVariants}>
+        <h2 className="text-4xl sm:text-5xl font-bold text-gray-400 mb-4">
+          My <span className="text-indigo-600">Skill</span>
         </h2>
-        <p className="text-white mt-8 text-xl font-medium text-center max-w-3xl mx-auto">
+        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
           We put your ideas and thus your wishes in the form of a unique web
           project that inspires you and your customers.
         </p>
+        <div className="w-20 h-1 bg-indigo-600 mx-auto mt-6"></div>
       </motion.div>
 
       <motion.div

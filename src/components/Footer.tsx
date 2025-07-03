@@ -26,7 +26,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#2a1454] text-white py-8">
+    <footer className="bg-black text-white py-8">
       <div className="container mx-auto flex flex-col items-center">
         {/* Logo Section */}
         <div className="flex-1 md:flex md:items-center md:gap-12">

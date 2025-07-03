@@ -40,6 +40,15 @@ const itemVariants = {
   },
 };
 
+const headerVariants = {
+  hidden: { opacity: 0, y: -30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 80, delay: 0.1 },
+  },
+};
+
 const ContactForm = ({ id }: { id: string }) => {
   const {
     register,
@@ -76,12 +85,24 @@ const ContactForm = ({ id }: { id: string }) => {
   return (
     <motion.section
       id={id}
-      className="flex flex-col items-center justify-center  px-4 pb-32"
+      className="flex flex-col items-center justify-center  px-4 pb-32 dark:bg-gray-900 py-16"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={containerVariants}
     >
+      <motion.div className="text-center mb-16" variants={headerVariants}>
+        <h2 className="text-4xl sm:text-5xl font-bold text-gray-400 mb-4">
+          Let’s <span className="text-indigo-600">connect</span>
+        </h2>
+        <p className="text-gray-600 text-lg mb-6 max-w-2xl mx-auto">
+          Have a project in mind or just want to say hi? I’m always open to
+          discussing new ideas, collaborations, or freelance opportunities.
+        </p>
+
+        <div className="w-20 h-1 bg-indigo-600 mx-auto mt-6"></div>
+      </motion.div>
+
       <motion.div
         className="flex flex-col md:flex-row w-full max-w-screen-lg space-y-12 md:space-y-0 md:space-x-12"
         variants={containerVariants}

@@ -43,18 +43,9 @@ const cardVariants = {
   },
 };
 
-const buttonVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { type: "spring", stiffness: 80, delay: 0.6 },
-  },
-  hover: { scale: 1.07, boxShadow: "0 4px 24px 0 rgba(80,0,180,0.18)" },
-};
+
 
 const Projects = ({ loadId }: { loadId: string }) => {
-  // const { data: projects } = await getAllProject();
 
   const [projects, setProjects] = useState<TProject[]>([]);
 
@@ -70,25 +61,21 @@ const Projects = ({ loadId }: { loadId: string }) => {
   return (
     <motion.section
       id={loadId}
-      className="py-16 px-8 min-h-screen"
+      className="py-16 px-8 min-h-screen bg-black"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={containerVariants}
     >
-      <motion.div className="text-center my-20" variants={headerVariants}>
-        <h2 className="text-4xl sm:text-5xl md:text-7xl my-4 md:my-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 leading-tight">
-          My Recent Works
+      <motion.div className="text-center mb-16" variants={headerVariants}>
+        <h2 className="text-4xl sm:text-5xl font-bold text-gray-400 mb-4">
+          My <span className="text-indigo-600">Recent Works</span>
         </h2>
-        <motion.p
-          className="text-white mt-8 text-xl font-medium text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6, type: "spring" }}
-        >
+        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
           We put your ideas and thus your wishes in the form of a unique web
-          project that <br /> inspires you and your customers.
-        </motion.p>
+          project that inspires you and your customers.
+        </p>
+        <div className="w-20 h-1 bg-indigo-600 mx-auto mt-6"></div>
       </motion.div>
 
       <motion.div
@@ -115,7 +102,7 @@ const Projects = ({ loadId }: { loadId: string }) => {
 
       <motion.div
         className="flex justify-center mt-8"
-        variants={buttonVariants}
+       
         initial="hidden"
         animate="visible"
         whileHover="hover"
