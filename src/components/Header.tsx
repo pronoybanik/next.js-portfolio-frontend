@@ -1,12 +1,12 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import image from "../images/1o0FVW0sOxcAAAAASUVORK5CYII=.png";
 import facebook from "../images/icons/icons8-facebook-250.png";
 import github from "../images/icons/icons8-github-500.png";
 import linkedin from "../images/icons/icons8-linkedin-250.png";
-
+import Typed from "typed.js";
 const resume = "/cv/pronoy banik resume-1.pdf";
 
 const containerVariants = {
@@ -65,6 +65,23 @@ const imageVariants = {
 };
 
 const Header = ({ id }: { id: string }) => {
+  const autoTypeRef = useRef(null);
+
+  useEffect(() => {
+    const options = {
+      strings: ["FRONTEND DEVELOPER", "MERN STACK DEVELOPER", "WEB DEVELOPER"],
+      typeSpeed: 100,
+      backSpeed: 100,
+      loop: true,
+    };
+
+    const typed = new Typed(autoTypeRef.current, options);
+
+    return () => {
+      typed.destroy();
+    };
+  }, []);
+
   return (
     <motion.section
       id={id}
@@ -101,22 +118,22 @@ const Header = ({ id }: { id: string }) => {
           >
             <div className="space-y-3">
               <motion.h2
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-white"
+                className="text-3xl md:text-4xl lg:text-4xl font-bold text-white"
                 custom={0}
                 variants={headlineVariants}
                 initial="hidden"
                 animate="visible"
               >
-                I am <span className="text-purple-400">Pronoy</span>
+                I am <span className="text-purple-400">Pronoy Banik</span>
               </motion.h2>
               <motion.h1
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400 leading-tight"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400 leading-tight"
                 custom={1}
                 variants={headlineVariants}
                 initial="hidden"
                 animate="visible"
               >
-                Full-Stack Web Developer.
+                <span className="autoType" ref={autoTypeRef}></span>
               </motion.h1>
             </div>
 
@@ -127,8 +144,11 @@ const Header = ({ id }: { id: string }) => {
               initial="hidden"
               animate="visible"
             >
-              I break down complex user experience problems to create
-              integrity-focused solutions that connect billions of people.
+              I architect scalable, user-centric web applications by breaking
+              down intricate UX challenges into intuitive, performance-driven
+              solutions. My full-stack expertise empowers me to build seamless
+              digital experiences that resonate with users while maintaining
+              technical excellence.
             </motion.p>
 
             <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-4">

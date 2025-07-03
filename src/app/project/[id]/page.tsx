@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { TProject } from "@/app/types/projectType";
@@ -40,6 +40,37 @@ const ProjectDetails = () => {
   const params = useParams();
   const [project, setProject] = useState<TProject | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const scrollToBottom = () => {
+    if (!containerRef.current) return;
+    const container = containerRef.current;
+    const image = container.querySelector("img");
+
+    if (!image) return;
+
+    const distanceToScroll = image.clientHeight - container.clientHeight;
+    let scrollStep = 0;
+    const scrollInterval = 5;
+
+    intervalRef.current = setInterval(() => {
+      if (scrollStep >= distanceToScroll) {
+        clearInterval(intervalRef.current as NodeJS.Timeout);
+        return;
+      }
+      scrollStep += scrollInterval;
+      container.scrollTo(0, scrollStep);
+    }, 15);
+  };
+
+  const resetScroll = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    containerRef.current?.scrollTo(0, 0);
+  };
 
   useEffect(() => {
     if (!params?.id) return;
@@ -146,7 +177,12 @@ const ProjectDetails = () => {
               animate="visible"
               variants={contentVariants}
             >
-              <div className="relative h-64 md:h-80 overflow-hidden rounded-lg shadow">
+              <div
+                ref={containerRef}
+                onMouseEnter={scrollToBottom}
+                onMouseLeave={resetScroll}
+                className="relative h-64 md:h-80 overflow-hidden rounded-lg shadow"
+              >
                 <Image
                   src={project.image || "/fallback-image.jpg"}
                   layout="fill"
@@ -171,7 +207,9 @@ const ProjectDetails = () => {
                   <span className="font-medium">{project.category}</span>
                 </p>
                 <div className="border-t border-gray-200 my-4 pt-4">
-                  <h4 className="text-gray-700 font-medium mb-2">Project Links</h4>
+                  <h4 className="text-gray-700 font-medium mb-2">
+                    Project Links
+                  </h4>
                   <div className="space-y-3">
                     {project.frontEndGitLink && (
                       <a
