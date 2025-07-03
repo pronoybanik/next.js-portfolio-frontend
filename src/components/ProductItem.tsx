@@ -10,11 +10,10 @@ const ProductItem = ({ projectData }: { projectData: TProject }) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const scrollToBottom = () => {
-    if (!containerRef.current) return;
     const container = containerRef.current;
-    const image = container.querySelector("img");
+    const image = container?.querySelector("img");
 
-    if (!image) return;
+    if (!container || !image) return;
 
     const distanceToScroll = image.clientHeight - container.clientHeight;
     let scrollStep = 0;
@@ -26,7 +25,7 @@ const ProductItem = ({ projectData }: { projectData: TProject }) => {
         return;
       }
       scrollStep += scrollInterval;
-      container.scrollTo(0, scrollStep);
+      container.scrollTo({ top: scrollStep });
     }, 15);
   };
 
@@ -34,40 +33,54 @@ const ProductItem = ({ projectData }: { projectData: TProject }) => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
-    containerRef.current?.scrollTo(0, 0);
+    containerRef.current?.scrollTo({ top: 0 });
   };
 
   return (
-    <Link
-      href={`/project/${projectData._id}`}
-      className="block mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8"
-    >
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-center md:gap-8">
-        <div>
-          <h2 className="text-2xl font-semibold text-white sm:text-3xl">
-            {projectData.title}
-          </h2>
-          <p className="mt-4 text-gray-300">
-            {projectData.content?.slice(0, 100)}....
-          </p>
-        </div>
+    <>
+      <style jsx>{`
+        .scroll-container::-webkit-scrollbar {
+          display: none;
+        }
+        .scroll-container {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
 
-        <div
-          ref={containerRef}
-          onMouseEnter={scrollToBottom}
-          onMouseLeave={resetScroll}
-          className="overflow-hidden h-[300px] lg:w-96 "
-        >
-          <Image
-            src={projectData?.image || "/fallback-image.jpg"}
-            alt={projectData?.title || "Project Image"}
-            width={500}
-            height={600}
-            className="rounded object-cover"
-          />
+      <Link
+        href={`/project/${projectData._id}`}
+        className="block px-4 py-6 sm:px-6 lg:px-8 max-w-6xl mx-auto"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 md:gap-10">
+          {/* Text Section */}
+          <div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white">
+              {projectData.title}
+            </h2>
+            <p className="mt-3 text-sm sm:text-base text-gray-300">
+              {projectData.content?.slice(0, 100)}...
+            </p>
+          </div>
+
+          {/* Scrollable Image Section */}
+          <div
+            ref={containerRef}
+            onMouseEnter={scrollToBottom}
+            onMouseLeave={resetScroll}
+            className="scroll-container h-[300px] sm:h-[350px] w-full rounded-lg relative overflow-y-scroll"
+          >
+            <Image
+              src={projectData?.image || "/fallback-image.jpg"}
+              alt={projectData?.title || "Project Image"}
+              width={600}
+              height={800}
+              className="object-cover w-full"
+            />
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </>
   );
 };
 
