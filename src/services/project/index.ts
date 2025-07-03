@@ -4,7 +4,11 @@
 export const getAllProject = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/project`, {
-      cache: "force-cache",
+        cache: 'force-cache',
+        next: {
+          revalidate: 120,
+         
+        },
     });
     const data = await res.json();
     return data;
