@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import icon from "../images/Blue_Initial_P_Business_Logo-removebg-preview.png";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import icon from "../images/Blue_Initial_P_Business_Logo-removebg-preview.png";
 
 const NavBar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -15,12 +17,21 @@ const NavBar = () => {
   const navLinks = [
     { href: "/", label: "Home", isLink: true },
     { href: "#education", label: "Education", isLink: false },
-    { href: "#services", label: "Service", isLink: false },
-    { href: "#project", label: "Project", isLink: false },
-    { href: "#skill", label: "Skill", isLink: false },
+    { href: "#services", label: "Services", isLink: false },
+    { href: "#projects", label: "Projects", isLink: false },
+    { href: "#skills", label: "Skills", isLink: false },
     { href: "#blog", label: "Blog", isLink: false },
     { href: "#contact", label: "Contact", isLink: true },
   ];
+
+  // Handle scroll effect for navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close menu on outside click
   useEffect(() => {
@@ -59,57 +70,152 @@ const NavBar = () => {
     };
   }, [mobileMenuOpen]);
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 15,
+      },
+    },
+    hover: {
+      scale: 1.05,
+      transition: { type: "spring", stiffness: 400 },
+    },
+  };
+
+  const mobileMenuVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 20,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+      transition: {
+        ease: "easeIn",
+        duration: 0.2,
+      },
+    },
+  };
+
+  const backdropVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+    exit: { opacity: 0 },
+  };
+
   return (
-    <div className="sticky top-0 z-50 bg-gray-900">
-      <header className=" shadow-sm">
+    <motion.div
+      className={`sticky top-0 z-50 ${
+        scrolled ? "bg-gray-900/95 backdrop-blur-sm" : "bg-gray-900"
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 200, damping: 20 }}
+    >
+      <header className="shadow-sm">
         <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <div className="flex-1">
+            <motion.div
+              className="flex-1"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               <Link href="/" className="flex items-center mt-2">
-                <Image width={140} height={100} src={icon} alt="Logo" />
+                <Image
+                  width={140}
+                  height={100}
+                  src={icon}
+                  alt="Logo"
+                  priority
+                />
               </Link>
-            </div>
+            </motion.div>
 
             {/* Desktop Navigation */}
             <div className="md:flex md:items-center md:gap-12">
               <nav aria-label="Global" className="hidden md:block">
-                <ul className="flex items-center gap-8 lg:gap-10 text-base lg:text-lg font-semibold">
+                <motion.ul
+                  className="flex items-center gap-6 lg:gap-8 text-base lg:text-lg font-semibold"
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
                   {navLinks.map((item, index) => (
-                    <li key={index}>
+                    <motion.li key={index} variants={itemVariants}>
                       {item.isLink ? (
                         <Link
-                          className="text-white font-semibold relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:scale-x-0 before:bg-gradient-to-r before:from-purple-600 before:to-indigo-600 before:transition hover:before:scale-x-100 duration-300 font-[kadwa]"
+                          className="text-white font-medium relative group"
                           href={item.href}
                         >
-                          {item.label}
+                          <span className="relative">
+                            {item.label}
+                            <motion.span
+                              className="absolute left-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-purple-500 to-indigo-500 transition-all duration-300 group-hover:w-full"
+                              initial={{ width: 0 }}
+                              whileHover={{ width: "100%" }}
+                            />
+                          </span>
                         </Link>
                       ) : (
                         <a
-                          className="text-white font-semibold relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:scale-x-0 before:bg-gradient-to-r before:from-purple-600 before:to-indigo-600 before:transition hover:before:scale-x-100 duration-300 font-[kadwa]"
+                          className="text-white font-medium relative group"
                           href={item.href}
                         >
-                          {item.label}
+                          <span className="relative">
+                            {item.label}
+                            <motion.span
+                              className="absolute left-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-purple-500 to-indigo-500 transition-all duration-300 group-hover:w-full"
+                              initial={{ width: 0 }}
+                              whileHover={{ width: "100%" }}
+                            />
+                          </span>
                         </a>
                       )}
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               </nav>
 
               {/* Mobile Menu Toggle */}
               <div className="block md:hidden">
-                <button
+                <motion.button
                   id="menu-button"
-                  className="rounded-md bg-gray-100 p-2 text-gray-600 transition hover:text-gray-800 hover:bg-gray-200 focus:outline-none"
+                  className="rounded-md p-2 text-gray-300 hover:text-white focus:outline-none"
                   onClick={toggleMobileMenu}
                   aria-expanded={mobileMenuOpen}
                   aria-controls="mobile-menu"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   {mobileMenuOpen ? (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
+                      className="h-6 w-6"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -124,7 +230,7 @@ const NavBar = () => {
                   ) : (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
+                      className="h-6 w-6"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -137,70 +243,68 @@ const NavBar = () => {
                       />
                     </svg>
                   )}
-                </button>
+                </motion.button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Mobile Overlay */}
-        {mobileMenuOpen && (
-          <div
-            className="fixed inset-0 z-40 bg-black bg-opacity-30 md:hidden"
-            onClick={() => setMobileMenuOpen(false)}
-          ></div>
-        )}
+        {/* Mobile Menu with AnimatePresence */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <>
+              <motion.div
+                className="fixed inset-0 z-40 bg-black/50 md:hidden"
+                onClick={() => setMobileMenuOpen(false)}
+                variants={backdropVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+              />
 
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div
-            id="mobile-menu"
-            className="md:hidden bg-white border-t border-gray-200 animate-slideDown absolute w-full z-50"
-          >
-            <div className="px-4 py-3 space-y-1">
-              {navLinks.map((item, index) => (
-                <div key={index} className="py-2">
-                  {item.isLink ? (
-                    <Link
-                      href={item.href}
-                      className="block w-full text-left px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-purple-50 hover:text-purple-700"
-                      onClick={() => setMobileMenuOpen(false)}
+              <motion.div
+                id="mobile-menu"
+                className="md:hidden bg-gray-800 absolute w-full z-50 shadow-xl"
+                variants={mobileMenuVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+              >
+                <div className="px-4 py-3 space-y-1">
+                  {navLinks.map((item, index) => (
+                    <motion.div
+                      key={index}
+                      className="py-1"
+                      variants={itemVariants}
+                      whileHover={{ x: 5 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <a
-                      href={item.href}
-                      className="block w-full text-left px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-purple-50 hover:text-purple-700"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.label}
-                    </a>  
-                  )}
+                      {item.isLink ? (
+                        <Link
+                          href={item.href}
+                          className="block w-full text-left px-4 py-3 text-lg font-medium text-white rounded-lg hover:bg-gray-700/50 transition-colors"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <a
+                          href={item.href}
+                          className="block w-full text-left px-4 py-3 text-lg font-medium text-white rounded-lg hover:bg-gray-700/50 transition-colors"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </a>
+                      )}
+                    </motion.div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </header>
-
-      {/* Animation style */}
-      <style jsx>{`
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-slideDown {
-          animation: slideDown 0.2s ease-out forwards;
-        }
-      `}</style>
-    </div>
+    </motion.div>
   );
 };
 
