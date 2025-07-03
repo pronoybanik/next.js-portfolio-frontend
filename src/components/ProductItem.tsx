@@ -56,7 +56,7 @@ const ProductItem = ({ projectData }: { projectData: TProject }) => {
           ref={containerRef}
           onMouseEnter={scrollToBottom}
           onMouseLeave={resetScroll}
-          className="overflow-hidden h-[300px] w-96"
+          className="overflow-hidden h-[300px] lg:w-96 "
         >
           <Image
             src={projectData?.image || "/fallback-image.jpg"}
