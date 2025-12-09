@@ -47,7 +47,7 @@ const ProjectSection = ({ project }: { project: TProject[] }) => {
     return (
         <div>
             <motion.section
-                className="px-8 "
+                className="px-8 my-16"
                 initial="hidden"
                 animate="visible"
                 variants={containerVariants}

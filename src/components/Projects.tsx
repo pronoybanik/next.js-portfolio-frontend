@@ -11,9 +11,13 @@ const Projects = async ({ loadId }: { loadId: string }) => {
 
   try {
     if (response instanceof Error) throw response;
-    const data = response?.data || [];
+    const data = response?.data;
+    
+    if (!data || !Array.isArray(data)) {
+      throw new Error("Invalid response format");
+    }
 
-    if (!Array.isArray(data) || data.length === 0) {
+    if (data.length === 0) {
       return (
         <div className="py-24 px-4 text-center">
           <h2 className="text-2xl font-semibold mb-4 text-gray-700">No projects found</h2>
@@ -23,7 +27,7 @@ const Projects = async ({ loadId }: { loadId: string }) => {
     }
 
     return (
-      <div id={loadId}>
+      <div>
         <HomeProject projects={data} loadId={loadId} loading={false} />
       </div>
     );

@@ -73,11 +73,12 @@ const HomeProject = ({ projects, loadId, loading = false }: { projects: TProject
                     ? [1, 2, 3, 4].map((i) => (
                         <ProductItem key={i} loading />
                     ))
-                    : projects
-                        ?.slice()
-                        .reverse()
-                        .slice(0, 4)
-                        .map((project: TProject, idx: number) => (
+                    : (projects && Array.isArray(projects))
+                        ? projects
+                            .slice()
+                            .reverse()
+                            .slice(0, 4)
+                            .map((project: TProject, idx: number) => (
                             <motion.div
                                 key={project?._id}
                                 variants={cardVariants}
@@ -88,7 +89,8 @@ const HomeProject = ({ projects, loadId, loading = false }: { projects: TProject
                             >
                                 <ProductItem projectData={project} />
                             </motion.div>
-                        ))}
+                        ))
+                        : null}
             </motion.div>
 
             <motion.div

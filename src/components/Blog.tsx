@@ -104,7 +104,7 @@ const Blog = ({ loadId }: { loadId: string }) => {
           className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           variants={containerVariants}
         >
-          {blogs.map((blog, index) => (
+          {blogs && Array.isArray(blogs) && blogs.length > 0 ? blogs.map((blog, index) => (
             <motion.div
               key={blog._id}
               variants={itemVariants}
@@ -159,7 +159,7 @@ const Blog = ({ loadId }: { loadId: string }) => {
                 </div>
               </Link>
             </motion.div>
-          ))}
+          )) : null}
         </motion.div>
       </div>
     </motion.section>
