@@ -125,13 +125,13 @@ const handleDownload = () => {
           >
             <div className="space-y-3">
               <motion.h2
-                className="text-3xl md:text-4xl lg:text-4xl font-bold text-white"
+                className="text-4xl md:text-4xl lg:text-4xl font-bold text-white"
                 custom={0}
                 variants={headlineVariants}
                 initial="hidden"
                 animate="visible"
               >
-                I am <span className="text-purple-400">Pronoy Banik</span>
+              <span className="text-purple-400">Pronoy Banik</span>
               </motion.h2>
               <motion.h1
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400 leading-tight"
