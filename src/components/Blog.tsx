@@ -59,7 +59,7 @@ const headerVariants: Variants = {
   },
 };
 
-const Blog = ({ loadId }: { loadId: string }) => {
+const Blog = ({ id }: { id: string }) => {
   const [blogs, setBlogs] = useState<TBlog[]>([]);
 
   useEffect(() => {
@@ -82,7 +82,7 @@ const Blog = ({ loadId }: { loadId: string }) => {
 
   return (
     <motion.section
-      id={loadId}
+      id={id}
       className="py-20 px-4 sm:px-6 lg:px-8 bg-black"
       initial="hidden"
       whileInView="visible"

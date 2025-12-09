@@ -12,9 +12,9 @@ const Home = () => {
       <Header id="home" />
       <Education id="education" />
       <Services id="services" />
-      <Projects loadId="project" />
-      <Skill id="skill" />
-      <Blog loadId="blog" />
+      <Projects id="projects" />
+      <Skill id="skills" />
+      <Blog id="blog" />
       <Contact id="contact" />
     </div>
   );

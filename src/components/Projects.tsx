@@ -5,14 +5,14 @@ import HomeProject from "./HomeProject";
 
 
 
-const Projects = async ({ loadId }: { loadId: string }) => {
+const Projects = async ({ id }: { id: string }) => {
 
   const response = await getAllProject();
 
   try {
     if (response instanceof Error) throw response;
     const data = response?.data;
-    
+
     if (!data || !Array.isArray(data)) {
       throw new Error("Invalid response format");
     }
@@ -27,9 +27,7 @@ const Projects = async ({ loadId }: { loadId: string }) => {
     }
 
     return (
-      <div>
-        <HomeProject projects={data} loadId={loadId} loading={false} />
-      </div>
+      <HomeProject projects={data} loadId={id} loading={false} />
     );
   } catch (error) {
     console.error("Failed to load projects:", error);
