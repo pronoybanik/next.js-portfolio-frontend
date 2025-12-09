@@ -16,12 +16,12 @@ const NavBar = () => {
 
   const navLinks = [
     { href: "/", label: "Home", isLink: true },
-    { href: "#education", label: "Education", isLink: false },
-    { href: "#services", label: "Services", isLink: false },
-    { href: "#projects", label: "Projects", isLink: false },
-    { href: "#skills", label: "Skills", isLink: false },
-    { href: "#blog", label: "Blog", isLink: false },
-    { href: "#contact", label: "Contact", isLink: true },
+    { href: "/#education", label: "Education", isLink: true },
+    { href: "/#services", label: "Services", isLink: true },
+    { href: "/#projects", label: "Projects", isLink: true },
+    { href: "/#skills", label: "Skills", isLink: true },
+    { href: "/#blog", label: "Blog", isLink: true },
+    { href: "/#contact", label: "Contact", isLink: true },
   ];
 
   // Handle scroll effect for navbar
