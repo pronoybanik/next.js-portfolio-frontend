@@ -7,7 +7,10 @@ import facebook from "../images/icons/icons8-facebook-250.png";
 import github from "../images/icons/icons8-github-500.png";
 import linkedin from "../images/icons/icons8-linkedin-250.png";
 import Typed from "typed.js";
-const resume = "/cv/pronoy banik resume-1.pdf";
+
+// Option 1: Use Google Drive direct download link
+const resumeUrl = "https://drive.google.com/uc?export=download&id=1pGrRdhRI1KTy7MWKWDB13_lKXRr3ChdN";
+
 
 const containerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -82,6 +85,10 @@ const Header = ({ id }: { id: string }) => {
     };
   }, []);
 
+const handleDownload = () => {
+  window.open(resumeUrl, '_blank');
+};
+
   return (
     <motion.section
       id={id}
@@ -153,9 +160,8 @@ const Header = ({ id }: { id: string }) => {
 
             <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-4">
               {/* Download Button */}
-              <motion.a
-                href={resume}
-                download="pronoy_banik_resume.pdf"
+              <motion.button
+                onClick={handleDownload}
                 className="group relative inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg shadow-md transition duration-300 hover:shadow-lg hover:scale-105"
                 whileHover={{ scale: 1.07 }}
                 whileTap={{ scale: 0.97 }}
@@ -177,7 +183,7 @@ const Header = ({ id }: { id: string }) => {
                     />
                   </svg>
                 </span>
-              </motion.a>
+              </motion.button>
 
               {/* Social Icons */}
               <div className="flex gap-4">

@@ -49,12 +49,17 @@ const Projects = ({ loadId }: { loadId: string }) => {
 
   const [projects, setProjects] = useState<TProject[]>([]);
 
+ const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchProjects = async () => {
-      const response = await getAllProject();
-      setProjects(response?.data || []);
+      try {
+        const response = await getAllProject();
+        setProjects(response?.data || []);
+      } finally {
+        setLoading(false);
+      }
     };
-
     fetchProjects();
   }, []);
 
@@ -82,22 +87,26 @@ const Projects = ({ loadId }: { loadId: string }) => {
         className="grid lg:grid-cols-2 grid-cols-1 max-w-screen-2xl mx-auto gap-8"
         variants={containerVariants}
       >
-        {projects
-          ?.slice()
-          .reverse()
-          .slice(0, 4)
-          .map((project: TProject, idx: number) => (
-            <motion.div
-              key={project?._id}
-              variants={cardVariants}
-              whileHover="hover"
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: idx * 0.12 }}
-            >
-              <ProductItem projectData={project} />
-            </motion.div>
-          ))}
+       {loading
+          ? [1, 2, 3, 4].map((i) => (
+              <ProductItem key={i} loading />
+            ))
+          : projects
+              ?.slice()
+              .reverse()
+              .slice(0, 4)
+              .map((project: TProject, idx: number) => (
+                <motion.div
+                  key={project?._id}
+                  variants={cardVariants}
+                  whileHover="hover"
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: idx * 0.12 }}
+                >
+                  <ProductItem projectData={project} />
+                </motion.div>
+              ))}
       </motion.div>
 
       <motion.div

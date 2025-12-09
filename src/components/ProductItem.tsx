@@ -5,14 +5,20 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useRef } from "react";
 
-const ProductItem = ({ projectData }: { projectData: TProject }) => {
+type ProductItemProps = {
+  projectData?: TProject;
+  loading?: boolean;
+};
+
+const ProductItem = ({ projectData, loading = false }: ProductItemProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const scrollToBottom = () => {
+    if (loading) return;
+
     const container = containerRef.current;
     const image = container?.querySelector("img");
-
     if (!container || !image) return;
 
     const distanceToScroll = image.clientHeight - container.clientHeight;
@@ -36,6 +42,43 @@ const ProductItem = ({ projectData }: { projectData: TProject }) => {
     containerRef.current?.scrollTo({ top: 0 });
   };
 
+  // Skeleton version
+  if (loading) {
+    return (
+      <>
+        <style jsx>{`
+          .scroll-container::-webkit-scrollbar {
+            display: none;
+          }
+          .scroll-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+        `}</style>
+
+        <div className="block px-4 py-6 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 md:gap-10 animate-pulse">
+            {/* Text skeleton */}
+            <div>
+              <div className="h-6 sm:h-7 w-2/3 bg-gray-700 rounded mb-3" />
+              <div className="h-4 w-full bg-gray-700 rounded mb-2" />
+              <div className="h-4 w-5/6 bg-gray-700 rounded" />
+            </div>
+
+            {/* Image skeleton */}
+            <div
+              ref={containerRef}
+              className="scroll-container h-[300px] sm:h-[350px] w-full rounded-lg relative overflow-hidden bg-gray-800"
+            >
+              <div className="w-full h-full bg-gray-700" />
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // Normal version
   return (
     <>
       <style jsx>{`
@@ -49,17 +92,17 @@ const ProductItem = ({ projectData }: { projectData: TProject }) => {
       `}</style>
 
       <Link
-        href={`/project/${projectData._id}`}
+        href={`/project/${projectData!._id}`}
         className="block px-4 py-6 sm:px-6 lg:px-8 max-w-6xl mx-auto"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 md:gap-10">
           {/* Text Section */}
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white">
-              {projectData.title}
+              {projectData!.title}
             </h2>
             <p className="mt-3 text-sm sm:text-base text-gray-300">
-              {projectData.content?.slice(0, 100)}...
+              {projectData!.content?.slice(0, 100)}...
             </p>
           </div>
 
