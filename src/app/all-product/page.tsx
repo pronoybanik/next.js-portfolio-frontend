@@ -4,8 +4,9 @@ import React, { useEffect, useState } from "react";
 import { TProject } from "../types/projectType";
 import { motion } from "framer-motion";
 import { getAllProject } from "@/services/project";
+import { Variants } from "motion";
 
-const containerVariants = {
+const containerVariants : Variants = {
   hidden: { opacity: 0, y: 80 },
   visible: {
     opacity: 1,
@@ -19,7 +20,7 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants : Variants= {
   hidden: { opacity: 0, y: 40, scale: 0.97 },
   visible: {
     opacity: 1,
@@ -32,7 +33,7 @@ const cardVariants = {
     boxShadow: "0 8px 32px 0 rgba(80, 0, 180, 0.12)",
   },
 };
-const headerVariants = {
+const headerVariants : Variants = {
   hidden: { opacity: 0, y: -30 },
   visible: {
     opacity: 1,

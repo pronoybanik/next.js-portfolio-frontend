@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import html from "../images/development-logo/html/html-svgrepo-com.svg";
 import css from "../images/development-logo/css/download.png";
 import js from "../images/development-logo/js/download (1).png";
@@ -45,7 +45,7 @@ const skills = [
   { name: "Vercel", img: vercel, level: "Advance" },
 ];
 
-const containerVariants = {
+const containerVariants : Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -54,7 +54,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants  = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
@@ -67,7 +67,7 @@ const itemVariants = {
   },
 };
 
-const headerVariants = {
+const headerVariants : Variants = {
   hidden: { opacity: 0, y: -30 },
   visible: {
     opacity: 1,

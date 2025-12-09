@@ -4,7 +4,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Mail, Phone, MapPin } from "lucide-react";
 import SecondaryButton from "@/shared/SecondaryButton";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 // Define form data structure
 interface FormData {
@@ -16,7 +16,7 @@ interface FormData {
   message: string;
 }
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0, y: 80 },
   visible: {
     opacity: 1,
@@ -30,7 +30,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30, scale: 0.97 },
   visible: {
     opacity: 1,
@@ -40,7 +40,7 @@ const itemVariants = {
   },
 };
 
-const headerVariants = {
+const headerVariants: Variants = {
   hidden: { opacity: 0, y: -30 },
   visible: {
     opacity: 1,

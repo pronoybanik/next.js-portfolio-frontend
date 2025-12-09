@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { ArrowUpRight, Code, Palette, PenTool, BarChart2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const services = [
   {
@@ -34,7 +34,7 @@ const services = [
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -45,7 +45,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants : Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
@@ -62,12 +62,12 @@ const itemVariants = {
   }
 };
 
-const headerVariants = {
+const headerVariants : Variants = {
   hidden: { opacity: 0, y: -20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { 
+    transition: {
       type: "spring",
       stiffness: 100,
       damping: 10
@@ -88,7 +88,7 @@ const Services = ({ id }: { id: string }) => {
       variants={containerVariants}
     >
       <div className="max-w-7xl mx-auto">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           variants={headerVariants}
         >
@@ -101,7 +101,7 @@ const Services = ({ id }: { id: string }) => {
           <div className="w-20 h-1 bg-indigo-600 mx-auto mt-6"></div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="grid md:grid-cols-2 gap-6"
           variants={containerVariants}
         >
@@ -111,9 +111,8 @@ const Services = ({ id }: { id: string }) => {
               variants={itemVariants}
               whileHover="hover"
               onClick={() => setSelected(selected === service.id ? null : service.id)}
-              className={`bg-white rounded-xl shadow-sm p-6 cursor-pointer transition-all duration-300 ${
-                selected === service.id ? "ring-2 ring-indigo-500" : ""
-              }`}
+              className={`bg-white rounded-xl shadow-sm p-6 cursor-pointer transition-all duration-300 ${selected === service.id ? "ring-2 ring-indigo-500" : ""
+                }`}
               layout
             >
               <div className="flex items-start gap-4">
@@ -129,12 +128,11 @@ const Services = ({ id }: { id: string }) => {
                       animate={selected === service.id ? { rotate: 45 } : { rotate: 0 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <ArrowUpRight className={`w-5 h-5 ${
-                        selected === service.id ? "text-indigo-600" : "text-gray-400"
-                      }`} />
+                      <ArrowUpRight className={`w-5 h-5 ${selected === service.id ? "text-indigo-600" : "text-gray-400"
+                        }`} />
                     </motion.div>
                   </div>
-                  
+
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{

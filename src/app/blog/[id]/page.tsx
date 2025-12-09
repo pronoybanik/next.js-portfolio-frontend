@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 interface TBlog {
   title: string;
@@ -14,7 +14,7 @@ interface TBlog {
   createdAt: string;
 }
 
-const containerVariants = {
+const containerVariants : Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
@@ -28,7 +28,7 @@ const containerVariants = {
   },
 };
 
-const imageVariants = {
+const imageVariants : Variants = {
   hidden: { opacity: 0, scale: 0.97 },
   visible: {
     opacity: 1,
@@ -37,7 +37,7 @@ const imageVariants = {
   },
 };
 
-const contentVariants = {
+const contentVariants : Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,

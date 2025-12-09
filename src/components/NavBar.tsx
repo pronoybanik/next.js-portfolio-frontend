@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from "next/image";
 import icon from "../images/Blue_Initial_P_Business_Logo-removebg-preview.png";
 
@@ -71,7 +71,7 @@ const NavBar = () => {
   }, [mobileMenuOpen]);
 
   // Animation variants
-  const containerVariants = {
+  const containerVariants : Variants = {
     hidden: { opacity: 0, y: -20 },
     visible: {
       opacity: 1,
@@ -83,7 +83,7 @@ const NavBar = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants : Variants = {
     hidden: { opacity: 0, y: -10 },
     visible: {
       opacity: 1,
@@ -100,7 +100,7 @@ const NavBar = () => {
     },
   };
 
-  const mobileMenuVariants = {
+  const mobileMenuVariants : Variants = {
     hidden: { opacity: 0, y: -20 },
     visible: {
       opacity: 1,
@@ -129,9 +129,8 @@ const NavBar = () => {
 
   return (
     <motion.div
-      className={`sticky top-0 z-50 ${
-        scrolled ? "bg-gray-900/95 backdrop-blur-sm" : "bg-gray-900"
-      }`}
+      className={`sticky top-0 z-50 ${scrolled ? "bg-gray-900/95 backdrop-blur-sm" : "bg-gray-900"
+        }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}

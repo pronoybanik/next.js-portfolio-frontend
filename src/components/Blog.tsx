@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { ArrowRight, Clock, User } from "lucide-react";
 import { getBlogs } from "@/services/blogs";
 
@@ -17,7 +17,7 @@ export interface TBlog {
   createdAt: string;
 }
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -28,7 +28,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
@@ -46,7 +46,7 @@ const itemVariants = {
   },
 };
 
-const headerVariants = {
+const headerVariants: Variants = {
   hidden: { opacity: 0, y: -20 },
   visible: {
     opacity: 1,

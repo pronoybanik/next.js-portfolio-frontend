@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import image from "../images/1o0FVW0sOxcAAAAASUVORK5CYII=.png";
 import facebook from "../images/icons/icons8-facebook-250.png";
 import github from "../images/icons/icons8-github-500.png";
@@ -12,7 +12,7 @@ import Typed from "typed.js";
 const resumeUrl = "https://drive.google.com/uc?export=download&id=1pGrRdhRI1KTy7MWKWDB13_lKXRr3ChdN";
 
 
-const containerVariants = {
+const containerVariants : Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
@@ -26,7 +26,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants : Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
@@ -39,7 +39,7 @@ const itemVariants = {
   },
 };
 
-const bgCircleVariants = {
+const bgCircleVariants : Variants= {
   initial: { opacity: 0, scale: 0.8 },
   animate: {
     opacity: 0.3,
@@ -48,7 +48,7 @@ const bgCircleVariants = {
   },
 };
 
-const headlineVariants = {
+const headlineVariants : Variants= {
   hidden: { opacity: 0, y: 40 },
   visible: (i: number) => ({
     opacity: 1,
@@ -57,7 +57,7 @@ const headlineVariants = {
   }),
 };
 
-const imageVariants = {
+const imageVariants : Variants = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: {
     opacity: 1,

@@ -18,7 +18,7 @@ const containerVariants = {
       staggerChildren: 0.18,
     },
   },
-};
+} as const;
 
 const headerVariants = {
   hidden: { opacity: 0, y: -30 },
@@ -27,7 +27,7 @@ const headerVariants = {
     y: 0,
     transition: { type: "spring", stiffness: 80, delay: 0.1 },
   },
-};
+} as const;
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.97 },
@@ -41,7 +41,7 @@ const cardVariants = {
     scale: 1.03,
     boxShadow: "0 8px 32px 0 rgba(80, 0, 180, 0.18)",
   },
-};
+} as const;
 
 
 

@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const educationData = [
   {
@@ -30,7 +29,7 @@ const educationData = [
   },
 ];
 
-const containerVariants = {
+const containerVariants : Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -41,7 +40,7 @@ const containerVariants = {
   }
 };
 
-const cardVariants = {
+const cardVariants : Variants = {
   hidden: { 
     opacity: 0, 
     y: 20,
@@ -63,7 +62,7 @@ const cardVariants = {
   }
 };
 
-const headerVariants = {
+const headerVariants : Variants = {
   hidden: { opacity: 0, y: -20 },
   visible: {
     opacity: 1,
