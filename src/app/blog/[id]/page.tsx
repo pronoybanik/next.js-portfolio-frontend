@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { motion, Variants } from "framer-motion";
+import LoadingPage from "@/app/loading";
 
 interface TBlog {
   title: string;
@@ -14,7 +15,7 @@ interface TBlog {
   createdAt: string;
 }
 
-const containerVariants : Variants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
@@ -28,7 +29,7 @@ const containerVariants : Variants = {
   },
 };
 
-const imageVariants : Variants = {
+const imageVariants: Variants = {
   hidden: { opacity: 0, scale: 0.97 },
   visible: {
     opacity: 1,
@@ -37,7 +38,7 @@ const imageVariants : Variants = {
   },
 };
 
-const contentVariants : Variants = {
+const contentVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
@@ -69,7 +70,7 @@ const BlogItem = () => {
     fetchBlog();
   }, [id]);
 
-  if (loading) return <p className="text-center text-xl">Loading...</p>;
+  if (loading) return <LoadingPage />;
   if (!blog) return <p className="text-center text-xl">Blog not found</p>;
 
   return (
