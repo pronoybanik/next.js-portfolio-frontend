@@ -92,7 +92,7 @@ const handleDownload = () => {
   return (
     <motion.section
       id={id}
-      className="relative overflow-hidden bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] min-h-[90vh] flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 min-h-[90vh] flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -100,16 +100,28 @@ const handleDownload = () => {
     >
       {/* Animated Background Circles */}
       <motion.div
-        className="absolute top-[-80px] left-[-80px] w-72 h-72 bg-purple-500 rounded-full blur-3xl opacity-30 z-0"
+        className="absolute top-[-80px] left-[-80px] w-72 h-72 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full blur-3xl opacity-20 z-0"
         variants={bgCircleVariants}
         initial="initial"
         animate="animate"
       />
       <motion.div
-        className="absolute bottom-[-100px] right-[-100px] w-96 h-96 bg-indigo-500 rounded-full blur-3xl opacity-20 z-0"
+        className="absolute bottom-[-100px] right-[-100px] w-96 h-96 bg-gradient-to-tl from-blue-500 to-purple-600 rounded-full blur-3xl opacity-15 z-0"
         variants={bgCircleVariants}
         initial="initial"
         animate="animate"
+      />
+      <motion.div
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-blue-500/10 rounded-full blur-3xl z-0"
+        animate={{
+          scale: [1, 1.2, 1],
+          rotate: [0, 180, 360],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear"
+        }}
       />
 
       <motion.div
@@ -124,53 +136,63 @@ const handleDownload = () => {
             style={{ willChange: "transform, opacity" }}
           >
             <div className="space-y-3">
-              <motion.h2
-                className="text-4xl md:text-4xl lg:text-4xl font-bold text-white"
+              <motion.div
+                className="inline-block"
                 custom={0}
                 variants={headlineVariants}
                 initial="hidden"
                 animate="visible"
               >
-              <span className="text-purple-400">Pronoy Banik</span>
+                <span className="text-sm md:text-base font-semibold tracking-wider text-purple-400 uppercase bg-purple-500/10 px-4 py-2 rounded-full border border-purple-500/20">Welcome to my portfolio</span>
+              </motion.div>
+              <motion.h2
+                className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight"
+                custom={0}
+                variants={headlineVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                Hi, I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400">Pronoy Banik</span>
               </motion.h2>
               <motion.h1
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400 leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl font-bold text-gray-300 leading-tight"
                 custom={1}
                 variants={headlineVariants}
                 initial="hidden"
                 animate="visible"
               >
-                <span className="autoType" ref={autoTypeRef}></span>
+                <span className="text-purple-400">►</span> <span className="autoType" ref={autoTypeRef}></span>
               </motion.h1>
             </div>
 
             <motion.p
-              className="text-lg md:text-xl text-gray-300 max-w-lg mx-auto lg:mx-0"
+              className="text-base md:text-lg text-gray-400 leading-relaxed max-w-lg mx-auto lg:mx-0 font-light"
               custom={2}
               variants={headlineVariants}
               initial="hidden"
               animate="visible"
             >
-              I architect scalable, user-centric web applications by breaking
+              I architect <span className="text-purple-400 font-medium">scalable, user-centric</span> web applications by breaking
               down intricate UX challenges into intuitive, performance-driven
               solutions. My full-stack expertise empowers me to build seamless
               digital experiences that resonate with users while maintaining
-              technical excellence.
+              <span className="text-indigo-400 font-medium"> technical excellence</span>.
             </motion.p>
 
             <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-4">
               {/* Download Button */}
               <motion.button
                 onClick={handleDownload}
-                className="group relative inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg shadow-md transition duration-300 hover:shadow-lg hover:scale-105"
-                whileHover={{ scale: 1.07 }}
-                whileTap={{ scale: 0.97 }}
+                className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 rounded-xl shadow-lg shadow-purple-500/30 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/50 overflow-hidden"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                 <span className="relative flex items-center gap-2">
                   Download CV
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
+                    className="h-5 w-5 group-hover:animate-bounce"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -204,22 +226,25 @@ const handleDownload = () => {
                     alt: "LinkedIn",
                   },
                 ].map(({ link, img, alt }) => (
-                  <a
+                  <motion.a
                     key={alt}
                     href={link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-12 h-12 rounded-full shadow-md bg-white border border-gray-200 transition hover:scale-110 hover:shadow-lg hover:border-purple-300"
+                    className="relative inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-800/50 border border-gray-700/50 backdrop-blur-sm shadow-lg transition-all duration-300 hover:border-purple-500/50 hover:bg-gray-700/50 group"
                     aria-label={alt}
+                    whileHover={{ scale: 1.1, y: -3 }}
+                    whileTap={{ scale: 0.95 }}
                   >
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <Image
                       src={img}
                       width={24}
                       height={24}
                       alt={alt}
-                      className="transition-all duration-300"
+                      className="relative z-10 transition-all duration-300 group-hover:brightness-125"
                     />
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </div>
@@ -235,17 +260,21 @@ const handleDownload = () => {
             whileHover="hover"
           >
             <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
-              <div className="absolute -z-10 w-full h-full bg-gradient-to-tr from-purple-500 to-indigo-500 rounded-full blur-2xl opacity-10 scale-150" />
+              <div className="absolute -z-10 w-full h-full bg-gradient-to-tr from-purple-500 via-indigo-500 to-blue-500 rounded-full blur-3xl opacity-20 scale-150 animate-pulse" />
               <div className="relative w-full h-full group">
-                <div className="absolute inset-0 rounded-2xl border-2 border-dashed border-purple-400 -rotate-6 transition-transform duration-300 group-hover:rotate-0 group-hover:scale-105" />
-                <div className="relative w-full h-full rounded-2xl overflow-hidden rotate-3 shadow-xl group-hover:rotate-0 group-hover:shadow-2xl bg-white">
-                  <Image
-                    src={image}
-                    alt="Profile"
-                    layout="fill"
-                    objectFit="cover"
-                    className="transition-transform duration-500 group-hover:scale-110"
-                  />
+                <div className="absolute inset-0 rounded-3xl border-2 border-purple-500/30 -rotate-6 transition-all duration-500 group-hover:rotate-0 group-hover:scale-105 group-hover:border-purple-400/50" />
+                <div className="absolute inset-0 rounded-3xl border-2 border-indigo-500/20 rotate-3 transition-all duration-500 group-hover:rotate-0 group-hover:scale-105 group-hover:border-indigo-400/40" />
+                <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-purple-900/50 group-hover:shadow-3xl group-hover:shadow-purple-800/60 bg-gradient-to-br from-gray-800 to-gray-900 p-1 transition-all duration-500">
+                  <div className="w-full h-full rounded-3xl overflow-hidden bg-white relative">
+                    <Image
+                      src={image}
+                      alt="Profile"
+                      layout="fill"
+                      objectFit="cover"
+                      className="transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
                 </div>
               </div>
             </div>

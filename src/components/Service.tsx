@@ -1,36 +1,50 @@
 "use client";
 import { useState } from "react";
-import { ArrowUpRight, Code, Palette, PenTool, BarChart2 } from "lucide-react";
+import { ArrowUpRight, Code, Palette, PenTool, Smartphone, Globe, Layers } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 
 const services = [
   {
     id: 1,
-    title: "Web Development",
-    description: "Ensure your website looks great on any device, with layouts that adapt to different screen sizes seamlessly.",
+    title: "Full Stack Web Development",
+    description: "Building scalable, high-performance web applications using modern technologies like MERN stack. From frontend to backend, I create complete solutions with seamless user experiences and robust architectures.",
     icon: <Code className="w-6 h-6" />,
-    color: "bg-blue-100 text-blue-600"
+    gradient: "from-blue-500 to-cyan-500"
   },
   {
     id: 2,
-    title: "UI/UX Design",
-    description: "Set up user-friendly CMS solutions like WordPress or custom-built options so clients can manage content easily.",
-    icon: <Palette className="w-6 h-6" />,
-    color: "bg-purple-100 text-purple-600"
+    title: "Mobile App React Native",
+    description: "Developing cross-platform mobile applications with React Native. Create stunning iOS and Android apps from a single codebase, ensuring native performance and beautiful UI/UX for mobile users.",
+    icon: <Smartphone className="w-6 h-6" />,
+    gradient: "from-purple-500 to-pink-500"
   },
   {
     id: 3,
-    title: "Content Writing",
-    description: "Build and integrate APIs to connect websites with third-party applications, enhancing functionality and performance.",
-    icon: <PenTool className="w-6 h-6" />,
-    color: "bg-green-100 text-green-600"
+    title: "React Maintainable Website",
+    description: "Crafting clean, maintainable React applications with best practices. Using component-based architecture, TypeScript, and modern state management to build scalable websites that are easy to update and extend.",
+    icon: <Layers className="w-6 h-6" />,
+    gradient: "from-indigo-500 to-blue-500"
   },
   {
     id: 4,
-    title: "Digital Marketing",
-    description: "Refresh outdated websites with modern, appealing designs that align with current brand goals and user expectations.",
-    icon: <BarChart2 className="w-6 h-6" />,
-    color: "bg-orange-100 text-orange-600"
+    title: "UI/UX Design",
+    description: "Designing intuitive and visually appealing interfaces that enhance user engagement. Creating user-centered designs with modern aesthetics, ensuring seamless navigation and optimal user experience.",
+    icon: <Palette className="w-6 h-6" />,
+    gradient: "from-pink-500 to-rose-500"
+  },
+  {
+    id: 5,
+    title: "Content Writing",
+    description: "Creating compelling technical documentation, blog posts, and web content. Writing clear, engaging content that communicates complex technical concepts to diverse audiences effectively.",
+    icon: <PenTool className="w-6 h-6" />,
+    gradient: "from-green-500 to-emerald-500"
+  },
+  {
+    id: 6,
+    title: "Web Development",
+    description: "Building responsive, modern websites that look great on any device. Implementing adaptive layouts, optimized performance, and ensuring cross-browser compatibility for seamless user experiences.",
+    icon: <Globe className="w-6 h-6" />,
+    gradient: "from-orange-500 to-amber-500"
   },
 ];
 
@@ -81,28 +95,40 @@ const Services = ({ id }: { id: string }) => {
   return (
     <motion.section
       id={id}
-      className="py-20 px-4 sm:px-6 lg:px-8 dark:bg-gray-900"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-gray-950 to-gray-900 overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
     >
-      <div className="max-w-7xl mx-auto">
+      {/* Animated background elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           className="text-center mb-16"
           variants={headerVariants}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-400 mb-4">
-            My <span className="text-indigo-600">Services</span>
+          <div className="inline-block mb-4">
+            <span className="text-sm font-semibold tracking-wider text-purple-400 uppercase bg-purple-500/10 px-4 py-2 rounded-full border border-purple-500/20">What I Offer</span>
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">
+            <span className="text-white">My </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400">Services</span>
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            We transform your ideas into exceptional digital experiences that inspire both you and your customers.
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="w-12 h-1 bg-gradient-to-r from-transparent to-purple-500 rounded-full"></div>
+            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 rounded-full"></div>
+            <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-transparent rounded-full"></div>
+          </div>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Transforming ideas into exceptional digital experiences that inspire and engage your audience
           </p>
-          <div className="w-20 h-1 bg-indigo-600 mx-auto mt-6"></div>
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-2 gap-6"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={containerVariants}
         >
           {services.map((service) => (
@@ -111,42 +137,49 @@ const Services = ({ id }: { id: string }) => {
               variants={itemVariants}
               whileHover="hover"
               onClick={() => setSelected(selected === service.id ? null : service.id)}
-              className={`bg-white rounded-xl shadow-sm p-6 cursor-pointer transition-all duration-300 ${selected === service.id ? "ring-2 ring-indigo-500" : ""
-                }`}
+              className={`relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl border p-6 cursor-pointer transition-all duration-300 group overflow-hidden ${
+                selected === service.id ? "border-purple-500/50 shadow-xl shadow-purple-500/20" : "border-gray-700/50 hover:border-gray-600/50"
+              }`}
               layout
             >
-              <div className="flex items-start gap-4">
-                <div className={`p-3 rounded-lg ${service.color}`}>
-                  {service.icon}
-                </div>
-                <div className="flex-1">
-                  <div className="flex justify-between items-start">
-                    <h3 className="text-xl font-bold text-gray-800">
-                      {service.title}
-                    </h3>
-                    <motion.div
-                      animate={selected === service.id ? { rotate: 45 } : { rotate: 0 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <ArrowUpRight className={`w-5 h-5 ${selected === service.id ? "text-indigo-600" : "text-gray-400"
-                        }`} />
-                    </motion.div>
+              {/* Gradient overlay on hover */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}></div>
+              
+              <div className="relative z-10">
+                <div className="flex items-start gap-4">
+                  <div className={`p-3 rounded-xl bg-gradient-to-br ${service.gradient} text-white shadow-lg`}>
+                    {service.icon}
                   </div>
-
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{
-                      height: selected === service.id ? "auto" : 0,
-                      opacity: selected === service.id ? 1 : 0
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <p className="text-gray-600 mt-3 pt-2 border-t border-gray-100">
-                      {service.description}
-                    </p>
-                  </motion.div>
+                  <div className="flex-1">
+                    <div className="flex justify-between items-start">
+                      <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors duration-300">
+                        {service.title}
+                      </h3>
+                      <motion.div
+                        animate={selected === service.id ? { rotate: 45 } : { rotate: 0 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <ArrowUpRight className={`w-5 h-5 transition-colors duration-300 ${
+                          selected === service.id ? "text-purple-400" : "text-gray-500 group-hover:text-gray-400"
+                        }`} />
+                      </motion.div>
+                    </div>
+                  </div>
                 </div>
+
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{
+                    height: selected === service.id ? "auto" : 0,
+                    opacity: selected === service.id ? 1 : 0
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden"
+                >
+                  <p className="text-gray-300 text-sm mt-3 pt-3 border-t border-gray-700/50 leading-relaxed">
+                    {service.description}
+                  </p>
+                </motion.div>
               </div>
             </motion.div>
           ))}

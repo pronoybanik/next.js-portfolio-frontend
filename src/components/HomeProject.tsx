@@ -48,25 +48,36 @@ const HomeProject = ({ projects, loadId, loading = false }: { projects: TProject
     return (
         <motion.section
             id={loadId}
-            className="py-16 px-8 min-h-screen bg-black"
+            className="relative py-16 px-8 min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 overflow-hidden"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={containerVariants}
         >
-            <motion.div className="text-center mb-16" variants={headerVariants}>
-                <h2 className="text-4xl sm:text-5xl font-bold text-gray-400 mb-4">
-                    My <span className="text-indigo-600">Recent Works</span>
+            {/* Animated background elements */}
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-3xl"></div>
+            <motion.div className="text-center mb-16 relative z-10" variants={headerVariants}>
+                <div className="inline-block mb-4">
+                    <span className="text-sm font-semibold tracking-wider text-purple-400 uppercase bg-purple-500/10 px-4 py-2 rounded-full border border-purple-500/20">Portfolio Showcase</span>
+                </div>
+                <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">
+                    <span className="text-white">My </span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400">Recent Works</span>
                 </h2>
-                <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                    We put your ideas and thus your wishes in the form of a unique web
-                    project that inspires you and your customers.
+                <div className="flex items-center justify-center gap-2 mb-4">
+                    <div className="w-12 h-1 bg-gradient-to-r from-transparent to-purple-500 rounded-full"></div>
+                    <div className="w-8 h-1 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 rounded-full"></div>
+                    <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-transparent rounded-full"></div>
+                </div>
+                <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                    Transforming ideas into unique web projects that inspire and engage both you and your customers
                 </p>
-                <div className="w-20 h-1 bg-indigo-600 mx-auto mt-6"></div>
             </motion.div>
 
             <motion.div
-                className="grid lg:grid-cols-2 grid-cols-1 max-w-screen-2xl mx-auto gap-8"
+                className="relative z-10 grid lg:grid-cols-2 grid-cols-1 max-w-screen-2xl mx-auto gap-8"
                 variants={containerVariants}
             >
                 {loading
@@ -94,19 +105,24 @@ const HomeProject = ({ projects, loadId, loading = false }: { projects: TProject
             </motion.div>
 
             <motion.div
-                className="flex justify-center mt-8"
-
+                className="relative z-10 flex justify-center mt-8"
                 initial="hidden"
                 animate="visible"
                 whileHover="hover"
             >
                 <Link href="/all-product">
                     <motion.button
-                        className="w-60 px-5 py-3 text-base font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500"
-                        whileHover={{ scale: 1.07 }}
-                        whileTap={{ scale: 0.97 }}
+                        className="group relative w-60 px-5 py-3 text-base font-semibold text-center text-white rounded-xl shadow-lg shadow-purple-500/30 cursor-pointer overflow-hidden bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 border border-purple-500/30"
+                        whileHover={{ scale: 1.05, y: -2, boxShadow: "0 20px 40px -10px rgba(147, 51, 234, 0.5)" }}
+                        whileTap={{ scale: 0.98 }}
                     >
-                        View All
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                        <span className="relative flex items-center justify-center gap-2">
+                            View All Projects
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </span>
                     </motion.button>
                 </Link>
             </motion.div>

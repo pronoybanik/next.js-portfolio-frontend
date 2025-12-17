@@ -5,12 +5,14 @@ import Skill from "@/components/Skill";
 import Projects from "@/components/Projects";
 import Blog from "@/components/Blog";
 import Education from "@/components/Education";
+import Experience from "@/components/Experience";
 
 const Home = () => {
   return (
     <div>
       <Header id="home" />
       <Education id="education" />
+      <Experience id="experience" />
       <Services id="services" />
       <Projects id="projects" />
       <Skill id="skills" />

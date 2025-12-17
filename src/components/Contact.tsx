@@ -85,134 +85,148 @@ const ContactForm = ({ id }: { id: string }) => {
   return (
     <motion.section
       id={id}
-      className="flex flex-col items-center justify-center  px-4 pb-32 dark:bg-gray-900 py-16"
+      className="relative flex flex-col items-center justify-center px-4 pb-32 py-16 bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={containerVariants}
     >
-      <motion.div className="text-center mb-16" variants={headerVariants}>
-        <h2 className="text-4xl sm:text-5xl font-bold text-gray-400 mb-4">
-          Let’s <span className="text-indigo-600">connect</span>
+      {/* Animated background elements */}
+      <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      <motion.div className="text-center mb-16 relative z-10" variants={headerVariants}>
+        <div className="inline-block mb-4">
+          <span className="text-sm font-semibold tracking-wider text-purple-400 uppercase bg-purple-500/10 px-4 py-2 rounded-full border border-purple-500/20">Get In Touch</span>
+        </div>
+        <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">
+          <span className="text-white">Let&apos;s </span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400">Connect</span>
         </h2>
-        <p className="text-gray-600 text-lg mb-6 max-w-2xl mx-auto">
-          Have a project in mind or just want to say hi? I’m always open to
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <div className="w-12 h-1 bg-gradient-to-r from-transparent to-purple-500 rounded-full"></div>
+          <div className="w-8 h-1 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 rounded-full"></div>
+          <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-transparent rounded-full"></div>
+        </div>
+        <p className="text-gray-400 text-lg mb-6 max-w-2xl mx-auto">
+          Have a project in mind or just want to say hi? I&apos;m always open to
           discussing new ideas, collaborations, or freelance opportunities.
         </p>
-
-        <div className="w-20 h-1 bg-indigo-600 mx-auto mt-6"></div>
       </motion.div>
 
       <motion.div
-        className="flex flex-col md:flex-row w-full max-w-screen-lg space-y-12 md:space-y-0 md:space-x-12"
+        className="relative z-10 flex flex-col md:flex-row w-full max-w-screen-lg space-y-12 md:space-y-0 md:space-x-12"
         variants={containerVariants}
       >
         {/* Form Section */}
         <motion.div
-          className="bg-white w-full p-6 sm:p-8 rounded-2xl shadow-lg"
+          className="relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm w-full p-6 sm:p-8 rounded-2xl border border-gray-700/50 shadow-2xl shadow-purple-900/20"
           variants={itemVariants}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-2xl mb-4 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 text-center md:text-left">
-            Let’s work together!
-          </h2>
-          <p className="text-gray-600 mb-6 text-center md:text-left text-sm sm:text-base">
-            I design and code beautifully simple things, and I love what I do.
-            Let’s make something amazing together!
-          </p>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div>
-                <input
-                  type="text"
-                  placeholder="First name"
-                  {...register("firstName", {
-                    required: "First name is required",
-                  })}
-                  className={`w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 ${
-                    errors.firstName
-                      ? "focus:ring-red-500"
-                      : "focus:ring-purple-500"
-                  }`}
-                />
-                {errors.firstName && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.firstName.message}
-                  </p>
-                )}
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-indigo-500/5 rounded-2xl pointer-events-none"></div>
+          
+          <div className="relative z-10">
+            <h2 className="text-3xl sm:text-4xl md:text-2xl mb-4 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400 text-center md:text-left">
+              Let&apos;s work together!
+            </h2>
+            <p className="text-gray-400 mb-6 text-center md:text-left text-sm sm:text-base">
+              I design and code beautifully simple things, and I love what I do.
+              Let&apos;s make something amazing together!
+            </p>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="First name"
+                    {...register("firstName", {
+                      required: "First name is required",
+                    })}
+                    className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                      errors.firstName
+                        ? "border-red-500/50 focus:ring-red-500/50"
+                        : "border-gray-700/50 focus:ring-purple-500/50 focus:border-purple-500/50"
+                    }`}
+                  />
+                  {errors.firstName && (
+                    <p className="text-red-400 text-sm mt-1">
+                      {errors.firstName.message}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Last name"
+                    {...register("lastName", {
+                      required: "Last name is required",
+                    })}
+                    className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                      errors.lastName
+                        ? "border-red-500/50 focus:ring-red-500/50"
+                        : "border-gray-700/50 focus:ring-purple-500/50 focus:border-purple-500/50"
+                    }`}
+                  />
+                  {errors.lastName && (
+                    <p className="text-red-400 text-sm mt-1">
+                      {errors.lastName.message}
+                    </p>
+                  )}
+                </div>
               </div>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Last name"
-                  {...register("lastName", {
-                    required: "Last name is required",
-                  })}
-                  className={`w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 ${
-                    errors.lastName
-                      ? "focus:ring-red-500"
-                      : "focus:ring-purple-500"
-                  }`}
-                />
-                {errors.lastName && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.lastName.message}
-                  </p>
-                )}
-              </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div>
-                <input
-                  type="email"
-                  placeholder="Email address"
-                  {...register("email", {
-                    required: "Enter a valid email address",
-                  })}
-                  className={`w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 ${
-                    errors.email
-                      ? "focus:ring-red-500"
-                      : "focus:ring-purple-500"
-                  }`}
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.email.message}
-                  </p>
-                )}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    {...register("email", {
+                      required: "Enter a valid email address",
+                    })}
+                    className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                      errors.email
+                        ? "border-red-500/50 focus:ring-red-500/50"
+                        : "border-gray-700/50 focus:ring-purple-500/50 focus:border-purple-500/50"
+                    }`}
+                  />
+                  {errors.email && (
+                    <p className="text-red-400 text-sm mt-1">
+                      {errors.email.message}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <input
+                    type="tel"
+                    placeholder="Phone number"
+                    {...register("phone", {
+                      required: "Enter a valid 10-digit phone number",
+                    })}
+                    className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                      errors.phone
+                        ? "border-red-500/50 focus:ring-red-500/50"
+                        : "border-gray-700/50 focus:ring-purple-500/50 focus:border-purple-500/50"
+                    }`}
+                  />
+                  {errors.phone && (
+                    <p className="text-red-400 text-sm mt-1">
+                      {errors.phone.message}
+                    </p>
+                  )}
+                </div>
               </div>
-              <div>
-                <input
-                  type="tel"
-                  placeholder="Phone number"
-                  {...register("phone", {
-                    required: "Enter a valid 10-digit phone number",
-                  })}
-                  className={`w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 ${
-                    errors.phone
-                      ? "focus:ring-red-500"
-                      : "focus:ring-purple-500"
-                  }`}
-                />
-                {errors.phone && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.phone.message}
-                  </p>
-                )}
-              </div>
-            </div>
 
-            <div className="mb-4">
-              <select
-                {...register("category", {
-                  required: "Please select a category",
-                })}
-                className={`w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 ${
-                  errors.category
-                    ? "focus:ring-red-500"
-                    : "focus:ring-purple-500"
-                }`}
-              >
+              <div className="mb-4">
+                <select
+                  {...register("category", {
+                    required: "Please select a category",
+                  })}
+                  className={`w-full bg-gray-900/50 border text-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                    errors.category
+                      ? "border-red-500/50 focus:ring-red-500/50"
+                      : "border-gray-700/50 focus:ring-purple-500/50 focus:border-purple-500/50"
+                  }`}
+                >
                 <option value="">Select a category</option>
                 <option value="Technology">Portfolio Website</option>
                 <option value="Health">E-commerce Website</option>
@@ -226,36 +240,37 @@ const ContactForm = ({ id }: { id: string }) => {
                 <option value="Business">Forum/Community Website</option>
                 <option value="Business">Event Management Website</option>
                 <option value="Business">Travel Booking Website</option>
-              </select>
-              {errors.category && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.category.message}
-                </p>
-              )}
-            </div>
+                </select>
+                {errors.category && (
+                  <p className="text-red-400 text-sm mt-1">
+                    {errors.category.message}
+                  </p>
+                )}
+              </div>
 
-            <div className="mb-6">
-              <textarea
-                placeholder="Message"
-                rows={4}
-                {...register("message", { required: "Message is required" })}
-                className={`w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 ${
-                  errors.message
-                    ? "focus:ring-red-500"
-                    : "focus:ring-purple-500"
-                }`}
-              ></textarea>
-              {errors.message && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.message.message}
-                </p>
-              )}
-            </div>
+              <div className="mb-6">
+                <textarea
+                  placeholder="Message"
+                  rows={4}
+                  {...register("message", { required: "Message is required" })}
+                  className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 resize-none ${
+                    errors.message
+                      ? "border-red-500/50 focus:ring-red-500/50"
+                      : "border-gray-700/50 focus:ring-purple-500/50 focus:border-purple-500/50"
+                  }`}
+                ></textarea>
+                {errors.message && (
+                  <p className="text-red-400 text-sm mt-1">
+                    {errors.message.message}
+                  </p>
+                )}
+              </div>
 
-            <SecondaryButton type="submit">
-              {isSubmitting ? "Sending..." : "Send Message"}
-            </SecondaryButton>
-          </form>
+              <SecondaryButton type="submit">
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </SecondaryButton>
+            </form>
+          </div>
         </motion.div>
 
         {/* Contact Info Section */}
@@ -263,7 +278,7 @@ const ContactForm = ({ id }: { id: string }) => {
           className="flex flex-col items-center md:items-start space-y-6 w-full md:w-1/2"
           variants={itemVariants}
         >
-          <ContactInfo icon={Phone} title="Phone" value="01609520719" />
+          <ContactInfo icon={Phone} title="Phone" value="+8801609520719" />
           <ContactInfo
             icon={Mail}
             title="Email"
@@ -296,16 +311,16 @@ const ContactInfo: React.FC<ContactInfoProps> = ({
   value,
 }) => (
   <m.div
-    className="flex items-center space-x-4 lg:mt-44 md:mt-44"
-    whileHover={{ scale: 1.07, boxShadow: "0 4px 24px 0 rgba(80,0,180,0.10)" }}
+    className="flex items-center space-x-4 lg:mt-44 md:mt-44 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm p-5 rounded-xl border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 shadow-lg shadow-purple-900/10 w-full"
+    whileHover={{ scale: 1.05, y: -5, boxShadow: "0 10px 40px 0 rgba(147, 51, 234, 0.3)" }}
     transition={{ type: "spring", stiffness: 300, damping: 15 }}
   >
-    <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-purple-900 text-white shadow-md">
+    <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 text-white shadow-lg shadow-purple-500/30">
       <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
     </div>
-    <div className="text-center md:text-left">
-      <h4 className="text-white text-sm">{title}</h4>
-      <p className="text-gray-200 font-medium">{value}</p>
+    <div className="text-center md:text-left flex-1">
+      <h4 className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-1">{title}</h4>
+      <p className="text-white font-semibold text-sm sm:text-base">{value}</p>
     </div>
   </m.div>
 );

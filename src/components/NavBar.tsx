@@ -17,6 +17,7 @@ const NavBar = () => {
   const navLinks = [
     { href: "/", label: "Home", isLink: true },
     { href: "/#education", label: "Education", isLink: true },
+    { href: "/#experience", label: "Experience", isLink: true },
     { href: "/#services", label: "Services", isLink: true },
     { href: "/#projects", label: "Projects", isLink: true },
     { href: "/#skills", label: "Skills", isLink: true },
@@ -129,13 +130,16 @@ const NavBar = () => {
 
   return (
     <motion.div
-      className={`sticky top-0 z-50 ${scrolled ? "bg-gray-900/95 backdrop-blur-sm" : "bg-gray-900"
-        }`}
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-gradient-to-b from-gray-900/98 via-gray-900/95 to-gray-900/90 backdrop-blur-lg shadow-2xl shadow-purple-900/20"
+          : "bg-gradient-to-b from-gray-950 via-gray-900 to-gray-900/95"
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
     >
-      <header className="shadow-sm">
+      <header className="shadow-none">
         <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
@@ -168,13 +172,18 @@ const NavBar = () => {
                     <motion.li key={index} variants={itemVariants}>
                       {item.isLink ? (
                         <Link
-                          className="text-white font-medium relative group"
+                          className="text-gray-200 font-medium relative group px-3 py-2 rounded-lg transition-colors duration-300 hover:text-white"
                           href={item.href}
                         >
-                          <span className="relative">
+                          <motion.span 
+                            className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"
+                            initial={{ opacity: 0 }}
+                            whileHover={{ opacity: 1 }}
+                          />
+                          <span className="relative flex items-center">
                             {item.label}
                             <motion.span
-                              className="absolute left-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-purple-500 to-indigo-500 transition-all duration-300 group-hover:w-full"
+                              className="absolute left-0 bottom-0 h-1 w-0 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 transition-all duration-500 group-hover:w-full rounded-full"
                               initial={{ width: 0 }}
                               whileHover={{ width: "100%" }}
                             />
@@ -182,13 +191,18 @@ const NavBar = () => {
                         </Link>
                       ) : (
                         <a
-                          className="text-white font-medium relative group"
+                          className="text-gray-200 font-medium relative group px-3 py-2 rounded-lg transition-colors duration-300 hover:text-white"
                           href={item.href}
                         >
-                          <span className="relative">
+                          <motion.span 
+                            className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"
+                            initial={{ opacity: 0 }}
+                            whileHover={{ opacity: 1 }}
+                          />
+                          <span className="relative flex items-center">
                             {item.label}
                             <motion.span
-                              className="absolute left-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-purple-500 to-indigo-500 transition-all duration-300 group-hover:w-full"
+                              className="absolute left-0 bottom-0 h-1 w-0 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 transition-all duration-500 group-hover:w-full rounded-full"
                               initial={{ width: 0 }}
                               whileHover={{ width: "100%" }}
                             />
