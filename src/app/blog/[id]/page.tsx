@@ -71,88 +71,111 @@ const BlogItem = () => {
   }, [id]);
 
   if (loading) return <LoadingPage />;
-  if (!blog) return <p className="text-center text-xl">Blog not found</p>;
+  if (!blog) return (
+    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
+      <div className="text-center space-y-4">
+        <div className="w-20 h-20 mx-auto bg-gradient-to-br from-purple-500/20 to-indigo-500/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-purple-500/30">
+          <svg className="w-10 h-10 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <p className="text-2xl font-bold text-white">Blog not found</p>
+        <p className="text-gray-400">The article you're looking for doesn't exist</p>
+      </div>
+    </div>
+  );
 
   return (
     <motion.section
-      className="mt-16"
+      className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 py-16 px-4"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
+      {/* Animated Background Orbs */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      </div>
+
       <motion.div
-        className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg"
+        className="relative max-w-4xl mx-auto bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl shadow-2xl shadow-purple-900/20 overflow-hidden border border-gray-700/50 z-10"
         variants={containerVariants}
       >
         {/* Image Section */}
         <motion.div
-          className="relative w-full h-72 overflow-hidden rounded-lg"
+          className="relative w-full h-72 md:h-96 overflow-hidden group"
           variants={imageVariants}
         >
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10"></div>
           <Image
             src={blog.image}
             alt={blog.title}
             layout="fill"
             objectFit="cover"
-            className="transition-transform duration-500 hover:scale-105"
+            className="transition-transform duration-700 group-hover:scale-105"
           />
-          <span className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-xs">
+          <span className="absolute top-6 right-6 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider shadow-lg z-20">
             {blog.category}
           </span>
         </motion.div>
 
-        {/* Meta Information */}
-        <motion.div
-          className="flex items-center text-gray-600 text-sm mt-4 space-x-6"
-          variants={contentVariants}
-        >
-          <span className="flex items-center">
-            <svg
-              className="w-4 h-4 mr-1 text-purple-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M5.121 17.804A9 9 0 1118.879 6.196M12 9v4l3 3"
-              />
-            </svg>
-            By {blog.author}
-          </span>
-          <span className="flex items-center">
-            <svg
-              className="w-4 h-4 mr-1 text-purple-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M8 7h8M8 11h8m-8 4h8m2 4H6a2 2 0 01-2-2V6c0-1.104.896-2 2-2h12c1.104 0 2 .896 2 2v12c0 1.104-.896 2-2 2z"
-              />
-            </svg>
-            {new Date(blog.createdAt).toLocaleDateString()}
-          </span>
-        </motion.div>
+        <div className="p-6 md:p-8">
+          {/* Meta Information */}
+          <motion.div
+            className="flex items-center text-gray-400 text-sm gap-6 flex-wrap"
+            variants={contentVariants}
+          >
+            <span className="flex items-center gap-2 bg-gray-800/50 px-3 py-1.5 rounded-lg border border-gray-700/50">
+              <svg
+                className="w-4 h-4 text-purple-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
+              {blog.author}
+            </span>
+            <span className="flex items-center gap-2 bg-gray-800/50 px-3 py-1.5 rounded-lg border border-gray-700/50">
+              <svg
+                className="w-4 h-4 text-indigo-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+              {new Date(blog.createdAt).toLocaleDateString()}
+            </span>
+          </motion.div>
 
-        {/* Blog Title & Content */}
-        <motion.h1
-          className="text-3xl font-bold text-purple-700 mt-6"
-          variants={contentVariants}
-        >
-          {blog.title}
-        </motion.h1>
-        <motion.p
-          className="text-gray-700 mt-4 leading-relaxed"
-          variants={contentVariants}
-        >
-          {blog.content}
-        </motion.p>
+          {/* Blog Title & Content */}
+          <motion.h1
+            className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400 mt-6 leading-tight"
+            variants={contentVariants}
+          >
+            {blog.title}
+          </motion.h1>
+          <motion.div
+            className="mt-6 prose prose-invert prose-purple max-w-none"
+            variants={contentVariants}
+          >
+            <p className="text-gray-300 leading-relaxed text-lg">
+              {blog.content}
+            </p>
+          </motion.div>
+        </div>
       </motion.div>
     </motion.section>
   );
