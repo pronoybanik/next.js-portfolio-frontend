@@ -74,7 +74,7 @@ const ProjectSection = ({ project }: { project: TProject[] }) => {
                 </motion.div>
 
                 <motion.div
-                    className="grid lg:grid-cols-2 grid-cols-1 max-w-screen-2xl mx-auto"
+                    className="grid lg:grid-cols-2 grid-cols-1 max-w-screen-2xl mx-auto gap-8"
                     variants={containerVariants}
                 >
                     {project
