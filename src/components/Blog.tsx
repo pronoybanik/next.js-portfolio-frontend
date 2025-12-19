@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
-import { ArrowRight, Clock, BookOpen, ExternalLink } from "lucide-react";
+import { ArrowRight, BookOpen, ExternalLink } from "lucide-react";
 
 interface MediumBlog {
   title: string;
@@ -10,7 +10,6 @@ interface MediumBlog {
   url: string;
   image: string;
   category: string;
-  readTime: string;
 }
 
 const containerVariants: Variants = {
@@ -62,16 +61,21 @@ const mediumBlogs: MediumBlog[] = [
     description: "Explore the organic nature of software development and why treating it like growing a plant rather than building a machine leads to better results and sustainable growth.",
     url: "https://medium.com/@pronoybanik82/the-software-life-cycle-its-like-raising-a-plant-not-building-a-car-3fb358bb7e3c",
     image: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&h=600&fit=crop",
-    category: "Software Development",
-    readTime: "5 min read"
+    category: "Software Development"
   },
   {
     title: "Neural Networks Explained Without the Math",
     description: "Demystifying neural networks with intuitive explanations and practical examples, making AI accessible to everyone without complex mathematical formulas.",
     url: "https://medium.com/@pronoybanik82/neural-networks-explained-without-the-math-9bac4dc82ec3",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
-    category: "Artificial Intelligence",
-    readTime: "7 min read"
+    category: "Artificial Intelligence"
+  },
+  {
+    title: "Data Science Isn't Just About Numbers. It's Your Ticket to Tomorrow.",
+    description: "Discover how data science is transforming industries and creating opportunities for the future. It's not just about crunching numbers—it's about unlocking possibilities.",
+    url: "https://medium.com/@pronoybanik82/data-science-isnt-just-about-numbers-it-s-your-ticket-to-tomorrow-cd93f2073c24",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    category: "Data Science"
   }
 ];
 
@@ -109,7 +113,7 @@ const Blog = ({ id }: { id: string }) => {
         </motion.div>
 
         <motion.div
-          className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto"
+          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto"
           variants={containerVariants}
         >
           {mediumBlogs.map((blog, index) => (
@@ -158,11 +162,6 @@ const Blog = ({ id }: { id: string }) => {
                       <div className="flex items-center gap-1.5">
                         <BookOpen className="w-4 h-4" />
                         <span>Medium</span>
-                      </div>
-                      <div className="w-1 h-1 bg-gray-600 rounded-full"></div>
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="w-4 h-4" />
-                        <span>{blog.readTime}</span>
                       </div>
                     </div>
 
