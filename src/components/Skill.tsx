@@ -121,7 +121,7 @@ const Skill = ({ id }: { id: string }) => {
         className="relative py-16 px-4 md:px-8 lg:px-16 min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 overflow-hidden"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.2 }}
         variants={containerVariants}
       >
         {/* Animated background elements */}
