@@ -48,17 +48,17 @@ const HomeProject = ({ projects, loadId, loading = false }: { projects: TProject
     return (
         <motion.section
             id={loadId}
-            className="relative py-16 px-8 min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 overflow-hidden"
+            className="relative py-12 sm:py-16 px-4 sm:px-6 lg:px-8 min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 overflow-hidden"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={containerVariants}
         >
             {/* Animated background elements */}
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-3xl"></div>
-            <motion.div className="text-center mb-16 relative z-10" variants={headerVariants}>
+            <motion.div className="text-center mb-8 sm:mb-12 lg:mb-16 relative z-10" variants={headerVariants}>
                 <div className="inline-block mb-4">
                     <span className="text-sm font-semibold tracking-wider text-purple-400 uppercase bg-purple-500/10 px-4 py-2 rounded-full border border-purple-500/20">Portfolio Showcase</span>
                 </div>
@@ -77,7 +77,7 @@ const HomeProject = ({ projects, loadId, loading = false }: { projects: TProject
             </motion.div>
 
             <motion.div
-                className="relative z-10 grid lg:grid-cols-2 grid-cols-1 max-w-screen-2xl mx-auto gap-8"
+                className="relative z-10 grid grid-cols-1 lg:grid-cols-2 max-w-screen-2xl mx-auto gap-6 sm:gap-8"
                 variants={containerVariants}
             >
                 {loading
@@ -105,7 +105,7 @@ const HomeProject = ({ projects, loadId, loading = false }: { projects: TProject
             </motion.div>
 
             <motion.div
-                className="relative z-10 flex justify-center mt-8"
+                className="relative z-10 flex justify-center mt-8 sm:mt-10 lg:mt-12"
                 initial="hidden"
                 animate="visible"
                 whileHover="hover"
