@@ -2,6 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import { Briefcase, Calendar, MapPin, CheckCircle2 } from "lucide-react";
+import SectionHeader from "@/shared/SectionHeader";
 
 const experienceData = [
   {
@@ -112,24 +113,14 @@ const Experience = ({ id }: { id: string }) => {
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div 
+        <SectionHeader
+          badge="Professional Journey"
+          titleWhite="Work"
+          titleGradient="Experience"
+          description="Building innovative solutions and contributing to impactful projects"
           className="text-center mb-16"
           variants={headerVariants}
-        >
-          <div className="inline-block mb-4">
-            <span className="text-sm font-semibold tracking-wider text-purple-400 uppercase bg-purple-500/10 px-4 py-2 rounded-full border border-purple-500/20">Professional Journey</span>
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">
-            <span className="text-white">Work </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400">Experience</span>
-          </h2>
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <div className="w-12 h-1 bg-gradient-to-r from-transparent to-purple-500 rounded-full"></div>
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 rounded-full"></div>
-            <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-transparent rounded-full"></div>
-          </div>
-          <p className="text-gray-400 text-base max-w-2xl mx-auto mt-4">Building innovative solutions and contributing to impactful projects</p>
-        </motion.div>
+        />
 
         <div className="space-y-8 relative">
           {/* Vertical timeline line */}

@@ -3,6 +3,7 @@ import { TProject } from "@/app/types/projectType";
 import { motion } from "framer-motion";
 import { Variants } from "motion";
 import ProductItem from "./ProductItem";
+import SectionHeader from "@/shared/SectionHeader";
 
 const containerVariants: Variants = {
     hidden: { opacity: 0, y: 80 },
@@ -55,23 +56,14 @@ const ProjectSection = ({ project }: { project: TProject[] }) => {
                 animate="visible"
                 variants={containerVariants}
             >
-                <motion.div className="text-center mb-16" variants={headerVariants}>
-                    <div className="inline-block mb-4">
-                        <span className="text-sm font-semibold tracking-wider text-purple-400 uppercase bg-purple-500/10 px-4 py-2 rounded-full border border-purple-500/20">Full Portfolio</span>
-                    </div>
-                    <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">
-                        <span className="text-white">All My </span>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400">Projects</span>
-                    </h2>
-                    <div className="flex items-center justify-center gap-2 mb-4">
-                        <div className="w-12 h-1 bg-gradient-to-r from-transparent to-purple-500 rounded-full"></div>
-                        <div className="w-8 h-1 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 rounded-full"></div>
-                        <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-transparent rounded-full"></div>
-                    </div>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-                        Transforming ideas into unique web projects that inspire and engage both you and your customers
-                    </p>
-                </motion.div>
+                <SectionHeader
+                    badge="Full Portfolio"
+                    titleWhite="All My"
+                    titleGradient="Projects"
+                    description="Transforming ideas into unique web projects that inspire and engage both you and your customers"
+                    className="text-center mb-16"
+                    variants={headerVariants}
+                />
 
                 <motion.div
                     className="grid lg:grid-cols-2 grid-cols-1 max-w-screen-2xl mx-auto gap-8"
