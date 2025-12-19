@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, Variants } from "framer-motion";
 import { Code2, Server, Wrench, Palette, Users } from "lucide-react";
+import SectionHeader from "@/shared/SectionHeader";
 import html from "../images/development-logo/html/html-svgrepo-com.svg";
 import css from "../images/development-logo/css/download.png";
 import js from "../images/development-logo/js/download (1).png";
@@ -126,25 +127,18 @@ const Skill = ({ id }: { id: string }) => {
         {/* Animated background elements */}
         <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <motion.div className="text-center mb-16 relative z-10" variants={headerVariants}>
-          <div className="inline-block mb-4">
-            <span className="text-sm font-semibold tracking-wider text-purple-400 uppercase bg-purple-500/10 px-4 py-2 rounded-full border border-purple-500/20">Technical Expertise</span>
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">
-            <span className="text-white">My </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400">Skills</span>
-          </h2>
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-12 h-1 bg-gradient-to-r from-transparent to-purple-500 rounded-full"></div>
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 rounded-full"></div>
-            <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-transparent rounded-full"></div>
-          </div>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
-            Comprehensive expertise across modern web technologies and development tools
-          </p>
+        <SectionHeader
+          badge="Technical Expertise"
+          titleWhite="My"
+          titleGradient="Skills"
+          description="Comprehensive expertise across modern web technologies and development tools"
+          className="text-center mb-16 relative z-10"
+          variants={headerVariants}
+        />
 
+        <motion.div className="text-center relative z-10">
           {/* Category Filters */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <motion.button
               onClick={() => setSelectedCategory(null)}
               className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 ${
