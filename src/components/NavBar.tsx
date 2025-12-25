@@ -2,30 +2,21 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
-import Image from "next/image";
-import icon from "../images/Blue_Initial_P_Business_Logo-removebg-preview.png";
 
 const NavBar = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
-
   const navLinks = [
-    { href: "/", label: "Home", isLink: true },
-    { href: "/#education", label: "Education", isLink: true },
-    { href: "/#experience", label: "Experience", isLink: true },
-    { href: "/#services", label: "Services", isLink: true },
-    { href: "/#projects", label: "Projects", isLink: true },
-    { href: "/#skills", label: "Skills", isLink: true },
-    { href: "/#blog", label: "Blog", isLink: true },
-    { href: "/#contact", label: "Contact", isLink: true },
+    { href: "/", label: "Home" },
+    { href: "/#education", label: "Education" },
+    { href: "/#experience", label: "Experience" },
+    { href: "/#services", label: "Services" },
+    { href: "/#projects", label: "Projects" },
+    { href: "/#skills", label: "Skills" },
   ];
 
-  // Handle scroll effect for navbar
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -34,290 +25,162 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu on outside click
+  // Lock body scroll when sidebar is open
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (
-        mobileMenuOpen &&
-        !target.closest("#mobile-menu") &&
-        !target.closest("#menu-button")
-      ) {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [mobileMenuOpen]);
-
-  // Close on resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768 && mobileMenuOpen) {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [mobileMenuOpen]);
-
-  // Lock scroll when menu is open
-  useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
+    if (sidebarOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [mobileMenuOpen]);
+  }, [sidebarOpen]);
 
-  // Animation variants
-  const containerVariants : Variants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants : Variants = {
-    hidden: { opacity: 0, y: -10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 15,
-      },
-    },
-    hover: {
-      scale: 1.05,
-      transition: { type: "spring", stiffness: 400 },
-    },
-  };
-
-  const mobileMenuVariants : Variants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 20,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -20,
-      transition: {
-        ease: "easeIn",
-        duration: 0.2,
-      },
-    },
-  };
-
-  const backdropVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-    exit: { opacity: 0 },
-  };
+  const closeSidebar = () => setSidebarOpen(false);
 
   return (
-    <motion.div
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-gradient-to-b from-gray-900/98 via-gray-900/95 to-gray-900/90 backdrop-blur-lg shadow-2xl shadow-purple-900/20"
-          : "bg-gradient-to-b from-gray-950 via-gray-900 to-gray-900/95"
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 200, damping: 20 }}
-    >
-      <header className="shadow-none">
-        <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
+    <>
+      {/* Main Navbar */}
+      <nav
+        className={`sticky top-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-[#0f0f1e]/95 backdrop-blur-lg shadow-lg"
+            : "bg-[#0f0f1e]"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <motion.div
-              className="flex-1"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link href="/" className="flex items-center mt-2">
-                <Image
-                  width={140}
-                  height={100}
-                  src={icon}
-                  alt="Logo"
-                  priority
-                />
-              </Link>
-            </motion.div>
+            <Link href="/" className="flex-shrink-0">
+              <span className="text-2xl font-bold text-white">
+                Pronoy<span className="text-indigo-500">.</span>
+              </span>
+            </Link>
 
             {/* Desktop Navigation */}
-            <div className="md:flex md:items-center md:gap-12">
-              <nav aria-label="Global" className="hidden md:block">
-                <motion.ul
-                  className="flex items-center gap-6 lg:gap-8 text-base lg:text-lg font-semibold"
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
+            <div className="hidden lg:flex items-center gap-8">
+              {navLinks.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.href}
+                  className={`text-sm font-medium transition-colors duration-200 ${
+                    item.label === "Home"
+                      ? "text-indigo-500"
+                      : "text-gray-400 hover:text-white"
+                  }`}
                 >
-                  {navLinks.map((item, index) => (
-                    <motion.li key={index} variants={itemVariants}>
-                      {item.isLink ? (
-                        <Link
-                          className="text-gray-200 font-medium relative group px-3 py-2 rounded-lg transition-colors duration-300 hover:text-white"
-                          href={item.href}
-                        >
-                          <motion.span 
-                            className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"
-                            initial={{ opacity: 0 }}
-                            whileHover={{ opacity: 1 }}
-                          />
-                          <span className="relative flex items-center">
-                            {item.label}
-                            <motion.span
-                              className="absolute left-0 bottom-0 h-1 w-0 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 transition-all duration-500 group-hover:w-full rounded-full"
-                              initial={{ width: 0 }}
-                              whileHover={{ width: "100%" }}
-                            />
-                          </span>
-                        </Link>
-                      ) : (
-                        <a
-                          className="text-gray-200 font-medium relative group px-3 py-2 rounded-lg transition-colors duration-300 hover:text-white"
-                          href={item.href}
-                        >
-                          <motion.span 
-                            className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"
-                            initial={{ opacity: 0 }}
-                            whileHover={{ opacity: 1 }}
-                          />
-                          <span className="relative flex items-center">
-                            {item.label}
-                            <motion.span
-                              className="absolute left-0 bottom-0 h-1 w-0 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 transition-all duration-500 group-hover:w-full rounded-full"
-                              initial={{ width: 0 }}
-                              whileHover={{ width: "100%" }}
-                            />
-                          </span>
-                        </a>
-                      )}
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </nav>
-
-              {/* Mobile Menu Toggle */}
-              <div className="block md:hidden">
-                <motion.button
-                  id="menu-button"
-                  className="rounded-md p-2 text-gray-300 hover:text-white focus:outline-none"
-                  onClick={toggleMobileMenu}
-                  aria-expanded={mobileMenuOpen}
-                  aria-controls="mobile-menu"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  {mobileMenuOpen ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M4 6h16M4 12h16M4 18h16"
-                      />
-                    </svg>
-                  )}
-                </motion.button>
-              </div>
+                  {item.label}
+                </Link>
+              ))}
             </div>
+
+            {/* Desktop CTA Button */}
+            <div className="hidden lg:block">
+              <Link
+                href="/#contact"
+                className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-200"
+              >
+                Let&apos;s Talk
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="lg:hidden p-2 text-gray-400 hover:text-white transition-colors"
+              aria-label="Open menu"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
           </div>
         </div>
+      </nav>
 
-        {/* Mobile Menu with AnimatePresence */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <>
-              <motion.div
-                className="fixed inset-0 z-40 bg-black/50 md:hidden"
-                onClick={() => setMobileMenuOpen(false)}
-                variants={backdropVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
+      {/* Mobile Sidebar Overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 z-[998] lg:hidden"
+          onClick={closeSidebar}
+        />
+      )}
+
+      {/* Mobile Sidebar */}
+      <div
+        className={`fixed top-0 left-0 h-full w-72 bg-[#0f0f1e] z-[999] transform transition-transform duration-300 ease-in-out lg:hidden ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        {/* Sidebar Header */}
+        <div className="flex items-center justify-between p-4 border-b border-gray-800">
+          <Link href="/" onClick={closeSidebar}>
+            <span className="text-2xl font-bold text-white">
+              Pronoy<span className="text-indigo-500">.</span>
+            </span>
+          </Link>
+          <button
+            onClick={closeSidebar}
+            className="p-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors"
+            aria-label="Close menu"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
               />
+            </svg>
+          </button>
+        </div>
 
-              <motion.div
-                id="mobile-menu"
-                className="md:hidden bg-gray-800 absolute w-full z-50 shadow-xl"
-                variants={mobileMenuVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-              >
-                <div className="px-4 py-3 space-y-1">
-                  {navLinks.map((item, index) => (
-                    <motion.div
-                      key={index}
-                      className="py-1"
-                      variants={itemVariants}
-                      whileHover={{ x: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {item.isLink ? (
-                        <Link
-                          href={item.href}
-                          className="block w-full text-left px-4 py-3 text-lg font-medium text-white rounded-lg hover:bg-gray-700/50 transition-colors"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {item.label}
-                        </Link>
-                      ) : (
-                        <a
-                          href={item.href}
-                          className="block w-full text-left px-4 py-3 text-lg font-medium text-white rounded-lg hover:bg-gray-700/50 transition-colors"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {item.label}
-                        </a>
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
-      </header>
-    </motion.div>
+        {/* Sidebar Navigation */}
+        <nav className="flex-1 px-4 py-6">
+          {navLinks.map((item, index) => (
+            <Link
+              key={index}
+              href={item.href}
+              onClick={closeSidebar}
+              className={`block px-4 py-3 mb-1 text-base rounded-lg transition-colors ${
+                item.label === "Home"
+                  ? "text-indigo-500 font-semibold bg-indigo-500/10"
+                  : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Sidebar Footer */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-800">
+          <Link
+            href="/#contact"
+            onClick={closeSidebar}
+            className="block w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-center rounded-lg font-medium transition-colors"
+          >
+            Let&apos;s Talk
+          </Link>
+        </div>
+      </div>
+    </>
   );
 };
 

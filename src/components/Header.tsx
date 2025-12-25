@@ -2,10 +2,8 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
-import image from "../images/1o0FVW0sOxcAAAAASUVORK5CYII=.png";
-import facebook from "../images/icons/icons8-facebook-250.png";
-import github from "../images/icons/icons8-github-500.png";
-import linkedin from "../images/icons/icons8-linkedin-250.png";
+import image from "../images/Header-image.png";
+import { Facebook, Github, Linkedin } from "lucide-react";
 import Typed from "typed.js";
 
 // Option 1: Use Google Drive direct download link
@@ -212,20 +210,20 @@ const handleDownload = () => {
                 {[
                   {
                     link: "https://www.facebook.com/pronoy.banik.7",
-                    img: facebook,
+                    icon: Facebook,
                     alt: "Facebook",
                   },
                   {
                     link: "https://github.com/pronoybanik",
-                    img: github,
+                    icon: Github,
                     alt: "GitHub",
                   },
                   {
                     link: "https://www.linkedin.com/in/pronoy-banik-1b5a3125a/",
-                    img: linkedin,
+                    icon: Linkedin,
                     alt: "LinkedIn",
                   },
-                ].map(({ link, img, alt }) => (
+                ].map(({ link, icon: Icon, alt }) => (
                   <motion.a
                     key={alt}
                     href={link}
@@ -237,13 +235,7 @@ const handleDownload = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <Image
-                      src={img}
-                      width={24}
-                      height={24}
-                      alt={alt}
-                      className="relative z-10 transition-all duration-300 group-hover:brightness-125"
-                    />
+                    <Icon className="w-5 h-5 text-gray-300 group-hover:text-purple-400 transition-colors duration-300 relative z-10" />
                   </motion.a>
                 ))}
               </div>

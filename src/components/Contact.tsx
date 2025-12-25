@@ -3,7 +3,6 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Mail, Phone, MapPin } from "lucide-react";
-import SecondaryButton from "@/shared/SecondaryButton";
 import { motion, Variants } from "framer-motion";
 
 // Define form data structure
@@ -94,7 +93,7 @@ const ContactForm = ({ id }: { id: string }) => {
       {/* Animated background elements */}
       <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-      
+
       <SectionHeader
         badge="Get In Touch"
         titleWhite="Let's"
@@ -115,7 +114,7 @@ const ContactForm = ({ id }: { id: string }) => {
         >
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-indigo-500/5 rounded-2xl pointer-events-none"></div>
-          
+
           <div className="relative z-10">
             <h2 className="text-3xl sm:text-4xl md:text-2xl mb-4 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400 text-center md:text-left">
               Let&apos;s work together!
@@ -133,11 +132,10 @@ const ContactForm = ({ id }: { id: string }) => {
                     {...register("firstName", {
                       required: "First name is required",
                     })}
-                    className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.firstName
+                    className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${errors.firstName
                         ? "border-red-500/50 focus:ring-red-500/50"
                         : "border-gray-700/50 focus:ring-purple-500/50 focus:border-purple-500/50"
-                    }`}
+                      }`}
                   />
                   {errors.firstName && (
                     <p className="text-red-400 text-sm mt-1">
@@ -152,11 +150,10 @@ const ContactForm = ({ id }: { id: string }) => {
                     {...register("lastName", {
                       required: "Last name is required",
                     })}
-                    className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.lastName
+                    className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${errors.lastName
                         ? "border-red-500/50 focus:ring-red-500/50"
                         : "border-gray-700/50 focus:ring-purple-500/50 focus:border-purple-500/50"
-                    }`}
+                      }`}
                   />
                   {errors.lastName && (
                     <p className="text-red-400 text-sm mt-1">
@@ -174,11 +171,10 @@ const ContactForm = ({ id }: { id: string }) => {
                     {...register("email", {
                       required: "Enter a valid email address",
                     })}
-                    className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.email
+                    className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${errors.email
                         ? "border-red-500/50 focus:ring-red-500/50"
                         : "border-gray-700/50 focus:ring-purple-500/50 focus:border-purple-500/50"
-                    }`}
+                      }`}
                   />
                   {errors.email && (
                     <p className="text-red-400 text-sm mt-1">
@@ -193,11 +189,10 @@ const ContactForm = ({ id }: { id: string }) => {
                     {...register("phone", {
                       required: "Enter a valid 10-digit phone number",
                     })}
-                    className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.phone
+                    className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${errors.phone
                         ? "border-red-500/50 focus:ring-red-500/50"
                         : "border-gray-700/50 focus:ring-purple-500/50 focus:border-purple-500/50"
-                    }`}
+                      }`}
                   />
                   {errors.phone && (
                     <p className="text-red-400 text-sm mt-1">
@@ -212,25 +207,24 @@ const ContactForm = ({ id }: { id: string }) => {
                   {...register("category", {
                     required: "Please select a category",
                   })}
-                  className={`w-full bg-gray-900/50 border text-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${
-                    errors.category
+                  className={`w-full bg-gray-900/50 border text-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 ${errors.category
                       ? "border-red-500/50 focus:ring-red-500/50"
                       : "border-gray-700/50 focus:ring-purple-500/50 focus:border-purple-500/50"
-                  }`}
+                    }`}
                 >
-                <option value="">Select a category</option>
-                <option value="Technology">Portfolio Website</option>
-                <option value="Health">E-commerce Website</option>
-                <option value="Lifestyle">Learning/Tutoring Platform</option>
-                <option value="Business">Job Board Website</option>
-                <option value="Business">Blogging Platform</option>
-                <option value="Business">
-                  SaaS Dashboard (Analytics/CRM/HRM/etc.)
-                </option>
-                <option value="Business">Real Estate Listing Website</option>
-                <option value="Business">Forum/Community Website</option>
-                <option value="Business">Event Management Website</option>
-                <option value="Business">Travel Booking Website</option>
+                  <option value="">Select a category</option>
+                  <option value="Technology">Portfolio Website</option>
+                  <option value="Health">E-commerce Website</option>
+                  <option value="Lifestyle">Learning/Tutoring Platform</option>
+                  <option value="Business">Job Board Website</option>
+                  <option value="Business">Blogging Platform</option>
+                  <option value="Business">
+                    SaaS Dashboard (Analytics/CRM/HRM/etc.)
+                  </option>
+                  <option value="Business">Real Estate Listing Website</option>
+                  <option value="Business">Forum/Community Website</option>
+                  <option value="Business">Event Management Website</option>
+                  <option value="Business">Travel Booking Website</option>
                 </select>
                 {errors.category && (
                   <p className="text-red-400 text-sm mt-1">
@@ -244,11 +238,10 @@ const ContactForm = ({ id }: { id: string }) => {
                   placeholder="Message"
                   rows={4}
                   {...register("message", { required: "Message is required" })}
-                  className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 resize-none ${
-                    errors.message
+                  className={`w-full bg-gray-900/50 border text-gray-200 placeholder-gray-500 rounded-lg p-3 focus:outline-none focus:ring-2 transition-all duration-300 resize-none ${errors.message
                       ? "border-red-500/50 focus:ring-red-500/50"
                       : "border-gray-700/50 focus:ring-purple-500/50 focus:border-purple-500/50"
-                  }`}
+                    }`}
                 ></textarea>
                 {errors.message && (
                   <p className="text-red-400 text-sm mt-1">
@@ -257,9 +250,20 @@ const ContactForm = ({ id }: { id: string }) => {
                 )}
               </div>
 
-              <SecondaryButton type="submit">
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </SecondaryButton>
+
+              <motion.button
+                className="group relative w-full px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-center text-white rounded-xl shadow-lg shadow-purple-500/30 cursor-pointer overflow-hidden bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 border border-purple-500/30"
+                whileHover={{ scale: 1.02, y: -2, boxShadow: "0 20px 40px -10px rgba(147, 51, 234, 0.5)" }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="relative flex items-center justify-center gap-2">
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+              </motion.button>
             </form>
           </div>
         </motion.div>
