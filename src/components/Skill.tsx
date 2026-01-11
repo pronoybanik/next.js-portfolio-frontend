@@ -23,6 +23,9 @@ import SkillItem from "./SkillItem";
 import nextjs from "../images/development-logo/next.js/download.jpg";
 import prisma from "../images/development-logo/prisma/download (1).jpg";
 import vercel from "../images/development-logo/vercel/download.png";
+import docker from "../images/development-logo/docker/docker.png";
+import aws from "../images/development-logo/aws/aws.png";
+import jest from "../images/development-logo/jest/jest.png";
 
 const skillCategories = [
   {
@@ -30,16 +33,16 @@ const skillCategories = [
     icon: <Code2 className="w-6 h-6" />,
     gradient: "from-purple-500 to-indigo-500",
     skills: [
-      { name: "HTML5", img: html, level: "Expert" },
-      { name: "CSS3", img: css, level: "Expert" },
-      { name: "JavaScript", img: js, level: "Expert" },
-      { name: "React.js", img: react, level: "Expert" },
-      { name: "Redux", img: redux, level: "Advanced" },
-      { name: "TypeScript", img: typescript, level: "Advanced" },
-      { name: "Angular", img: angular, level: "Intermediate" },
-      { name: "Next.js", img: nextjs, level: "Expert" },
-      { name: "Tailwind CSS", img: Tailwind, level: "Expert" },
-      { name: "Bootstrap", img: Bootstrap, level: "Advanced" },
+      { name: "HTML5", img: html, level: "Advanced", percentage: 85 },
+      { name: "CSS3", img: css, level: "Advanced", percentage: 85 },
+      { name: "JavaScript", img: js, level: "Advanced", percentage: 80 },
+      { name: "React.js", img: react, level: "Advanced", percentage: 85 },
+      { name: "Redux", img: redux, level: "Advanced", percentage: 75 },
+      { name: "TypeScript", img: typescript, level: "Advanced", percentage: 78 },
+      { name: "Angular", img: angular, level: "Intermediate", percentage: 55 },
+      { name: "Next.js", img: nextjs, level: "Advanced", percentage: 82 },
+      { name: "Tailwind CSS", img: Tailwind, level: "Advanced", percentage: 85 },
+      { name: "Bootstrap", img: Bootstrap, level: "Advanced", percentage: 80 },
     ],
   },
   {
@@ -47,11 +50,11 @@ const skillCategories = [
     icon: <Server className="w-6 h-6" />,
     gradient: "from-blue-500 to-cyan-500",
     skills: [
-      { name: "Express.js", img: Express, level: "Expert" },
-      { name: "Node.js", img: js, level: "Expert" },
-      { name: "MongoDB", img: Mongo, level: "Expert" },
-      { name: "PostgreSQL", img: postgresql, level: "Advanced" },
-      { name: "Prisma", img: prisma, level: "Advanced" },
+      { name: "Express.js", img: Express, level: "Advanced", percentage: 82 },
+      { name: "Node.js", img: js, level: "Advanced", percentage: 80 },
+      { name: "MongoDB", img: Mongo, level: "Advanced", percentage: 85 },
+      { name: "PostgreSQL", img: postgresql, level: "Intermediate", percentage: 65 },
+      { name: "Prisma", img: prisma, level: "Intermediate", percentage: 70 },
     ],
   },
   {
@@ -59,10 +62,13 @@ const skillCategories = [
     icon: <Wrench className="w-6 h-6" />,
     gradient: "from-green-500 to-emerald-500",
     skills: [
-      { name: "GitHub", img: Github, level: "Expert" },
-      { name: "Figma", img: Figma, level: "Advanced" },
-      { name: "Vercel", img: vercel, level: "Expert" },
-      { name: "Netlify", img: Netlify, level: "Advanced" },
+      { name: "GitHub", img: Github, level: "Advanced", percentage: 85 },
+      { name: "Figma", img: Figma, level: "Intermediate", percentage: 65 },
+      { name: "Vercel", img: vercel, level: "Advanced", percentage: 80 },
+      { name: "Netlify", img: Netlify, level: "Intermediate", percentage: 70 },
+      { name: "Docker", img: docker, level: "Basic", percentage: 35 },
+      { name: "AWS", img: aws, level: "Basic", percentage: 30 },
+      { name: "Jest", img: jest, level: "Basic", percentage: 40 },
     ],
   },
   {
@@ -70,9 +76,9 @@ const skillCategories = [
     icon: <Palette className="w-6 h-6" />,
     gradient: "from-pink-500 to-rose-500",
     skills: [
-      { name: "Material UI", img: react, level: "Advanced" },
-      { name: "Shadcn UI", img: react, level: "Advanced" },
-      { name: "DaisyUI", img: react, level: "Advanced" },
+      { name: "Material UI", img: react, level: "Intermediate", percentage: 65 },
+      { name: "Shadcn UI", img: react, level: "Advanced", percentage: 75 },
+      { name: "DaisyUI", img: react, level: "Intermediate", percentage: 70 },
     ],
   },
 ];
