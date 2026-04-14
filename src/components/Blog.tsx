@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
-import { ArrowRight, Clock, BookOpen, ExternalLink } from "lucide-react";
+import { ArrowRight, BookOpen, ExternalLink } from "lucide-react";
+import SectionHeader from "@/shared/SectionHeader";
 
 interface MediumBlog {
   title: string;
@@ -10,7 +11,6 @@ interface MediumBlog {
   url: string;
   image: string;
   category: string;
-  readTime: string;
 }
 
 const containerVariants: Variants = {
@@ -62,16 +62,21 @@ const mediumBlogs: MediumBlog[] = [
     description: "Explore the organic nature of software development and why treating it like growing a plant rather than building a machine leads to better results and sustainable growth.",
     url: "https://medium.com/@pronoybanik82/the-software-life-cycle-its-like-raising-a-plant-not-building-a-car-3fb358bb7e3c",
     image: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&h=600&fit=crop",
-    category: "Software Development",
-    readTime: "5 min read"
+    category: "Software Development"
   },
   {
     title: "Neural Networks Explained Without the Math",
     description: "Demystifying neural networks with intuitive explanations and practical examples, making AI accessible to everyone without complex mathematical formulas.",
     url: "https://medium.com/@pronoybanik82/neural-networks-explained-without-the-math-9bac4dc82ec3",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
-    category: "Artificial Intelligence",
-    readTime: "7 min read"
+    category: "Artificial Intelligence"
+  },
+  {
+    title: "Data Science Isn't Just About Numbers. It's Your Ticket to Tomorrow.",
+    description: "Discover how data science is transforming industries and creating opportunities for the future. It's not just about crunching numbers—it's about unlocking possibilities.",
+    url: "https://medium.com/@pronoybanik82/data-science-isnt-just-about-numbers-it-s-your-ticket-to-tomorrow-cd93f2073c24",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    category: "Data Science"
   }
 ];
 
@@ -90,26 +95,17 @@ const Blog = ({ id }: { id: string }) => {
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div className="text-center mb-16" variants={headerVariants}>
-          <div className="inline-block mb-4">
-            <span className="text-sm font-semibold tracking-wider text-purple-400 uppercase bg-purple-500/10 px-4 py-2 rounded-full border border-purple-500/20">Latest Articles</span>
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">
-            <span className="text-white">My </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400">Blog Posts</span>
-          </h2>
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-12 h-1 bg-gradient-to-r from-transparent to-purple-500 rounded-full"></div>
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 rounded-full"></div>
-            <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-transparent rounded-full"></div>
-          </div>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Insights, tutorials and thoughts on software development, AI, and technology
-          </p>
-        </motion.div>
+        <SectionHeader
+          badge="Latest Articles"
+          titleWhite="My"
+          titleGradient="Blog Posts"
+          description="Insights, tutorials and thoughts on software development, AI, and technology"
+          className="text-center mb-16"
+          variants={headerVariants}
+        />
 
         <motion.div
-          className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto"
+          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto"
           variants={containerVariants}
         >
           {mediumBlogs.map((blog, index) => (
@@ -158,11 +154,6 @@ const Blog = ({ id }: { id: string }) => {
                       <div className="flex items-center gap-1.5">
                         <BookOpen className="w-4 h-4" />
                         <span>Medium</span>
-                      </div>
-                      <div className="w-1 h-1 bg-gray-600 rounded-full"></div>
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="w-4 h-4" />
-                        <span>{blog.readTime}</span>
                       </div>
                     </div>
 

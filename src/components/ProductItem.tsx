@@ -55,9 +55,9 @@ const ProductItem = ({ projectData, loading = false }: ProductItemProps) => {
           }
         `}</style>
 
-        <div className="block px-4 py-6 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-          <div className="relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 p-6 overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 md:gap-10 animate-pulse">
+        <div className="block max-w-6xl mx-auto">
+          <div className="relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-700/50 p-4 sm:p-5 lg:p-6 overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 animate-pulse">
               <div>
                 <div className="h-6 sm:h-7 md:h-8 w-2/3 bg-gray-700/50 rounded mb-3" />
                 <div className="h-4 w-full bg-gray-700/50 rounded mb-2" />
@@ -88,13 +88,13 @@ const ProductItem = ({ projectData, loading = false }: ProductItemProps) => {
 
       <Link
         href={`/project/${projectData!._id}`}
-        className="block px-4 py-6 sm:px-6 lg:px-8 max-w-6xl mx-auto group"
+        className="block max-w-6xl mx-auto group"
       >
-        <div className="relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 shadow-xl shadow-purple-900/10 transition-all duration-500 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/20 p-6 overflow-hidden">
+        <div className="relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-700/50 shadow-xl shadow-purple-900/10 transition-all duration-500 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/20 p-4 sm:p-5 lg:p-6 overflow-hidden">
           {/* Gradient overlay on hover */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none"></div>
           
-          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-6 md:gap-10">
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10">
             {/* Text Section */}
             <div>
               <div className="inline-block mb-3">
