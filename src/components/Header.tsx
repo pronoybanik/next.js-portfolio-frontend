@@ -2,7 +2,8 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
-import image from "../images/Header-image.png";
+// import image from "../images/Header-image.png";
+import image from "../images/20260911_190444(1).jpg";
 import { Facebook, Github, Linkedin } from "lucide-react";
 import Typed from "typed.js";
 
