@@ -84,7 +84,7 @@ const ContactForm = ({ id }: { id: string }) => {
   return (
     <motion.section
       id={id}
-      className="relative flex flex-col items-center justify-center px-4 pb-32 py-16 bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 overflow-hidden"
+      className="relative  flex flex-col items-center justify-center px-4 pb-32 py-16 bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -104,7 +104,7 @@ const ContactForm = ({ id }: { id: string }) => {
       />
 
       <motion.div
-        className="relative z-10 flex flex-col md:flex-row w-full max-w-screen-lg space-y-12 md:space-y-0 md:space-x-12"
+        className="relative max-w-7xl mx-auto z-10 flex flex-col md:flex-row w-full space-y-12 md:space-y-0 md:space-x-12"
         variants={containerVariants}
       >
         {/* Form Section */}

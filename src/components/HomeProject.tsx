@@ -49,7 +49,7 @@ const HomeProject = ({ projects, loadId, loading = false }: { projects: TProject
     return (
         <motion.section
             id={loadId}
-            className="relative py-12 sm:py-16 px-4 sm:px-6 lg:px-8 min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 overflow-hidden"
+            className="relative  py-12 sm:py-16 px-4 sm:px-6 lg:px-8 min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 overflow-hidden"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
@@ -70,7 +70,7 @@ const HomeProject = ({ projects, loadId, loading = false }: { projects: TProject
             />
 
             <motion.div
-                className="relative z-10 grid grid-cols-1 lg:grid-cols-2 max-w-screen-2xl mx-auto gap-6 sm:gap-8"
+                className="relative z-10 grid grid-cols-1 lg:grid-cols-2 max-w-7xl mx-auto gap-6 sm:gap-8"
                 variants={containerVariants}
             >
                 {loading
